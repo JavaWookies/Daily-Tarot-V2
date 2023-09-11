@@ -1,0 +1,39 @@
+# this is an auto generated file. This will be overwritten
+
+query GetReading($id: ID!) {
+  getReading(id: $id) {
+    id
+    userId
+    dateCreated
+    cardOneId
+    cardTwoId
+    cardThreeId
+    interpretation
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListReadings(
+  $filter: ModelReadingFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listReadings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      userId
+      dateCreated
+      cardOneId
+      cardTwoId
+      cardThreeId
+      interpretation
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
