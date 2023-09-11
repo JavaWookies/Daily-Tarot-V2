@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.amcwustl.dailytarot.R;
+import com.amplifyframework.core.Amplify;
 
 public class VerifyActivity extends AppCompatActivity {
   private static final String TAG = "VerifyActivity";
@@ -25,15 +26,33 @@ public class VerifyActivity extends AppCompatActivity {
     verificationCodeEditText = findViewById(R.id.VerifyActivityCodeEditTextNumber);
     submitButton = findViewById(R.id.VerifyActivityVerifyButton);
 
-    setupSubmitButton();
+    String email = getIntent().getStringExtra("email");
+    if (email != null && !email.isEmpty()) {
+      emailEditText.setText(email);
+    } else {
+      Log.i(TAG, "Email was not passed or is empty");
+    }
 
+    setupSubmitButton();
   }
 
-  //  TODO: Setup intent and onclick confirm sign-up with AWS
   void setupSubmitButton() {
     submitButton.setOnClickListener(v -> {
-      Intent goToLoginIntent = new Intent(VerifyActivity.this, LoginActivity.class);
-      startActivity(goToLoginIntent);
+      Amplify.Auth.confirmSignUp(
+              emailEditText.getText().toString(),
+              verificationCodeEditText.getText().toString(),
+              success -> {
+                Log.i(TAG, "Verification succeeded: " + success.toString());
+
+                Intent goToLoginIntent = new Intent(VerifyActivity.this, LoginActivity.class);
+                goToLoginIntent.putExtra("email", emailEditText.getText().toString());
+
+                startActivity(goToLoginIntent);
+              },
+              failure -> {
+                Log.i(TAG, "Verification failed: " + failure.toString());
+              }
+      );
     });
   }
 }

@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.amcwustl.dailytarot.MainActivity;
 import com.amcwustl.dailytarot.R;
+import com.amplifyframework.core.Amplify;
 
 public class LoginActivity extends AppCompatActivity {
   private static final String TAG = "LoginActivity";
@@ -38,11 +39,21 @@ public class LoginActivity extends AppCompatActivity {
 
   }
 
-// TODO: Setup intent and onclick confirm sign-in with AWS
 void setupSubmitButton() {
   submitButton.setOnClickListener(v -> {
-    Intent goToLoginIntent = new Intent(LoginActivity.this, MainActivity.class);
-    startActivity(goToLoginIntent);
+    Amplify.Auth.signIn(
+            emailEditText.getText().toString(),
+            passwordEditText.getText().toString(),
+            success -> {
+              Log.i(TAG, "Login succeeded: " + success.toString());
+
+              Intent goToMainActivityIntent = new Intent(LoginActivity.this, MainActivity.class);
+              startActivity(goToMainActivityIntent);
+            },
+            failure -> {
+              Log.i(TAG, "Login failed: " + failure.toString());
+            }
+    );
   });
 }
 
