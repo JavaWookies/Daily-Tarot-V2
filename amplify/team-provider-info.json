@@ -14,6 +14,9 @@
     "categories": {
       "api": {
         "dailytarot": {}
+      },
+      "auth": {
+        "dailytarotd6ae51bc": {}
       }
     }
   }

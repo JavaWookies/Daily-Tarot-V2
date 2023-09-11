@@ -21,6 +21,7 @@ public class DailyTarotAmplifyApplication extends Application {
 
         try {
             Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException error) {
