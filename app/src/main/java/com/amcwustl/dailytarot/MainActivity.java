@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.amcwustl.dailytarot.activities.SignUpActivity;
 
+
 public class MainActivity extends AppCompatActivity {
   private final String TAG = "MainActivity";
   ImageView moveToSignUp;
@@ -22,10 +23,12 @@ public class MainActivity extends AppCompatActivity {
       setupMovetoSignup();
   }
 
+
     void setupMovetoSignup() {
         moveToSignUp.setOnClickListener(v -> {
             Intent goToSettingsActivityIntent = new Intent(MainActivity.this, SignUpActivity.class);
             startActivity(goToSettingsActivityIntent);
         });
+
     }
 }
