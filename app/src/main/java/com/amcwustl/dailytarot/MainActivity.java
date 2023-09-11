@@ -2,23 +2,33 @@ package com.amcwustl.dailytarot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.ImageView;
 
-import com.amplifyframework.core.Amplify;
+import com.amcwustl.dailytarot.activities.SignUpActivity;
+
 
 public class MainActivity extends AppCompatActivity {
+  private final String TAG = "MainActivity";
+  ImageView moveToSignUp;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-//        testing authorization, delete later
+      moveToSignUp = findViewById(R.id.MainActivitySignUpImageView);
 
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
-        );
+      setupMovetoSignup();
+  }
+
+
+    void setupMovetoSignup() {
+        moveToSignUp.setOnClickListener(v -> {
+            Intent goToSettingsActivityIntent = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(goToSettingsActivityIntent);
+        });
+
     }
 }
