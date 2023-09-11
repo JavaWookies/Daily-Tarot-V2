@@ -1,41 +1,53 @@
 # this is an auto generated file. This will be overwritten
 
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreateReading(
+  $input: CreateReadingInput!
+  $condition: ModelReadingConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createReading(input: $input, condition: $condition) {
     id
-    name
-    description
+    userId
+    dateCreated
+    cardOneId
+    cardTwoId
+    cardThreeId
+    interpretation
     createdAt
     updatedAt
     __typename
   }
 }
 
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdateReading(
+  $input: UpdateReadingInput!
+  $condition: ModelReadingConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateReading(input: $input, condition: $condition) {
     id
-    name
-    description
+    userId
+    dateCreated
+    cardOneId
+    cardTwoId
+    cardThreeId
+    interpretation
     createdAt
     updatedAt
     __typename
   }
 }
 
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+mutation DeleteReading(
+  $input: DeleteReadingInput!
+  $condition: ModelReadingConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteReading(input: $input, condition: $condition) {
     id
-    name
-    description
+    userId
+    dateCreated
+    cardOneId
+    cardTwoId
+    cardThreeId
+    interpretation
     createdAt
     updatedAt
     __typename

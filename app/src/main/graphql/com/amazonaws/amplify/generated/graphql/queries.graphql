@@ -1,26 +1,34 @@
 # this is an auto generated file. This will be overwritten
 
-query GetTodo($id: ID!) {
-  getTodo(id: $id) {
+query GetReading($id: ID!) {
+  getReading(id: $id) {
     id
-    name
-    description
+    userId
+    dateCreated
+    cardOneId
+    cardTwoId
+    cardThreeId
+    interpretation
     createdAt
     updatedAt
     __typename
   }
 }
 
-query ListTodos(
-  $filter: ModelTodoFilterInput
+query ListReadings(
+  $filter: ModelReadingFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listReadings(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
-      description
+      userId
+      dateCreated
+      cardOneId
+      cardTwoId
+      cardThreeId
+      interpretation
       createdAt
       updatedAt
       __typename
