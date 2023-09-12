@@ -17,6 +17,9 @@
             android:name=".activities.ViewAllCardsActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.ReadingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.VerifyActivity"
             android:exported="false" />
         <activity

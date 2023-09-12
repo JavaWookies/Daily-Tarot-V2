@@ -14,4 +14,6 @@
     <string name="viewing_all_cards">Viewing All Cards</string>
     <string name="image_value">Image of Tarot Card</string>
     <string name="tarot_name">Tarot Name</string>
+    <string name="view_my_reading">View My Reading</string>
+    <string name="draw_cards">Draw Cards</string>
 </resources>
