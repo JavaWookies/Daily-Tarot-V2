@@ -8,6 +8,7 @@ import android.util.Log;
 
 import android.widget.ImageView;
 import com.amcwustl.dailytarot.activities.SignUpActivity;
+import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amplifyframework.core.Amplify;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    Amplify.Auth.fetchAuthSession(
-            result -> Log.i("AmplifyQuickstart", result.toString()),
-            error -> Log.e("AmplifyQuickstart", error.toString())
-    );
+      CardDbHelper dbHelper = new CardDbHelper(this);
+      dbHelper.populateDatabaseWithJsonData(this);
 
       moveToSignUp = findViewById(R.id.MainActivitySignUpImageView);
 
