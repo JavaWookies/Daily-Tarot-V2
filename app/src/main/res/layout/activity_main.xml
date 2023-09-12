@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Include the AppBarFragment at the top -->
+    <fragment
+        android:id="@+id/app_bar_fragment"
+        android:name="com.amcwustl.dailytarot.fragments.AppBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/MainActivitySignUpImageView"
         android:layout_width="40dp"
@@ -14,7 +23,7 @@
         android:layout_marginEnd="24dp"
         android:contentDescription="@string/move_to_sign_up_page"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_fragment"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
 
     <Button
@@ -22,20 +31,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="16dp"
         android:text="@string/view_all_cards"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-  
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/MainActivitySignUpImageView" />
+
     <Button
         android:id="@+id/MainActivityViewReadingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
-        android:height="50dp"
+        android:layout_marginTop="16dp"
         android:text="@string/view_my_reading"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/MainActivitySeeAllCardsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
