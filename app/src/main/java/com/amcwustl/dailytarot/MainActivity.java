@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 
+import com.amcwustl.dailytarot.activities.LoginActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
 
 import com.amcwustl.dailytarot.activities.SignUpActivity;
@@ -45,6 +46,22 @@ public class MainActivity extends AppCompatActivity {
     setupMovetoSignup();
     setupViewAllCards();
     setupGoToReading();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+
+    Amplify.Auth.getCurrentUser(
+            authUser -> {
+            },
+            error -> {
+              Intent signInIntent = new Intent(MainActivity.this, LoginActivity.class);
+              startActivity(signInIntent);
+
+              finish();
+            }
+    );
   }
 
 

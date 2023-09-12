@@ -6,8 +6,11 @@ subscription OnCreateReading($filter: ModelSubscriptionReadingFilterInput) {
     userId
     dateCreated
     cardOneId
+    cardOneOrientation
     cardTwoId
+    cardTwoOrientation
     cardThreeId
+    cardThreeOrientation
     interpretation
     createdAt
     updatedAt
@@ -21,8 +24,11 @@ subscription OnUpdateReading($filter: ModelSubscriptionReadingFilterInput) {
     userId
     dateCreated
     cardOneId
+    cardOneOrientation
     cardTwoId
+    cardTwoOrientation
     cardThreeId
+    cardThreeOrientation
     interpretation
     createdAt
     updatedAt
@@ -36,8 +42,11 @@ subscription OnDeleteReading($filter: ModelSubscriptionReadingFilterInput) {
     userId
     dateCreated
     cardOneId
+    cardOneOrientation
     cardTwoId
+    cardTwoOrientation
     cardThreeId
+    cardThreeOrientation
     interpretation
     createdAt
     updatedAt

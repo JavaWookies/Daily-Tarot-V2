@@ -203,6 +203,22 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardOneOrientation",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardTwoId",
                         "description": null,
                         "args": [],
@@ -219,7 +235,39 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardTwoOrientation",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardThreeId",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "cardThreeOrientation",
                         "description": null,
                         "args": [],
                         "type": {
@@ -1927,6 +1975,18 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardOneOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardTwoId",
                         "description": null,
                         "type": {
@@ -1939,7 +1999,31 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardTwoOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardThreeId",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "cardThreeOrientation",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -2145,6 +2229,18 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardOneOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardTwoId",
                         "description": null,
                         "type": {
@@ -2157,7 +2253,31 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardTwoOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardThreeId",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "cardThreeOrientation",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -2297,6 +2417,22 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardOneOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardTwoId",
                         "description": null,
                         "type": {
@@ -2313,7 +2449,39 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardTwoOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardThreeId",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "cardThreeOrientation",
                         "description": null,
                         "type": {
                             "kind": "NON_NULL",
@@ -2409,6 +2577,18 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardOneOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardTwoId",
                         "description": null,
                         "type": {
@@ -2421,7 +2601,31 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardTwoOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardThreeId",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "cardThreeOrientation",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -2668,6 +2872,18 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardOneOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelSubscriptionIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardTwoId",
                         "description": null,
                         "type": {
@@ -2680,7 +2896,31 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "cardTwoOrientation",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelSubscriptionIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "cardThreeId",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelSubscriptionIntInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null,
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "cardThreeOrientation",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",

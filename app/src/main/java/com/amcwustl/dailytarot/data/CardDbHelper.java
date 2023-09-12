@@ -2,6 +2,7 @@ package com.amcwustl.dailytarot.data;
 
 import static com.amcwustl.dailytarot.models.CardContract.SQL_CREATE_ENTRIES;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -42,6 +43,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
 
     }
 
+    @SuppressLint("Range")
     public List<Card> getAllCards() {
         List<Card> cards = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -58,6 +60,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
                 card.setMeaningUp(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_MEANING_UP)));
                 card.setMeaningRev(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_MEANING_REV)));
                 card.setDesc(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_DESC)));
+                card.setOrientation(0);
                 cards.add(card);
             } while (cursor.moveToNext());
         }
@@ -77,13 +80,12 @@ public class CardDbHelper extends SQLiteOpenHelper {
         values.put(CardContract.CardEntry.COLUMN_MEANING_REV, card.getMeaningRev());
         values.put(CardContract.CardEntry.COLUMN_DESC, card.getDesc());
 
-        // Insert the tarotCard into the database
         return db.insert(CardContract.CardEntry.TABLE_NAME, null, values);
     }
 
     public void populateDatabaseWithJsonData(Context context) {
         CardDbHelper dbHelper = new CardDbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         String jsonData = loadJsonFromRawResource(context, R.raw.card_data);
 
@@ -168,7 +170,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 card = new Card();
-//                card.setId(cursor.getLong(cursor.getColumnIndexOrThrow(CardContract.CardEntry._ID)));
+                card.setId(cursor.getLong(cursor.getColumnIndexOrThrow(CardContract.CardEntry._ID)));
                 card.setType(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_TYPE)));
                 card.setNameShort(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_NAME_SHORT)));
                 card.setName(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_NAME)));
