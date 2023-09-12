@@ -37,8 +37,8 @@ public final class Reading implements Model {
   public static final QueryField CARD_THREE_ORIENTATION = field("Reading", "cardThreeOrientation");
   public static final QueryField INTERPRETATION = field("Reading", "interpretation");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="Int", isRequired = true) Integer userId;
-  private final @ModelField(targetType="AWSDate", isRequired = true) Temporal.Date dateCreated;
+  private final @ModelField(targetType="String", isRequired = true) String userId;
+  private final @ModelField(targetType="String", isRequired = true) String dateCreated;
   private final @ModelField(targetType="Int", isRequired = true) Integer cardOneId;
   private final @ModelField(targetType="Int", isRequired = true) Integer cardOneOrientation;
   private final @ModelField(targetType="Int", isRequired = true) Integer cardTwoId;
@@ -58,11 +58,11 @@ public final class Reading implements Model {
       return id;
   }
   
-  public Integer getUserId() {
+  public String getUserId() {
       return userId;
   }
   
-  public Temporal.Date getDateCreated() {
+  public String getDateCreated() {
       return dateCreated;
   }
   
@@ -102,7 +102,7 @@ public final class Reading implements Model {
       return updatedAt;
   }
   
-  private Reading(String id, Integer userId, Temporal.Date dateCreated, Integer cardOneId, Integer cardOneOrientation, Integer cardTwoId, Integer cardTwoOrientation, Integer cardThreeId, Integer cardThreeOrientation, String interpretation) {
+  private Reading(String id, String userId, String dateCreated, Integer cardOneId, Integer cardOneOrientation, Integer cardTwoId, Integer cardTwoOrientation, Integer cardThreeId, Integer cardThreeOrientation, String interpretation) {
     this.id = id;
     this.userId = userId;
     this.dateCreated = dateCreated;
@@ -217,12 +217,12 @@ public final class Reading implements Model {
       interpretation);
   }
   public interface UserIdStep {
-    DateCreatedStep userId(Integer userId);
+    DateCreatedStep userId(String userId);
   }
   
 
   public interface DateCreatedStep {
-    CardOneIdStep dateCreated(Temporal.Date dateCreated);
+    CardOneIdStep dateCreated(String dateCreated);
   }
   
 
@@ -269,8 +269,8 @@ public final class Reading implements Model {
 
   public static class Builder implements UserIdStep, DateCreatedStep, CardOneIdStep, CardOneOrientationStep, CardTwoIdStep, CardTwoOrientationStep, CardThreeIdStep, CardThreeOrientationStep, InterpretationStep, BuildStep {
     private String id;
-    private Integer userId;
-    private Temporal.Date dateCreated;
+    private String userId;
+    private String dateCreated;
     private Integer cardOneId;
     private Integer cardOneOrientation;
     private Integer cardTwoId;
@@ -296,14 +296,14 @@ public final class Reading implements Model {
     }
     
     @Override
-     public DateCreatedStep userId(Integer userId) {
+     public DateCreatedStep userId(String userId) {
         Objects.requireNonNull(userId);
         this.userId = userId;
         return this;
     }
     
     @Override
-     public CardOneIdStep dateCreated(Temporal.Date dateCreated) {
+     public CardOneIdStep dateCreated(String dateCreated) {
         Objects.requireNonNull(dateCreated);
         this.dateCreated = dateCreated;
         return this;
@@ -370,7 +370,7 @@ public final class Reading implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Integer userId, Temporal.Date dateCreated, Integer cardOneId, Integer cardOneOrientation, Integer cardTwoId, Integer cardTwoOrientation, Integer cardThreeId, Integer cardThreeOrientation, String interpretation) {
+    private CopyOfBuilder(String id, String userId, String dateCreated, Integer cardOneId, Integer cardOneOrientation, Integer cardTwoId, Integer cardTwoOrientation, Integer cardThreeId, Integer cardThreeOrientation, String interpretation) {
       super.id(id);
       super.userId(userId)
         .dateCreated(dateCreated)
@@ -384,12 +384,12 @@ public final class Reading implements Model {
     }
     
     @Override
-     public CopyOfBuilder userId(Integer userId) {
+     public CopyOfBuilder userId(String userId) {
       return (CopyOfBuilder) super.userId(userId);
     }
     
     @Override
-     public CopyOfBuilder dateCreated(Temporal.Date dateCreated) {
+     public CopyOfBuilder dateCreated(String dateCreated) {
       return (CopyOfBuilder) super.dateCreated(dateCreated);
     }
     
