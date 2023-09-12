@@ -6,8 +6,11 @@ query GetReading($id: ID!) {
     userId
     dateCreated
     cardOneId
+    cardOneOrientation
     cardTwoId
+    cardTwoOrientation
     cardThreeId
+    cardThreeOrientation
     interpretation
     createdAt
     updatedAt
@@ -26,8 +29,11 @@ query ListReadings(
       userId
       dateCreated
       cardOneId
+      cardOneOrientation
       cardTwoId
+      cardTwoOrientation
       cardThreeId
+      cardThreeOrientation
       interpretation
       createdAt
       updatedAt
