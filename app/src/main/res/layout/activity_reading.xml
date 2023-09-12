@@ -43,4 +43,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/PlaceHolderTwo"
         app:layout_constraintTop_toTopOf="@+id/PlaceHolderTwo" />
+
+    <TextView
+        android:id="@+id/InterpretationPlaceHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PlaceHolderTwo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
