@@ -31,6 +31,10 @@ android {
 
 dependencies {
 
+    // Card RecyclerView Dependencies
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
     // Amplify core dependency
     implementation 'com.amplifyframework:core:2.13.0'
     implementation 'com.amplifyframework:aws-api:2.13.0'
