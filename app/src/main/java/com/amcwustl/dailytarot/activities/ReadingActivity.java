@@ -50,7 +50,12 @@ public class ReadingActivity extends AppCompatActivity {
                 drawnCards.add(card);
             }
         }
-        cardOne.setText(drawnCards.get(0).getName());
+
+        for (Card card : drawnCards) {
+            int randomOrientation = random.nextInt(2);
+            card.setOrientation(randomOrientation);
+        }
+        cardOne.setText(drawnCards.get(0).getId().toString());
         cardTwo.setText(drawnCards.get(1).getName());
         cardThree.setText(drawnCards.get(2).getName());
 

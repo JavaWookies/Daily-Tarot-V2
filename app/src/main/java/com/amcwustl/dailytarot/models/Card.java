@@ -2,6 +2,7 @@ package com.amcwustl.dailytarot.models;
 
 public class Card {
 
+    private Long id;
     private String type;
     private String nameShort;
     private String name;
@@ -10,11 +11,13 @@ public class Card {
     private String meaningUp;
     private String meaningRev;
     private String desc;
+    private int orientation;
 
     public Card() {
     }
 
-    public Card(String type, String nameShort, String name, String value, int valueInt, String meaningUp, String meaningRev, String desc) {
+    public Card(Long id, String type, String nameShort, String name, String value, int valueInt, String meaningUp, String meaningRev, String desc, int orientation) {
+        this.id = id;
         this.type = type;
         this.nameShort = nameShort;
         this.name = name;
@@ -23,6 +26,28 @@ public class Card {
         this.meaningUp = meaningUp;
         this.meaningRev = meaningRev;
         this.desc = desc;
+        this.orientation = orientation;
+    }
+
+    public Card(Long id, String type, String nameShort, String name, String value, int valueInt, String meaningUp, String meaningRev, String desc) {
+        this.id = id;
+        this.type = type;
+        this.nameShort = nameShort;
+        this.name = name;
+        this.value = value;
+        this.valueInt = valueInt;
+        this.meaningUp = meaningUp;
+        this.meaningRev = meaningRev;
+        this.desc = desc;
+        this.orientation = 0;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getType() {
@@ -87,6 +112,14 @@ public class Card {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public int getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
     }
 
     @Override
