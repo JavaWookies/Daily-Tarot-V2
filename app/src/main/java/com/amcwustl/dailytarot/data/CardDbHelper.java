@@ -4,6 +4,7 @@ import static com.amcwustl.dailytarot.models.CardContract.SQL_CREATE_ENTRIES;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -108,5 +109,53 @@ public class CardDbHelper extends SQLiteOpenHelper {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Card getCardById(int cardId) {
+        SQLiteDatabase db = getReadableDatabase();
+        Card card = null;
+
+        String[] projection = {
+                CardContract.CardEntry._ID,
+                CardContract.CardEntry.COLUMN_TYPE,
+                CardContract.CardEntry.COLUMN_NAME_SHORT,
+                CardContract.CardEntry.COLUMN_NAME,
+                CardContract.CardEntry.COLUMN_VALUE,
+                CardContract.CardEntry.COLUMN_VALUE_INT,
+                CardContract.CardEntry.COLUMN_MEANING_UP,
+                CardContract.CardEntry.COLUMN_MEANING_REV,
+                CardContract.CardEntry.COLUMN_DESC
+        };
+
+        String selection = CardContract.CardEntry._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(cardId)};
+
+        Cursor cursor = db.query(
+                CardContract.CardEntry.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                card = new Card();
+//                card.setId(cursor.getLong(cursor.getColumnIndexOrThrow(CardContract.CardEntry._ID)));
+                card.setType(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_TYPE)));
+                card.setNameShort(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_NAME_SHORT)));
+                card.setName(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_NAME)));
+                card.setValue(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_VALUE)));
+                card.setValueInt(cursor.getInt(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_VALUE_INT)));
+                card.setMeaningUp(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_MEANING_UP)));
+                card.setMeaningRev(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_MEANING_REV)));
+                card.setDesc(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_DESC)));
+            }
+            cursor.close();
+        }
+
+        return card;
     }
 }

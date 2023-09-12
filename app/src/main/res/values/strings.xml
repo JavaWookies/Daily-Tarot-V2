@@ -10,4 +10,6 @@
     <string name="login">Login</string>
     <string name="login_button">Login!</string>
     <string name="move_to_sign_up_page">Move to sign up page!</string>
+    <string name="view_my_reading">View My Reading</string>
+    <string name="draw_cards">Draw Cards</string>
 </resources>
