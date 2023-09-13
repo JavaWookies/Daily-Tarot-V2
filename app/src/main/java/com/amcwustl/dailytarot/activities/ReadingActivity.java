@@ -3,8 +3,10 @@ package com.amcwustl.dailytarot.activities;
 import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,15 +48,22 @@ public class ReadingActivity extends AppCompatActivity {
     private static final String TAG = "Reading Activity";
     private Button drawCardsButton;
     private Button rewardAdButton;
+    private ImageView deck;
+    private ImageView cardOne;
+    private ImageView cardTwo;
+    private ImageView cardThree;
     private CardDbHelper dbHelper;
     private String userId;
     private RewardedAd rewardedAd;
     private int userCoinCount =0;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         Amplify.Auth.getCurrentUser(
                 authUser -> userId = authUser.getUserId(),
@@ -63,13 +72,35 @@ public class ReadingActivity extends AppCompatActivity {
 
         initializeMobileAds();
 
+        cardOne = findViewById(R.id.ReadingActivityDrawnCardOne);
+        cardTwo = findViewById(R.id.ReadingActivityDrawnCardTwo);
+        cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
+        deck = findViewById(R.id.ReadingActivityDeckImage);
+
         drawCardsButton = findViewById(R.id.ReadingActivityDrawCardsButton);
         rewardAdButton = findViewById(R.id.ReadingActivityRewardAdButton);
         dbHelper = new CardDbHelper(this);
+        setupCardTypes();
         setupDrawCardsButton();
         setupRewardAd();
         setupRewardAdButton();
         checkReadingForToday();
+
+    }
+
+    private void setupCardTypes(){
+        String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
+        String resourceName = "cover" + cardType;
+
+        int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+        if (resourceId != 0) {
+            deck.setImageResource(resourceId);
+            cardOne.setImageResource(resourceId);
+            cardTwo.setImageResource(resourceId);
+            cardThree.setImageResource(resourceId);
+        } else {
+            Log.e(TAG, "Resource not found for card type: " + cardType);
+        }
 
     }
 
@@ -97,21 +128,20 @@ public class ReadingActivity extends AppCompatActivity {
                 },
                 error -> {
                     Log.e(TAG, "Error retrieving readings for today: " + error);
-                    // Handle the error appropriately.
+
                 }
         );
     }
 
     private void updateUIBasedOnCoinCount() {
-        // Update the visibility of the "Draw Cards" button and "Watch Ad" button based on userCoinCount.
         if (userCoinCount > 0) {
 
             drawCardsButton.setVisibility(View.VISIBLE);
-            rewardAdButton.setVisibility(View.GONE); // Hide the "Watch Ad" button.
+            rewardAdButton.setVisibility(View.GONE);
         } else {
-            // User has no coins, so hide the "Draw Cards" button.
+
             drawCardsButton.setVisibility(View.GONE);
-            rewardAdButton.setVisibility(View.VISIBLE); // Show the "Watch Ad" button.
+            rewardAdButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -130,11 +160,11 @@ public class ReadingActivity extends AppCompatActivity {
 
         List<Card> drawnCards = new ArrayList<>();
         List<ImageView> imageViewList = new ArrayList<>();
-        ImageView cardOne = findViewById(R.id.ReadingActivityDrawnCardOne);
+//        ImageView cardOne = findViewById(R.id.ReadingActivityDrawnCardOne);
         cardOne.setRotation(0);
-        ImageView cardTwo = findViewById(R.id.ReadingActivityDrawnCardTwo);
+//        ImageView cardTwo = findViewById(R.id.ReadingActivityDrawnCardTwo);
         cardTwo.setRotation(0);
-        ImageView cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
+//        ImageView cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
         cardThree.setRotation(0);
         imageViewList.add(cardOne);
         imageViewList.add(cardTwo);
@@ -163,7 +193,9 @@ public class ReadingActivity extends AppCompatActivity {
 
         for (int i = 0; i < 3; i++) {
             Card card = drawnCards.get(i);
-            String resourceName = card.getNameShort(); // Get the name_short value of the card
+            String cardName = card.getNameShort();
+            String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
+            String resourceName = cardName + cardType;
             int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
 
             if (resourceId != 0) {
