@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
   EditText emailEditText;
   EditText passwordEditText;
   Button submitButton;
+  Button signUpButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     emailEditText = findViewById(R.id.LoginActivityLoginEditTextTextEmailAddress);
     passwordEditText = findViewById(R.id.LoginActivityPasswordEditTextTextPassword);
     submitButton = findViewById(R.id.LoginActivityLoginButton);
+    signUpButton = findViewById(R.id.LoginActivitySignUpButton);
 
     String email = getIntent().getStringExtra("email");
     if (email != null && !email.isEmpty()) {
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     setupSubmitButton();
+    setupSignUpButton();
 
   }
 
@@ -55,6 +58,13 @@ void setupSubmitButton() {
             }
     );
   });
+}
+
+void setupSignUpButton(){
+    signUpButton.setOnClickListener(view -> {
+      Intent goToSignUpIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+      startActivity(goToSignUpIntent);
+    });
 }
 
 }

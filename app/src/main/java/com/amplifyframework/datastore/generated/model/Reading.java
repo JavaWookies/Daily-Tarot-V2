@@ -3,7 +3,6 @@ package com.amplifyframework.datastore.generated.model;
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.core.model.ModelIdentifier;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.Objects;
 
@@ -13,7 +12,6 @@ import com.amplifyframework.core.model.AuthStrategy;
 import com.amplifyframework.core.model.Model;
 import com.amplifyframework.core.model.ModelOperation;
 import com.amplifyframework.core.model.annotations.AuthRule;
-import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
 import com.amplifyframework.core.model.query.predicate.QueryField;
@@ -30,15 +28,21 @@ public final class Reading implements Model {
   public static final QueryField USER_ID = field("Reading", "userId");
   public static final QueryField DATE_CREATED = field("Reading", "dateCreated");
   public static final QueryField CARD_ONE_ID = field("Reading", "cardOneId");
+  public static final QueryField CARD_ONE_ORIENTATION = field("Reading", "cardOneOrientation");
   public static final QueryField CARD_TWO_ID = field("Reading", "cardTwoId");
+  public static final QueryField CARD_TWO_ORIENTATION = field("Reading", "cardTwoOrientation");
   public static final QueryField CARD_THREE_ID = field("Reading", "cardThreeId");
+  public static final QueryField CARD_THREE_ORIENTATION = field("Reading", "cardThreeOrientation");
   public static final QueryField INTERPRETATION = field("Reading", "interpretation");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="Int", isRequired = true) Integer userId;
-  private final @ModelField(targetType="AWSDate", isRequired = true) Temporal.Date dateCreated;
+  private final @ModelField(targetType="String", isRequired = true) String userId;
+  private final @ModelField(targetType="String", isRequired = true) String dateCreated;
   private final @ModelField(targetType="Int", isRequired = true) Integer cardOneId;
+  private final @ModelField(targetType="Int", isRequired = true) Integer cardOneOrientation;
   private final @ModelField(targetType="Int", isRequired = true) Integer cardTwoId;
+  private final @ModelField(targetType="Int", isRequired = true) Integer cardTwoOrientation;
   private final @ModelField(targetType="Int", isRequired = true) Integer cardThreeId;
+  private final @ModelField(targetType="Int", isRequired = true) Integer cardThreeOrientation;
   private final @ModelField(targetType="String", isRequired = true) String interpretation;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -52,11 +56,11 @@ public final class Reading implements Model {
       return id;
   }
   
-  public Integer getUserId() {
+  public String getUserId() {
       return userId;
   }
   
-  public Temporal.Date getDateCreated() {
+  public String getDateCreated() {
       return dateCreated;
   }
   
@@ -64,12 +68,24 @@ public final class Reading implements Model {
       return cardOneId;
   }
   
+  public Integer getCardOneOrientation() {
+      return cardOneOrientation;
+  }
+  
   public Integer getCardTwoId() {
       return cardTwoId;
   }
   
+  public Integer getCardTwoOrientation() {
+      return cardTwoOrientation;
+  }
+  
   public Integer getCardThreeId() {
       return cardThreeId;
+  }
+  
+  public Integer getCardThreeOrientation() {
+      return cardThreeOrientation;
   }
   
   public String getInterpretation() {
@@ -84,13 +100,16 @@ public final class Reading implements Model {
       return updatedAt;
   }
   
-  private Reading(String id, Integer userId, Temporal.Date dateCreated, Integer cardOneId, Integer cardTwoId, Integer cardThreeId, String interpretation) {
+  private Reading(String id, String userId, String dateCreated, Integer cardOneId, Integer cardOneOrientation, Integer cardTwoId, Integer cardTwoOrientation, Integer cardThreeId, Integer cardThreeOrientation, String interpretation) {
     this.id = id;
     this.userId = userId;
     this.dateCreated = dateCreated;
     this.cardOneId = cardOneId;
+    this.cardOneOrientation = cardOneOrientation;
     this.cardTwoId = cardTwoId;
+    this.cardTwoOrientation = cardTwoOrientation;
     this.cardThreeId = cardThreeId;
+    this.cardThreeOrientation = cardThreeOrientation;
     this.interpretation = interpretation;
   }
   
@@ -106,8 +125,11 @@ public final class Reading implements Model {
               ObjectsCompat.equals(getUserId(), reading.getUserId()) &&
               ObjectsCompat.equals(getDateCreated(), reading.getDateCreated()) &&
               ObjectsCompat.equals(getCardOneId(), reading.getCardOneId()) &&
+              ObjectsCompat.equals(getCardOneOrientation(), reading.getCardOneOrientation()) &&
               ObjectsCompat.equals(getCardTwoId(), reading.getCardTwoId()) &&
+              ObjectsCompat.equals(getCardTwoOrientation(), reading.getCardTwoOrientation()) &&
               ObjectsCompat.equals(getCardThreeId(), reading.getCardThreeId()) &&
+              ObjectsCompat.equals(getCardThreeOrientation(), reading.getCardThreeOrientation()) &&
               ObjectsCompat.equals(getInterpretation(), reading.getInterpretation()) &&
               ObjectsCompat.equals(getCreatedAt(), reading.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), reading.getUpdatedAt());
@@ -121,8 +143,11 @@ public final class Reading implements Model {
       .append(getUserId())
       .append(getDateCreated())
       .append(getCardOneId())
+      .append(getCardOneOrientation())
       .append(getCardTwoId())
+      .append(getCardTwoOrientation())
       .append(getCardThreeId())
+      .append(getCardThreeOrientation())
       .append(getInterpretation())
       .append(getCreatedAt())
       .append(getUpdatedAt())
@@ -138,8 +163,11 @@ public final class Reading implements Model {
       .append("userId=" + String.valueOf(getUserId()) + ", ")
       .append("dateCreated=" + String.valueOf(getDateCreated()) + ", ")
       .append("cardOneId=" + String.valueOf(getCardOneId()) + ", ")
+      .append("cardOneOrientation=" + String.valueOf(getCardOneOrientation()) + ", ")
       .append("cardTwoId=" + String.valueOf(getCardTwoId()) + ", ")
+      .append("cardTwoOrientation=" + String.valueOf(getCardTwoOrientation()) + ", ")
       .append("cardThreeId=" + String.valueOf(getCardThreeId()) + ", ")
+      .append("cardThreeOrientation=" + String.valueOf(getCardThreeOrientation()) + ", ")
       .append("interpretation=" + String.valueOf(getInterpretation()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
@@ -167,6 +195,9 @@ public final class Reading implements Model {
       null,
       null,
       null,
+      null,
+      null,
+      null,
       null
     );
   }
@@ -176,32 +207,50 @@ public final class Reading implements Model {
       userId,
       dateCreated,
       cardOneId,
+      cardOneOrientation,
       cardTwoId,
+      cardTwoOrientation,
       cardThreeId,
+      cardThreeOrientation,
       interpretation);
   }
   public interface UserIdStep {
-    DateCreatedStep userId(Integer userId);
+    DateCreatedStep userId(String userId);
   }
   
 
   public interface DateCreatedStep {
-    CardOneIdStep dateCreated(Temporal.Date dateCreated);
+    CardOneIdStep dateCreated(String dateCreated);
   }
   
 
   public interface CardOneIdStep {
-    CardTwoIdStep cardOneId(Integer cardOneId);
+    CardOneOrientationStep cardOneId(Integer cardOneId);
+  }
+  
+
+  public interface CardOneOrientationStep {
+    CardTwoIdStep cardOneOrientation(Integer cardOneOrientation);
   }
   
 
   public interface CardTwoIdStep {
-    CardThreeIdStep cardTwoId(Integer cardTwoId);
+    CardTwoOrientationStep cardTwoId(Integer cardTwoId);
+  }
+  
+
+  public interface CardTwoOrientationStep {
+    CardThreeIdStep cardTwoOrientation(Integer cardTwoOrientation);
   }
   
 
   public interface CardThreeIdStep {
-    InterpretationStep cardThreeId(Integer cardThreeId);
+    CardThreeOrientationStep cardThreeId(Integer cardThreeId);
+  }
+  
+
+  public interface CardThreeOrientationStep {
+    InterpretationStep cardThreeOrientation(Integer cardThreeOrientation);
   }
   
 
@@ -216,13 +265,16 @@ public final class Reading implements Model {
   }
   
 
-  public static class Builder implements UserIdStep, DateCreatedStep, CardOneIdStep, CardTwoIdStep, CardThreeIdStep, InterpretationStep, BuildStep {
+  public static class Builder implements UserIdStep, DateCreatedStep, CardOneIdStep, CardOneOrientationStep, CardTwoIdStep, CardTwoOrientationStep, CardThreeIdStep, CardThreeOrientationStep, InterpretationStep, BuildStep {
     private String id;
-    private Integer userId;
-    private Temporal.Date dateCreated;
+    private String userId;
+    private String dateCreated;
     private Integer cardOneId;
+    private Integer cardOneOrientation;
     private Integer cardTwoId;
+    private Integer cardTwoOrientation;
     private Integer cardThreeId;
+    private Integer cardThreeOrientation;
     private String interpretation;
     @Override
      public Reading build() {
@@ -233,43 +285,67 @@ public final class Reading implements Model {
           userId,
           dateCreated,
           cardOneId,
+          cardOneOrientation,
           cardTwoId,
+          cardTwoOrientation,
           cardThreeId,
+          cardThreeOrientation,
           interpretation);
     }
     
     @Override
-     public DateCreatedStep userId(Integer userId) {
+     public DateCreatedStep userId(String userId) {
         Objects.requireNonNull(userId);
         this.userId = userId;
         return this;
     }
     
     @Override
-     public CardOneIdStep dateCreated(Temporal.Date dateCreated) {
+     public CardOneIdStep dateCreated(String dateCreated) {
         Objects.requireNonNull(dateCreated);
         this.dateCreated = dateCreated;
         return this;
     }
     
     @Override
-     public CardTwoIdStep cardOneId(Integer cardOneId) {
+     public CardOneOrientationStep cardOneId(Integer cardOneId) {
         Objects.requireNonNull(cardOneId);
         this.cardOneId = cardOneId;
         return this;
     }
     
     @Override
-     public CardThreeIdStep cardTwoId(Integer cardTwoId) {
+     public CardTwoIdStep cardOneOrientation(Integer cardOneOrientation) {
+        Objects.requireNonNull(cardOneOrientation);
+        this.cardOneOrientation = cardOneOrientation;
+        return this;
+    }
+    
+    @Override
+     public CardTwoOrientationStep cardTwoId(Integer cardTwoId) {
         Objects.requireNonNull(cardTwoId);
         this.cardTwoId = cardTwoId;
         return this;
     }
     
     @Override
-     public InterpretationStep cardThreeId(Integer cardThreeId) {
+     public CardThreeIdStep cardTwoOrientation(Integer cardTwoOrientation) {
+        Objects.requireNonNull(cardTwoOrientation);
+        this.cardTwoOrientation = cardTwoOrientation;
+        return this;
+    }
+    
+    @Override
+     public CardThreeOrientationStep cardThreeId(Integer cardThreeId) {
         Objects.requireNonNull(cardThreeId);
         this.cardThreeId = cardThreeId;
+        return this;
+    }
+    
+    @Override
+     public InterpretationStep cardThreeOrientation(Integer cardThreeOrientation) {
+        Objects.requireNonNull(cardThreeOrientation);
+        this.cardThreeOrientation = cardThreeOrientation;
         return this;
     }
     
@@ -292,23 +368,26 @@ public final class Reading implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Integer userId, Temporal.Date dateCreated, Integer cardOneId, Integer cardTwoId, Integer cardThreeId, String interpretation) {
+    private CopyOfBuilder(String id, String userId, String dateCreated, Integer cardOneId, Integer cardOneOrientation, Integer cardTwoId, Integer cardTwoOrientation, Integer cardThreeId, Integer cardThreeOrientation, String interpretation) {
       super.id(id);
       super.userId(userId)
         .dateCreated(dateCreated)
         .cardOneId(cardOneId)
+        .cardOneOrientation(cardOneOrientation)
         .cardTwoId(cardTwoId)
+        .cardTwoOrientation(cardTwoOrientation)
         .cardThreeId(cardThreeId)
+        .cardThreeOrientation(cardThreeOrientation)
         .interpretation(interpretation);
     }
     
     @Override
-     public CopyOfBuilder userId(Integer userId) {
+     public CopyOfBuilder userId(String userId) {
       return (CopyOfBuilder) super.userId(userId);
     }
     
     @Override
-     public CopyOfBuilder dateCreated(Temporal.Date dateCreated) {
+     public CopyOfBuilder dateCreated(String dateCreated) {
       return (CopyOfBuilder) super.dateCreated(dateCreated);
     }
     
@@ -318,13 +397,28 @@ public final class Reading implements Model {
     }
     
     @Override
+     public CopyOfBuilder cardOneOrientation(Integer cardOneOrientation) {
+      return (CopyOfBuilder) super.cardOneOrientation(cardOneOrientation);
+    }
+    
+    @Override
      public CopyOfBuilder cardTwoId(Integer cardTwoId) {
       return (CopyOfBuilder) super.cardTwoId(cardTwoId);
     }
     
     @Override
+     public CopyOfBuilder cardTwoOrientation(Integer cardTwoOrientation) {
+      return (CopyOfBuilder) super.cardTwoOrientation(cardTwoOrientation);
+    }
+    
+    @Override
      public CopyOfBuilder cardThreeId(Integer cardThreeId) {
       return (CopyOfBuilder) super.cardThreeId(cardThreeId);
+    }
+    
+    @Override
+     public CopyOfBuilder cardThreeOrientation(Integer cardThreeOrientation) {
+      return (CopyOfBuilder) super.cardThreeOrientation(cardThreeOrientation);
     }
     
     @Override
