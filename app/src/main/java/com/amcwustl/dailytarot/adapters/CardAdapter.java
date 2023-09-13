@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.models.Card;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -33,23 +33,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Card card = cards.get(position);
-//    holder.cardName.setText(card.getName());
-//    holder.cardDescription.setText(card.getDesc());
-//    int imageResId = holder.itemView.getContext().getResources().getIdentifier(
-//            card.getNameShort(),
-//            "drawable",
-//            holder.itemView.getContext().getPackageName()
-//    );
 
-    if (card.getNameShort().equals("cuac")) {
-      Picasso.get()
-              .load(R.drawable.cuac)
-              .placeholder(R.drawable.cover) // this can be a loading placeholder
-              .error(R.drawable.cover)       // this is shown if there's an error loading the image
-              .into(holder.cardImage);
-    } else {
-      holder.cardImage.setImageResource(R.drawable.cover);
-    }
+    int imageResId = holder.itemView.getContext().getResources().getIdentifier(
+            card.getNameShort(),
+            "drawable",
+            holder.itemView.getContext().getPackageName()
+    );
+
+    Glide.with(holder.itemView.getContext())
+            .load(imageResId)
+            .placeholder(R.drawable.cover)
+            .error(R.drawable.cover)
+            .into(holder.cardImage);
   }
 
   @Override
