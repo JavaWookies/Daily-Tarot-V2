@@ -16,3 +16,7 @@ type Reading @model @auth (rules: [{allow: public}]){
 
 
 }
+
+type Query {
+    getReadingsForToday(userId: String!, today: String!): [Reading]
+}
