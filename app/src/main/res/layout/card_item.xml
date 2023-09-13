@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CardItem"
     android:layout_width="120dp"
-    android:layout_height="160dp">
+    android:layout_height="205dp">
 
     <ImageView
         android:id="@+id/cardImage"
         android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_height="205dp"
         android:contentDescription="@string/image_value"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,19 +17,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/amplify_storage_transfer_notification_icon" />
-
-    <TextView
-        android:id="@+id/cardName"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:hint="@string/tarot_name"
-        android:padding="8dp"
-        android:textColorHint="#3C3C3C"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

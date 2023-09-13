@@ -57,12 +57,12 @@ public class ViewAllCardsActivity extends AppCompatActivity {
         int position = parent.getChildAdapterPosition(view);
         Log.d(TAG, "getItemOffsets: Setting item offsets for position " + position);
 
-        outRect.bottom = spaceInPixels;
-        outRect.right = spaceInPixels;
+        int halfSpace = spaceInPixels / 2;
 
-        if (position % 3 == 0) {
-          outRect.left = spaceInPixels;
-        }
+        outRect.top = halfSpace;
+        outRect.bottom = spaceInPixels;
+        outRect.left = halfSpace;
+        outRect.right = halfSpace;
 
         int totalItemCount = parent.getAdapter().getItemCount();
         if (position >= totalItemCount - (totalItemCount % 3)) {
