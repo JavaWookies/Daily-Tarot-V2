@@ -30,20 +30,18 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
 
-      CardDbHelper dbHelper = new CardDbHelper(this);
+    CardDbHelper dbHelper = new CardDbHelper(this);
+
+    if (dbHelper.isDatabaseEmpty()) {
       dbHelper.populateDatabaseWithJsonData(this);
+      Log.d("MainActivity", "Database populated with data.");
+    }
 
-      goToReading = findViewById(R.id.MainActivityViewReadingButton);
-
-      moveToSignUp = findViewById(R.id.MainActivitySignUpImageView);
-
-
+    goToReading = findViewById(R.id.MainActivityViewReadingButton);
     moveToSignUp = findViewById(R.id.MainActivitySignUpImageView);
     viewAllCards = findViewById(R.id.MainActivitySeeAllCardsButton);
 
-
-
-    setupMovetoSignup();
+    setupMoveToSignup();
     setupViewAllCards();
     setupGoToReading();
   }
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
-  void setupMovetoSignup() {
+  void setupMoveToSignup() {
     moveToSignUp.setOnClickListener(v -> {
       Intent goToSettingsActivityIntent = new Intent(MainActivity.this, SignUpActivity.class);
       startActivity(goToSettingsActivityIntent);
@@ -79,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
-  void setupGoToReading(){
+  void setupGoToReading() {
     goToReading.setOnClickListener(view -> {
-        Intent goToReadingActivityEvent = new Intent(MainActivity.this, ReadingActivity.class);
-        startActivity(goToReadingActivityEvent);
+      Intent goToReadingActivityEvent = new Intent(MainActivity.this, ReadingActivity.class);
+      startActivity(goToReadingActivityEvent);
     });
   }
 }

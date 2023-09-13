@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.models.Card;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -32,9 +33,23 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Card card = cards.get(position);
-    holder.cardName.setText(card.getName());
+//    holder.cardName.setText(card.getName());
 //    holder.cardDescription.setText(card.getDesc());
-    // If you have card images, set them here. Assuming you might have images named based on the nameShort field.
+//    int imageResId = holder.itemView.getContext().getResources().getIdentifier(
+//            card.getNameShort(),
+//            "drawable",
+//            holder.itemView.getContext().getPackageName()
+//    );
+
+    if (card.getNameShort().equals("cuac")) {
+      Picasso.get()
+              .load(R.drawable.cuac)
+              .placeholder(R.drawable.cover) // this can be a loading placeholder
+              .error(R.drawable.cover)       // this is shown if there's an error loading the image
+              .into(holder.cardImage);
+    } else {
+      holder.cardImage.setImageResource(R.drawable.cover);
+    }
   }
 
   @Override
@@ -43,13 +58,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
-    TextView cardName;
+//    TextView cardName;
 //    TextView cardDescription;
     ImageView cardImage;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
-      cardName = itemView.findViewById(R.id.cardName);
+//      cardName = itemView.findViewById(R.id.cardName);
 //      cardDescription = itemView.findViewById(R.id.cardDescription);
       cardImage = itemView.findViewById(R.id.cardImage);
     }

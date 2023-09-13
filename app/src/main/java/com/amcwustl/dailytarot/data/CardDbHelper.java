@@ -28,9 +28,12 @@ import java.util.List;
 public class CardDbHelper extends SQLiteOpenHelper {
   private static final int DATABASE_VERSION = 1;
   private static final String DATABASE_NAME = "TarotCardDatabase.db";
+  private Context mContext;
+
 
   public CardDbHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    mContext = context;
   }
 
   @Override
@@ -43,49 +46,26 @@ public class CardDbHelper extends SQLiteOpenHelper {
 
   }
 
-  @SuppressLint("Range")
-  public List<Card> getAllCards() {
-    List<Card> cards = new ArrayList<>();
+
+  public boolean isDatabaseEmpty() {
     SQLiteDatabase db = this.getReadableDatabase();
-    String selectQuery = "SELECT * FROM " + CardContract.CardEntry.TABLE_NAME;
-    Cursor cursor = db.rawQuery(selectQuery, null);
-    if (cursor.moveToFirst()) {
-      do {
-        Card card = new Card();
-        card.setType(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_TYPE)));
-        card.setNameShort(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_NAME_SHORT)));
-        card.setName(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_NAME)));
-        card.setValue(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_VALUE)));
-        card.setValueInt(cursor.getInt(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_VALUE_INT)));
-        card.setMeaningUp(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_MEANING_UP)));
-        card.setMeaningRev(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_MEANING_REV)));
-        card.setDesc(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_DESC)));
-        card.setOrientation(0);
-        cards.add(card);
-        Log.d("CardDbHelper", "CardName: " + card.getName() + ", cardID: " + card.getId());
-      } while (cursor.moveToNext());
+    String countQuery = "SELECT count(*) FROM " + CardContract.CardEntry.TABLE_NAME;
+    Cursor cursor = db.rawQuery(countQuery, null);
+    int count = 0;
+    if (cursor != null) {
+      cursor.moveToFirst();
+      count = cursor.getInt(0);
+      cursor.close();
+
     }
-    cursor.close();
-    return cards;
-  }
-
-  public long insertCard(Card card) {
-    SQLiteDatabase db = getWritableDatabase();
-    ContentValues values = new ContentValues();
-    values.put(CardContract.CardEntry.COLUMN_TYPE, card.getType());
-    values.put(CardContract.CardEntry.COLUMN_NAME_SHORT, card.getNameShort());
-    values.put(CardContract.CardEntry.COLUMN_NAME, card.getName());
-    values.put(CardContract.CardEntry.COLUMN_VALUE, card.getValue());
-    values.put(CardContract.CardEntry.COLUMN_VALUE_INT, card.getValueInt());
-    values.put(CardContract.CardEntry.COLUMN_MEANING_UP, card.getMeaningUp());
-    values.put(CardContract.CardEntry.COLUMN_MEANING_REV, card.getMeaningRev());
-    values.put(CardContract.CardEntry.COLUMN_DESC, card.getDesc());
-
-    return db.insert(CardContract.CardEntry.TABLE_NAME, null, values);
+    return count == 0;
   }
 
   public void populateDatabaseWithJsonData(Context context) {
-    CardDbHelper dbHelper = new CardDbHelper(context);
+    if (!isDatabaseEmpty()) {
+      Log.d("CardDbHelper", "Database already has cards. No need to populate again.");
+      return;
+    }
 //        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
     String jsonData = loadJsonFromRawResource(context, R.raw.card_data);
@@ -109,15 +89,55 @@ public class CardDbHelper extends SQLiteOpenHelper {
           card.setDesc(jsonCard.getString("desc"));
 
           // Insert the tarotCard into the database
-          dbHelper.insertCard(card);
+          this.insertCard(card);
         }
       } catch (JSONException e) {
         e.printStackTrace();
-      } finally {
-        dbHelper.close();
       }
     }
   }
+
+  @SuppressLint("Range")
+  public List<Card> getAllCards() {
+    List<Card> cards = new ArrayList<>();
+    SQLiteDatabase db = this.getReadableDatabase();
+    String selectQuery = "SELECT * FROM " + CardContract.CardEntry.TABLE_NAME;
+    Cursor cursor = db.rawQuery(selectQuery, null);
+    if (cursor.moveToFirst()) {
+      do {
+        Card card = new Card();
+        card.setId(cursor.getLong((cursor.getColumnIndex(CardContract.CardEntry._ID))));
+        card.setType(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_TYPE)));
+        card.setNameShort(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_NAME_SHORT)));
+        card.setName(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_NAME)));
+        card.setValue(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_VALUE)));
+        card.setValueInt(cursor.getInt(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_VALUE_INT)));
+        card.setMeaningUp(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_MEANING_UP)));
+        card.setMeaningRev(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_MEANING_REV)));
+        card.setDesc(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_DESC)));
+        card.setOrientation(0);
+        cards.add(card);
+      } while (cursor.moveToNext());
+    }
+    cursor.close();
+    return cards;
+  }
+
+  public long insertCard(Card card) {
+    SQLiteDatabase db = getWritableDatabase();
+    ContentValues values = new ContentValues();
+    values.put(CardContract.CardEntry.COLUMN_TYPE, card.getType());
+    values.put(CardContract.CardEntry.COLUMN_NAME_SHORT, card.getNameShort());
+    values.put(CardContract.CardEntry.COLUMN_NAME, card.getName());
+    values.put(CardContract.CardEntry.COLUMN_VALUE, card.getValue());
+    values.put(CardContract.CardEntry.COLUMN_VALUE_INT, card.getValueInt());
+    values.put(CardContract.CardEntry.COLUMN_MEANING_UP, card.getMeaningUp());
+    values.put(CardContract.CardEntry.COLUMN_MEANING_REV, card.getMeaningRev());
+    values.put(CardContract.CardEntry.COLUMN_DESC, card.getDesc());
+
+    return db.insert(CardContract.CardEntry.TABLE_NAME, null, values);
+  }
+
 
   private String loadJsonFromRawResource(Context context, int resourceId) {
     try {
