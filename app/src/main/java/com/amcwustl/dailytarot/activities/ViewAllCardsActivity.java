@@ -14,6 +14,7 @@ import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.adapters.CardAdapter;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,22 @@ public class ViewAllCardsActivity extends AppCompatActivity {
     Log.d(TAG, "onCreate: Added cards to tarotCardsList. Size: " + tarotCardsList.size());
 
     setupRecyclerView();
+  }
+
+  @Override
+  public void onTrimMemory(int level) {
+    super.onTrimMemory(level);
+    if (Glide.get(this) != null) {
+      Glide.get(this).trimMemory(level);
+    }
+  }
+
+  @Override
+  public void onLowMemory() {
+    super.onLowMemory();
+    if (Glide.get(this) != null) {
+      Glide.get(this).clearMemory();
+    }
   }
 
   void setupRecyclerView(){
