@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
@@ -128,10 +129,19 @@ public class ReadingActivity extends AppCompatActivity {
     private void drawThreeRandomCards() {
 
         List<Card> drawnCards = new ArrayList<>();
-        TextView cardOne = findViewById(R.id.PlaceHolderOne);
-        TextView cardTwo = findViewById(R.id.PlaceHolderTwo);
-        TextView cardThree = findViewById(R.id.PlaceHolderThree);
-        TextView description = findViewById(R.id.InterpretationPlaceHolder);
+        List<ImageView> imageViewList = new ArrayList<>();
+        ImageView cardOne = findViewById(R.id.ReadingActivityDrawnCardOne);
+        cardOne.setRotation(0);
+        ImageView cardTwo = findViewById(R.id.ReadingActivityDrawnCardTwo);
+        cardTwo.setRotation(0);
+        ImageView cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
+        cardThree.setRotation(0);
+        imageViewList.add(cardOne);
+        imageViewList.add(cardTwo);
+        imageViewList.add(cardThree);
+
+
+        TextView description = findViewById(R.id.ReadingActivityInterpretationPlaceHolder);
 
         Random random = new Random();
         int maxCardId = 78;
@@ -150,17 +160,32 @@ public class ReadingActivity extends AppCompatActivity {
             int randomOrientation = random.nextInt(2);
             card.setOrientation(randomOrientation);
         }
-        cardOne.setText(drawnCards.get(0).getName());
-        cardTwo.setText(drawnCards.get(1).getName());
-        cardThree.setText(drawnCards.get(2).getName());
+
+        for (int i = 0; i < 3; i++) {
+            Card card = drawnCards.get(i);
+            String resourceName = card.getNameShort(); // Get the name_short value of the card
+            int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+
+            if (resourceId != 0) {
+
+                ImageView imageView = imageViewList.get(i);
+                imageView.setImageResource(resourceId);
+
+                if (card.getOrientation() == 1) {
+                    imageView.setRotation(180f);
+                }
+            } else {
+
+            }
+        }
 
         StringBuilder interpretation = new StringBuilder();
-        for(Card card : drawnCards) {
-            interpretation.append(card.getName()).append(": ");
-            if (card.getOrientation() == 0){
-                interpretation.append(card.getMeaningUp()).append("\n");
+        for(Card c : drawnCards) {
+            interpretation.append(c.getName()).append(": ");
+            if (c.getOrientation() == 0){
+                interpretation.append(c.getMeaningUp()).append("\n");
             } else {
-                interpretation.append(card.getMeaningRev()).append("\n");
+                interpretation.append(c.getMeaningRev()).append("\n");
             }
         }
 
@@ -200,6 +225,7 @@ public class ReadingActivity extends AppCompatActivity {
                 failureResponse -> Log.i(TAG, "ReadingActivity.pushReadingToDynamo(): failed with this response" + failureResponse)
         );
     }
+
 
     public void setupRewardAd(){
         AdRequest adRequest = new AdRequest.Builder().build();

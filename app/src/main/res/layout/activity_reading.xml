@@ -10,57 +10,88 @@
         android:id="@+id/ReadingActivityDrawCardsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/draw_cards"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/PlaceHolderOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/PlaceHolderTwo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/PlaceHolderTwo" />
-
-    <TextView
-        android:id="@+id/PlaceHolderTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/PlaceHolderThree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PlaceHolderTwo"
-        app:layout_constraintTop_toTopOf="@+id/PlaceHolderTwo" />
-
-    <TextView
-        android:id="@+id/InterpretationPlaceHolder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PlaceHolderTwo" />
-
     <Button
         android:id="@+id/ReadingActivityRewardAdButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/watch_ad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ReadingActivityDeckImage"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="120dp"
+        android:contentDescription="@string/deck"
+        android:src="@drawable/cover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ReadingActivityDrawnCardOne"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:contentDescription="@string/drawn_card_one"
+        android:src="@drawable/cover"
+        app:layout_constraintEnd_toStartOf="@+id/ReadingActivityDrawnCardTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ReadingActivityDrawnCardTwo" />
+
+    <ImageView
+        android:id="@+id/ReadingActivityDrawnCardTwo"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/second_drawn_card"
+        android:src="@drawable/cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ReadingActivityDrawnCardThree"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:contentDescription="@string/third_drawn_card"
+        android:src="@drawable/cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ReadingActivityDrawnCardTwo"
+        app:layout_constraintTop_toTopOf="@+id/ReadingActivityDrawnCardTwo" />
+
+    <ScrollView
+        android:id="@+id/readingActivityScrollView"
+        android:layout_width="365dp"
+        android:layout_height="234dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ReadingActivityDrawnCardTwo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ReadingActivityInterpretationPlaceHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:padding="16dp"
+                android:text="@string/draw_cards_interpretation"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
