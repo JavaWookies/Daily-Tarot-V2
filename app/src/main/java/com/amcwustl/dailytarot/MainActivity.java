@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    setupMovetoSignup();
+    setupMoveToSignup();
     setupViewAllCards();
     setupGoToReading();
   }
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
-  void setupMovetoSignup() {
+  void setupMoveToSignup() {
     moveToSignUp.setOnClickListener(v -> {
       Intent goToSettingsActivityIntent = new Intent(MainActivity.this, SignUpActivity.class);
       startActivity(goToSettingsActivityIntent);
