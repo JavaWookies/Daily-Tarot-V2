@@ -5,7 +5,7 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 type Reading @model @auth (rules: [{allow: public}]){
     id: ID!
     userId: String!
-    dateCreated: AWSDate!
+    dateCreated: String!
     cardOneId: Int!
     cardOneOrientation: Int!
     cardTwoId: Int!
@@ -15,4 +15,8 @@ type Reading @model @auth (rules: [{allow: public}]){
     interpretation: String!
 
 
+}
+
+type Query {
+    getReadingsForToday(userId: String!, today: String!): [Reading]
 }
