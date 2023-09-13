@@ -16,4 +16,8 @@
     <string name="tarot_name">Tarot Name</string>
     <string name="view_my_reading">View My Reading</string>
     <string name="draw_cards">Draw Cards</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="open_settings">Open settings</string>
+
 </resources>

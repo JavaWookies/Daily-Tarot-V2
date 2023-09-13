@@ -11,7 +11,34 @@
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
     <!-- Navigation drawer icon (hamburger menu) -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/menu_drawer" />
     <!-- Search bar (customize as needed) -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search"
+        app:layout_gravity="center"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
     <!-- Settings icon -->
+    <ImageView
+        android:id="@+id/settings_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_settings"
+        android:layout_gravity="end"
+        android:contentDescription="@string/open_settings"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        tools:ignore="ContentDescription" />
+
 
 </androidx.appcompat.widget.Toolbar>
