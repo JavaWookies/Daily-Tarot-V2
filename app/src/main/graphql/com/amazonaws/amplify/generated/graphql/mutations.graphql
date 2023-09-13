@@ -9,8 +9,11 @@ mutation CreateReading(
     userId
     dateCreated
     cardOneId
+    cardOneOrientation
     cardTwoId
+    cardTwoOrientation
     cardThreeId
+    cardThreeOrientation
     interpretation
     createdAt
     updatedAt
@@ -27,8 +30,11 @@ mutation UpdateReading(
     userId
     dateCreated
     cardOneId
+    cardOneOrientation
     cardTwoId
+    cardTwoOrientation
     cardThreeId
+    cardThreeOrientation
     interpretation
     createdAt
     updatedAt
@@ -45,8 +51,11 @@ mutation DeleteReading(
     userId
     dateCreated
     cardOneId
+    cardOneOrientation
     cardTwoId
+    cardTwoOrientation
     cardThreeId
+    cardThreeOrientation
     interpretation
     createdAt
     updatedAt
