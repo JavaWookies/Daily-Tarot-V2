@@ -8,8 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ViewAllCardsActivityRecyclerView"
-        android:layout_width="280dp"
-        android:layout_height="400dp"
+        android:layout_width="400dp"
+        android:layout_height="500dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
