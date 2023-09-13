@@ -17,4 +17,9 @@
     <string name="view_my_reading">View My Reading</string>
     <string name="draw_cards">Draw Cards</string>
     <string name="watch_ad">Watch Ad To Get More Readings</string>
+    <string name="draw_cards_interpretation">Draw Cards To Get a Card Interpretation</string>
+    <string name="deck">Deck of Cards</string>
+    <string name="drawn_card_one">First Drawn Card</string>
+    <string name="second_drawn_card">Second Drawn Card</string>
+    <string name="third_drawn_card">Third Drawn Card</string>
 </resources>
