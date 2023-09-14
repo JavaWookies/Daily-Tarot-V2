@@ -10,6 +10,7 @@
         android:id="@+id/SignUpBackgroundImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/card_background"
         android:scaleType="centerCrop"
         android:src="@drawable/cover"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/welcome"
+            android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -50,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/login_signup"
+            android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -86,7 +89,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LoginActivityLoginEditTextTextEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/LoginActivityLoginEditTextTextEmailAddress"
+            tools:ignore="TextContrastCheck" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -97,24 +101,26 @@
 
             <Button
                 android:id="@+id/LoginActivityLoginButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="100dp"
                 android:layout_height="48dp"
                 android:text="@string/login_button"
-                style="?android:attr/buttonBarButtonStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/LoginActivitySignUpButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="100dp"
                 android:layout_height="48dp"
-                android:text="@string/sign_up"
                 android:layout_marginStart="24dp"
-                style="?android:attr/buttonBarButtonStyle"
+                android:text="@string/sign_up"
                 app:layout_constraintEnd_toStartOf="@+id/LoginActivityLoginButton"
                 app:layout_constraintStart_toEndOf="@+id/LoginActivityLoginButton"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 

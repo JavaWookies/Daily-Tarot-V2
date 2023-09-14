@@ -10,6 +10,7 @@
         android:id="@+id/SignUpBackgroundImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/card_background"
         android:scaleType="centerCrop"
         android:src="@drawable/cover"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,21 +63,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUpActivitySignUpTextView" />
 
-    <EditText
-        android:id="@+id/SignUpActivityPasswordEditTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignUpActivityEmailEditTextTextEmailAddress" />
+        <EditText
+            android:id="@+id/SignUpActivityPasswordEditTextTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SignUpActivityEmailEditTextTextEmailAddress"
+            tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/SignUpActivitySignUpButton"
