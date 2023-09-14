@@ -34,11 +34,15 @@
     <string name="go_to_settings">Go To Settings</string>
     <string name="welcome">Welcome to Daily Tarot!</string>
     <string name="login_signup">Login or Sign Up</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="date">Date</string>
     <string name="my_past_readings">My Past Readings</string>
     <string name="card_one">Card One</string>
     <string name="card_two">Card Two</string>
     <string name="card_three">Card Three</string>
+    <string name="meaning_up">Meaning Up</string>
+    <string name="meaning_down">Meaning Down</string>
+    <string name="main_description">Main Description</string>
+    <string name="card_background">Card Background</string>
 </resources>

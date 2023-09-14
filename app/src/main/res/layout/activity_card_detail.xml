@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D3E0D7"
     tools:context=".activities.CardDetailActivity">
 
 
@@ -16,14 +17,14 @@
         android:contentDescription="@string/image_value"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CardDetailActivityCardNameTextView"
-        tools:ignore="ImageContrastCheck"
-        tools:src="@tools:sample/avatars" />
+        app:srcCompat="@drawable/cover" />
 
     <TextView
         android:id="@+id/CardDetailActivityCardNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +58,7 @@
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="579dp"
-                tools:text="Description" />
+                tools:text="@string/main_description" />
 
         </LinearLayout>
     </ScrollView>
@@ -69,6 +70,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="40dp"
         android:text="@string/card_up"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/CardDetailActivitySingleCardImageView"
         app:layout_constraintTop_toBottomOf="@+id/CardDetailActivityCardNameTextView" />
@@ -80,6 +82,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="16dp"
         android:text="@string/card_rev"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/CardDetailActivitySingleCardImageView"
         app:layout_constraintTop_toBottomOf="@+id/CardDetailActivityUpScrollView" />
@@ -90,6 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/description"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                tools:text="Meaning Up" />
+                tools:text="@string/meaning_up" />
         </LinearLayout>
     </ScrollView>
 
@@ -139,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                tools:text="Meaning Rev" />
+                tools:text="@string/meaning_down" />
         </LinearLayout>
     </ScrollView>
 

@@ -16,6 +16,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/amplify_storage_transfer_notification_icon" />
+        app:srcCompat="@drawable/cover" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
