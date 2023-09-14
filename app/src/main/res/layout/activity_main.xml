@@ -48,4 +48,14 @@
         app:layout_constraintEnd_toStartOf="@+id/MainActivitySeeAllCardsButton"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/GoToPastReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/MainActivityViewReadingButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
