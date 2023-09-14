@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 
 import com.amcwustl.dailytarot.activities.LoginActivity;
+import com.amcwustl.dailytarot.activities.PastReadingsActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
 
 import com.amcwustl.dailytarot.activities.SignUpActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
   ImageView moveToSignUp;
   Button viewAllCards;
   Button goToSettings;
+  Button goToPastReadings;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
     moveToSignUp = findViewById(R.id.MainActivitySignUpImageView);
     viewAllCards = findViewById(R.id.MainActivitySeeAllCardsButton);
     goToSettings = findViewById(R.id.TempGoToSettingsButton);
+    goToPastReadings = findViewById(R.id.GoToPastReading);
 
     setupMoveToSignup();
     setupViewAllCards();
     setupGoToReading();
     setupTempGoToSettings();
+    setupGoToPastReading();
   }
 
   @Override
@@ -92,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
     goToReading.setOnClickListener(view -> {
       Intent goToReadingActivityEvent = new Intent(MainActivity.this, ReadingActivity.class);
       startActivity(goToReadingActivityEvent);
+    });
+  }
+
+  void setupGoToPastReading() {
+    goToPastReadings.setOnClickListener(view -> {
+      Intent goToPastReadingActivityEvent = new Intent(MainActivity.this, PastReadingsActivity.class);
+      startActivity(goToPastReadingActivityEvent);
     });
   }
 }
