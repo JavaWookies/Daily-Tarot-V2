@@ -22,4 +22,7 @@
     <string name="drawn_card_one">First Drawn Card</string>
     <string name="second_drawn_card">Second Drawn Card</string>
     <string name="third_drawn_card">Third Drawn Card</string>
+    <string name="card_up">Up Description</string>
+    <string name="card_rev">Reverse Description</string>
+    <string name="description">Card Description</string>
 </resources>
