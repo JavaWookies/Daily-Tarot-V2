@@ -1,37 +1,56 @@
 package com.amcwustl.dailytarot;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import android.widget.Button;
-import android.widget.ImageView;
+import android.util.Log;
+import android.view.MenuItem;
 
 
 import com.amcwustl.dailytarot.activities.LoginActivity;
 import com.amcwustl.dailytarot.activities.PastReadingsActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
 
-import com.amcwustl.dailytarot.activities.SignUpActivity;
 import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amplifyframework.core.Amplify;
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+
+import androidx.annotation.NonNull;
+
+
 
 public class MainActivity extends AppCompatActivity {
   private final String TAG = "MainActivity";
-  Button goToReading;
-  ImageView moveToSignUp;
-  Button viewAllCards;
-  Button goToSettings;
-  Button goToPastReadings;
+  public DrawerLayout drawerLayout;
+  public NavigationView myNavView;
+  public ActionBarDrawerToggle actionBarDrawerToggle;
+
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    myNavView = findViewById(R.id.MainActivityNavigationView);
+
+
+
+    drawerLayout = findViewById(R.id.my_drawer_layout);
+    actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+
+    drawerLayout.addDrawerListener(actionBarDrawerToggle);
+    actionBarDrawerToggle.syncState();
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
     CardDbHelper dbHelper = new CardDbHelper(this);
@@ -41,17 +60,8 @@ public class MainActivity extends AppCompatActivity {
       Log.d("MainActivity", "Database populated with data.");
     }
 
-    goToReading = findViewById(R.id.MainActivityViewReadingButton);
-    moveToSignUp = findViewById(R.id.MainActivitySignUpImageView);
-    viewAllCards = findViewById(R.id.MainActivitySeeAllCardsButton);
-    goToSettings = findViewById(R.id.TempGoToSettingsButton);
-    goToPastReadings = findViewById(R.id.GoToPastReading);
+    setupNavClick();
 
-    setupMoveToSignup();
-    setupViewAllCards();
-    setupGoToReading();
-    setupTempGoToSettings();
-    setupGoToPastReading();
   }
 
   @Override
@@ -70,39 +80,50 @@ public class MainActivity extends AppCompatActivity {
     );
   }
 
-  void setupTempGoToSettings(){
-    goToSettings.setOnClickListener(view -> {
-      Intent goToUserSettingsActivityIntent = new Intent(MainActivity.this, UserSettingsActivity.class);
-      startActivity(goToUserSettingsActivityIntent);
-    });
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+    if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
+
   }
 
+  private void setupNavClick(){
+    myNavView.setNavigationItemSelectedListener(item -> {
 
-  void setupMoveToSignup() {
-    moveToSignUp.setOnClickListener(v -> {
-      Intent goToSettingsActivityIntent = new Intent(MainActivity.this, SignUpActivity.class);
-      startActivity(goToSettingsActivityIntent);
-    });
-  }
-
-  void setupViewAllCards() {
-    viewAllCards.setOnClickListener(v -> {
-      Intent goToSettingsActivityIntent = new Intent(MainActivity.this, ViewAllCardsActivity.class);
-      startActivity(goToSettingsActivityIntent);
-    });
-  }
-
-  void setupGoToReading() {
-    goToReading.setOnClickListener(view -> {
-      Intent goToReadingActivityEvent = new Intent(MainActivity.this, ReadingActivity.class);
-      startActivity(goToReadingActivityEvent);
-    });
-  }
-
-  void setupGoToPastReading() {
-    goToPastReadings.setOnClickListener(view -> {
-      Intent goToPastReadingActivityEvent = new Intent(MainActivity.this, PastReadingsActivity.class);
-      startActivity(goToPastReadingActivityEvent);
+      int itemId = item.getItemId();
+      Log.i("MainActivity", "the logged item is:" + itemId);
+      if (itemId == R.id.nav_home) {
+        Intent mainActivityIntent = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(mainActivityIntent);
+        return true;
+      } else if (itemId == R.id.nav_settings) {
+        Intent userSettingsIntent = new Intent(MainActivity.this, UserSettingsActivity.class);
+        startActivity(userSettingsIntent);
+        Log.i("MainActivity", "User Settings Clicked");
+        return true;
+      } else if (itemId == R.id.nav_library) {
+        Intent viewAllCardsIntent = new Intent(MainActivity.this, ViewAllCardsActivity.class);
+        startActivity(viewAllCardsIntent);
+        return true;
+      } else if (itemId == R.id.nav_reading) {
+        Intent readingIntent = new Intent(MainActivity.this, ReadingActivity.class);
+        startActivity(readingIntent);
+        return true;
+      } else if (itemId == R.id.nav_about) {
+        Intent pastReadingsIntent = new Intent(MainActivity.this, PastReadingsActivity.class);
+        startActivity(pastReadingsIntent);
+        return true;
+      }
+//      drawerLayout.closeDrawer();
+      return true;
     });
   }
 }
+
+
+
+
+

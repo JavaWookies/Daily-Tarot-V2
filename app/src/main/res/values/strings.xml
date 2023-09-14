@@ -16,7 +16,19 @@
     <string name="tarot_name">Tarot Name</string>
     <string name="view_my_reading">View My Reading</string>
     <string name="draw_cards">Draw Cards</string>
+<!--    <string name="drawer_open">Open navigation drawer</string>-->
+<!--    <string name="drawer_close">Close navigation drawer</string>-->
+    <string name="open_settings">Open settings</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
     <string name="watch_ad">Watch Ad To Get More Readings</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="reading">Reading</string>
+    <string name="about">About Us</string>
+    <string name="library">Library</string>
+    <string name="header">Header</string>
+    <string name="past_readings">Past Readings</string>
     <string name="draw_cards_interpretation">Draw Cards To Get a Card Interpretation</string>
     <string name="deck">Deck of Cards</string>
     <string name="drawn_card_one">First Drawn Card</string>
@@ -45,4 +57,5 @@
     <string name="meaning_down">Meaning Down</string>
     <string name="main_description">Main Description</string>
     <string name="card_background">Card Background</string>
+
 </resources>

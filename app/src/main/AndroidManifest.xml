@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyTarot"
         tools:targetApi="31">
+
         <activity
             android:name=".activities.PastReadingsActivity"
             android:exported="false" />
