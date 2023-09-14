@@ -14,15 +14,17 @@ import com.amcwustl.dailytarot.activities.LoginActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
 
 import com.amcwustl.dailytarot.activities.SignUpActivity;
+import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amplifyframework.core.Amplify;
 
 public class MainActivity extends AppCompatActivity {
   private final String TAG = "MainActivity";
-  private Button goToReading;
+  Button goToReading;
   ImageView moveToSignUp;
   Button viewAllCards;
+  Button goToSettings;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
     goToReading = findViewById(R.id.MainActivityViewReadingButton);
     moveToSignUp = findViewById(R.id.MainActivitySignUpImageView);
     viewAllCards = findViewById(R.id.MainActivitySeeAllCardsButton);
+    goToSettings = findViewById(R.id.TempGoToSettingsButton);
 
     setupMoveToSignup();
     setupViewAllCards();
     setupGoToReading();
+    setupTempGoToSettings();
   }
 
   @Override
@@ -60,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
               finish();
             }
     );
+  }
+
+  void setupTempGoToSettings(){
+    goToSettings.setOnClickListener(view -> {
+      Intent goToUserSettingsActivityIntent = new Intent(MainActivity.this, UserSettingsActivity.class);
+      startActivity(goToUserSettingsActivityIntent);
+    });
   }
 
 
