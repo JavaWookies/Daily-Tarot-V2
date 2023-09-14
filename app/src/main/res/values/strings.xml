@@ -29,4 +29,33 @@
     <string name="library">Library</string>
     <string name="header">Header</string>
     <string name="past_readings">Past Readings</string>
+    <string name="draw_cards_interpretation">Draw Cards To Get a Card Interpretation</string>
+    <string name="deck">Deck of Cards</string>
+    <string name="drawn_card_one">First Drawn Card</string>
+    <string name="second_drawn_card">Second Drawn Card</string>
+    <string name="third_drawn_card">Third Drawn Card</string>
+    <string name="card_up">Up Description</string>
+    <string name="card_rev">Reverse Description</string>
+    <string name="description">Card Description</string>
+    <string name="select_card_style">Select Card Style</string>
+    <string name="gold">Gold Theme</string>
+    <string name="light">Light Theme</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="light_theme">Light Theme Card Image</string>
+    <string name="gold_theme">Gold Theme Card Image</string>
+    <string name="go_to_settings">Go To Settings</string>
+    <string name="welcome">Welcome to Daily Tarot!</string>
+    <string name="login_signup">Login or Sign Up</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date">Date</string>
+    <string name="my_past_readings">My Past Readings</string>
+    <string name="card_one">Card One</string>
+    <string name="card_two">Card Two</string>
+    <string name="card_three">Card Three</string>
+    <string name="meaning_up">Meaning Up</string>
+    <string name="meaning_down">Meaning Down</string>
+    <string name="main_description">Main Description</string>
+    <string name="card_background">Card Background</string>
+
 </resources>

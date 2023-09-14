@@ -3,36 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CardItem"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="120dp"
+    android:layout_height="205dp">
 
-    <LinearLayout
-        android:id="@+id/cardItem"
-        android:layout_width="132dp"
-        android:layout_height="184dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/CardDetailActivitySingleCardImageView"
+        android:layout_width="120dp"
+        android:layout_height="205dp"
+        android:contentDescription="@string/image_value"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cover" />
 
-        <ImageView
-            android:id="@+id/cardImage"
-            android:layout_width="match_parent"
-            android:layout_height="134dp"
-            android:contentDescription="@string/image_value"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/amplify_storage_transfer_notification_icon" />
-
-        <TextView
-            android:id="@+id/cardName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:hint="@string/tarot_name"
-            android:padding="8dp"
-            android:textColorHint="#3C3C3C"
-            android:textSize="16sp" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

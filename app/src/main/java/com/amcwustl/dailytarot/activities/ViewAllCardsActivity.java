@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.adapters.CardAdapter;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,22 @@ public class ViewAllCardsActivity extends AppCompatActivity {
     setupRecyclerView();
   }
 
+  @Override
+  public void onTrimMemory(int level) {
+    super.onTrimMemory(level);
+    if (Glide.get(this) != null) {
+      Glide.get(this).trimMemory(level);
+    }
+  }
+
+  @Override
+  public void onLowMemory() {
+    super.onLowMemory();
+    if (Glide.get(this) != null) {
+      Glide.get(this).clearMemory();
+    }
+  }
+
   void setupRecyclerView(){
     recyclerView = findViewById(R.id.ViewAllCardsActivityRecyclerView);
     GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -57,12 +75,12 @@ public class ViewAllCardsActivity extends AppCompatActivity {
         int position = parent.getChildAdapterPosition(view);
         Log.d(TAG, "getItemOffsets: Setting item offsets for position " + position);
 
-        outRect.bottom = spaceInPixels;
-        outRect.right = spaceInPixels;
+        int halfSpace = spaceInPixels / 2;
 
-        if (position % 3 == 0) {
-          outRect.left = spaceInPixels;
-        }
+        outRect.top = halfSpace;
+        outRect.bottom = spaceInPixels;
+        outRect.left = halfSpace;
+        outRect.right = halfSpace;
 
         int totalItemCount = parent.getAdapter().getItemCount();
         if (position >= totalItemCount - (totalItemCount % 3)) {
@@ -72,8 +90,14 @@ public class ViewAllCardsActivity extends AppCompatActivity {
     });
     Log.d(TAG, "setupRecyclerView: Added ItemDecoration.");
 
-    cardAdapter = new CardAdapter(tarotCardsList, this);
+    cardAdapter = new CardAdapter(tarotCardsList, this, new CardAdapter.OnItemClickListener() {
+      @Override
+      public void onItemClick(Card card) {
+        Intent intent = new Intent(ViewAllCardsActivity.this, CardDetailActivity.class);
+        intent.putExtra("card_id", card.getId());
+        startActivity(intent);
+      }
+    });
     recyclerView.setAdapter(cardAdapter);
-    Log.d(TAG, "setupRecyclerView: Set CardAdapter to RecyclerView.");
   }
 }
