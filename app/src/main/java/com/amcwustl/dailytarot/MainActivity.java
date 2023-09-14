@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import com.amcwustl.dailytarot.activities.AboutUsActivity;
 import com.amcwustl.dailytarot.activities.CardDetailActivity;
 import com.amcwustl.dailytarot.activities.LoginActivity;
+import com.amcwustl.dailytarot.activities.PastReadingsActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
 
 import com.amcwustl.dailytarot.activities.UserSettingsActivity;
@@ -90,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     }
     int itemId = item.getItemId();
     if (itemId == R.id.nav_home) {
-      Intent cardDetailIntent = new Intent(this, CardDetailActivity.class);
-      startActivity(cardDetailIntent);
+      Intent mainActivityIntent = new Intent(this, MainActivity.class);
+      startActivity(mainActivityIntent);
       return true;
     } else if (itemId == R.id.nav_settings) {
       Intent userSettingsIntent = new Intent(this, UserSettingsActivity.class);
@@ -106,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
       startActivity(readingIntent);
       return true;
     } else if (itemId == R.id.nav_about) {
-      Intent aboutIntent = new Intent(this, AboutUsActivity.class);
-      startActivity(aboutIntent);
+      Intent pastReadingsIntent = new Intent(this, PastReadingsActivity.class);
+      startActivity(pastReadingsIntent);
       return true;
     }
     return super.onOptionsItemSelected(item);

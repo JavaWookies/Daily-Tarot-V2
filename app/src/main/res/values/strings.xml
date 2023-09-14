@@ -28,4 +28,5 @@
     <string name="about">About Us</string>
     <string name="library">Library</string>
     <string name="header">Header</string>
+    <string name="past_readings">Past Readings</string>
 </resources>
