@@ -22,4 +22,13 @@
     <string name="drawn_card_one">First Drawn Card</string>
     <string name="second_drawn_card">Second Drawn Card</string>
     <string name="third_drawn_card">Third Drawn Card</string>
+    <string name="select_card_style">Select Card Style</string>
+    <string name="gold">Gold Theme</string>
+    <string name="light">Light Theme</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="light_theme">Light Theme Card Image</string>
+    <string name="gold_theme">Gold Theme Card Image</string>
+    <string name="go_to_settings">Go To Settings</string>
+    <string name="welcome">Welcome to Daily Tarot!</string>
+    <string name="login_signup">Login or Sign Up</string>
 </resources>
