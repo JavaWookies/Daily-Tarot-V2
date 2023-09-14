@@ -3,50 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/my_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText">
+    <!-- This LinearLayout represents the contents of the screen  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- Include the AppBarFragment at the top -->
-    <fragment
-        android:id="@+id/app_bar_fragment"
-        android:name="com.amcwustl.dailytarot.fragments.AppBarFragment"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="128dp"
+        android:gravity="center"
+        android:text="Information"
+        android:textSize="18sp" />
+</LinearLayout>
 
-    <!-- The rest of your content goes here -->
-    <ImageView
-        android:id="@+id/MainActivitySignUpImageView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:contentDescription="@string/move_to_sign_up_page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_bar_fragment"
-        app:srcCompat="@android:drawable/ic_menu_preferences" />
-
-    <Button
-        android:id="@+id/MainActivitySeeAllCardsButton"
+    <!-- The navigation drawer that comes from the left -->
+    <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
+    <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/view_all_cards"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/MainActivitySignUpImageView" />
-
-    <Button
-        android:id="@+id/MainActivityViewReadingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/view_my_reading"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/MainActivitySeeAllCardsButton" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
