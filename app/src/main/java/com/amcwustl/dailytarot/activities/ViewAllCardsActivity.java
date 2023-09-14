@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,8 +90,14 @@ public class ViewAllCardsActivity extends AppCompatActivity {
     });
     Log.d(TAG, "setupRecyclerView: Added ItemDecoration.");
 
-    cardAdapter = new CardAdapter(tarotCardsList, this);
+    cardAdapter = new CardAdapter(tarotCardsList, this, new CardAdapter.OnItemClickListener() {
+      @Override
+      public void onItemClick(Card card) {
+        Intent intent = new Intent(ViewAllCardsActivity.this, CardDetailActivity.class);
+        intent.putExtra("card_id", card.getId());
+        startActivity(intent);
+      }
+    });
     recyclerView.setAdapter(cardAdapter);
-    Log.d(TAG, "setupRecyclerView: Set CardAdapter to RecyclerView.");
   }
 }

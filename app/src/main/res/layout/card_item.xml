@@ -7,7 +7,7 @@
     android:layout_height="205dp">
 
     <ImageView
-        android:id="@+id/cardImage"
+        android:id="@+id/CardDetailActivitySingleCardImageView"
         android:layout_width="120dp"
         android:layout_height="205dp"
         android:contentDescription="@string/image_value"

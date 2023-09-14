@@ -178,7 +178,7 @@ public class ReadingActivity extends AppCompatActivity {
         HashSet<Integer> seenCards = new HashSet<>();
         while (drawnCards.size() < 3) {
             Integer randomCardId = random.nextInt(maxCardId) + 1;
-            Card card = dbHelper.getCardById(randomCardId);
+            Card card = dbHelper.getCardById(Long.valueOf(randomCardId));
             if (card != null && !seenCards.contains(randomCardId)) {
                 seenCards.add(randomCardId);
                 drawnCards.add(card);

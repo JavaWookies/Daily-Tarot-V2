@@ -159,7 +159,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
     }
   }
 
-  public Card getCardById(int cardId) {
+  public Card getCardById(Long cardId) {
     SQLiteDatabase db = getReadableDatabase();
     Card card = null;
 
