@@ -34,4 +34,8 @@
     <string name="go_to_settings">Go To Settings</string>
     <string name="welcome">Welcome to Daily Tarot!</string>
     <string name="login_signup">Login or Sign Up</string>
+    <string name="meaning_up">Meaning Up</string>
+    <string name="meaning_down">Meaning Down</string>
+    <string name="main_description">Main Description</string>
+    <string name="card_background">Card Background</string>
 </resources>
