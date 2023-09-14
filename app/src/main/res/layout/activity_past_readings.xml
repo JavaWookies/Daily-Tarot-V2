@@ -46,29 +46,30 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/PastReadingsActivityRecyclerView"
         android:layout_width="409dp"
-        android:layout_height="540dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PastReadingsDateLabel" />
 
     <TextView
         android:id="@+id/PastReadingsDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/date"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/PastReadingsActivityRecyclerView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PastReadingsActivityMainTitle" />
 
     <TextView
         android:id="@+id/PastReadingsActivityMainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/my_past_readings"
         android:textColor="#000000"
         android:textSize="24sp"

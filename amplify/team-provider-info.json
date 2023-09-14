@@ -12,9 +12,6 @@
       "AmplifyAppId": "dv2lxdlbuk423"
     },
     "categories": {
-      "api": {
-        "dailytarot": {}
-      },
       "auth": {
         "dailytarotd6ae51bc": {}
       }
