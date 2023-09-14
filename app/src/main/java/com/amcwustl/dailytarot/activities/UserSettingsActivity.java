@@ -1,4 +1,4 @@
 package com.amcwustl.dailytarot.activities;
 
-public class SettingsActivity {
+public class UserSettingsActivity {
 }

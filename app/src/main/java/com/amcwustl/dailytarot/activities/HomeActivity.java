@@ -1,4 +1,6 @@
 package com.amcwustl.dailytarot.activities;
 
-public class HomeActivity {
+import com.amcwustl.dailytarot.MainActivity;
+
+public class HomeActivity{
 }

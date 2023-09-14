@@ -1,4 +1,4 @@
 package com.amcwustl.dailytarot.activities;
 
-public class CardDescriptionActivity {
+public class CardDetailActivity {
 }
