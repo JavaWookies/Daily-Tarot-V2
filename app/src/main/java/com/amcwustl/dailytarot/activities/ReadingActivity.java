@@ -89,6 +89,12 @@ public class ReadingActivity extends AppCompatActivity {
 
   }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
+    setupRewardAd();
+  }
+
   private void setupCardTypes() {
     String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
     String resourceName = "cover" + cardType;
@@ -160,17 +166,10 @@ public class ReadingActivity extends AppCompatActivity {
   private void drawThreeRandomCards() {
 
     List<Card> drawnCards = new ArrayList<>();
-//    List<ImageView> imageViewList = new ArrayList<>();
-//        ImageView cardOne = findViewById(R.id.ReadingActivityDrawnCardOne);
     cardOne.setRotation(0);
-//        ImageView cardTwo = findViewById(R.id.ReadingActivityDrawnCardTwo);
     cardTwo.setRotation(0);
-//        ImageView cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
     cardThree.setRotation(0);
 
-//    imageViewList.add(cardOne);
-//    imageViewList.add(cardTwo);
-//    imageViewList.add(cardThree);
 
 
     TextView description = findViewById(R.id.ReadingActivityInterpretationPlaceHolder);
