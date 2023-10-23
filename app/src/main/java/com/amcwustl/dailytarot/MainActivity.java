@@ -9,15 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-
-import com.amcwustl.dailytarot.activities.LoginActivity;
-import com.amcwustl.dailytarot.activities.PastReadingsActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
 
 import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
-import com.amplifyframework.core.Amplify;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -64,21 +60,21 @@ public class MainActivity extends AppCompatActivity {
 
   }
 
-  @Override
-  protected void onResume() {
-    super.onResume();
-
-    Amplify.Auth.getCurrentUser(
-            authUser -> {
-            },
-            error -> {
-              Intent signInIntent = new Intent(MainActivity.this, LoginActivity.class);
-              startActivity(signInIntent);
-
-              finish();
-            }
-    );
-  }
+//  @Override
+//  protected void onResume() {
+//    super.onResume();
+//
+//    Amplify.Auth.getCurrentUser(
+//            authUser -> {
+//            },
+//            error -> {
+//              Intent signInIntent = new Intent(MainActivity.this, LoginActivity.class);
+//              startActivity(signInIntent);
+//
+//              finish();
+//            }
+//    );
+//  }
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -111,10 +107,6 @@ public class MainActivity extends AppCompatActivity {
       } else if (itemId == R.id.nav_reading) {
         Intent readingIntent = new Intent(MainActivity.this, ReadingActivity.class);
         startActivity(readingIntent);
-        return true;
-      } else if (itemId == R.id.nav_about) {
-        Intent pastReadingsIntent = new Intent(MainActivity.this, PastReadingsActivity.class);
-        startActivity(pastReadingsIntent);
         return true;
       }
 //      drawerLayout.closeDrawer();

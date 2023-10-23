@@ -14,10 +14,7 @@
         android:id="@+id/nav_reading"
         android:icon="@drawable/ic_reading"
         android:title="@string/reading" />
-    <item
-        android:id="@+id/nav_about"
-        android:icon="@drawable/ic_about"
-        android:title="@string/past_readings" />
+
     <item
         android:id="@+id/nav_library"
         android:icon="@drawable/ic_library"

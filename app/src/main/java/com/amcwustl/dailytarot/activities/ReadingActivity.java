@@ -19,12 +19,6 @@ import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
 
-import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.core.Amplify;
-
-import com.amplifyframework.core.model.query.Where;
-import com.amplifyframework.datastore.generated.model.Reading;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -47,6 +41,7 @@ import java.util.Random;
 
 public class ReadingActivity extends AppCompatActivity {
   private static final String TAG = "Reading Activity";
+  private static final String HAS_READING_FOR_TODAY = "HAS_READING_FOR_TODAY";
   private Button drawCardsButton;
   private Button rewardAdButton;
   private ImageView deck;
@@ -65,11 +60,6 @@ public class ReadingActivity extends AppCompatActivity {
     setContentView(R.layout.activity_reading);
 
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-    Amplify.Auth.getCurrentUser(
-            authUser -> userId = authUser.getUserId(),
-            error -> Log.e("MyAmplifyApp", "Error getting current user", error)
-    );
 
     initializeMobileAds();
 
@@ -112,32 +102,18 @@ public class ReadingActivity extends AppCompatActivity {
   }
 
   private void checkReadingForToday() {
-    Date currentDate = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    String formattedDate = dateFormat.format(currentDate);
+    SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
 
-    List<Reading> readings = new ArrayList<>();
+    String todayKey = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-    Amplify.API.query(
-            ModelQuery.list(Reading.class),
-            response -> {
-              for (Reading reading : response.getData()) {
-                if (reading.getUserId().equals(userId) && reading.getDateCreated().equals(formattedDate)) {
-                  readings.add(reading);
-                }
-              }
 
-              if (!(readings.size() > 0)) {
-                userCoinCount = 10;
-              }
 
-              runOnUiThread(this::updateUIBasedOnCoinCount);
-            },
-            error -> {
-              Log.e(TAG, "Error retrieving readings for today: " + error);
+    if(!sharedPreferences.getBoolean(todayKey + HAS_READING_FOR_TODAY, false)) {
+      userCoinCount = 10;
+    }
 
-            }
-    );
+    runOnUiThread(this::updateUIBasedOnCoinCount);
+
   }
 
   private void updateUIBasedOnCoinCount() {
@@ -169,9 +145,6 @@ public class ReadingActivity extends AppCompatActivity {
     cardOne.setRotation(0);
     cardTwo.setRotation(0);
     cardThree.setRotation(0);
-
-
-
     TextView description = findViewById(R.id.ReadingActivityInterpretationPlaceHolder);
 
     Random random = new Random();
@@ -207,11 +180,20 @@ public class ReadingActivity extends AppCompatActivity {
     String result = interpretation.toString();
     description.setText(result);
     userCoinCount -= 10;
-    pushReadingToDynamo(drawnCards, result);
+//    pushReadingToDynamo(drawnCards, result);
     setupRewardAd();
+    markReadingForToday();
     runOnUiThread(this::updateUIBasedOnCoinCount);
+  }
 
+  private void markReadingForToday() {
+    SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
 
+    String todayKey = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+    editor.putBoolean(todayKey + HAS_READING_FOR_TODAY, true);
+    editor.apply();
   }
 
   private void setupCardImages(List<Card> drawnCards) {
@@ -246,34 +228,6 @@ public class ReadingActivity extends AppCompatActivity {
     Intent intent = new Intent(ReadingActivity.this, CardDetailActivity.class);
     intent.putExtra("card_id", cardId);
     startActivity(intent);
-  }
-
-
-  private void pushReadingToDynamo(List<Card> drawnCards, String interpretation) {
-    Date currentDate = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    String formattedDate = dateFormat.format(currentDate);
-
-
-    Reading readingToSave = Reading.builder()
-            .userId(userId)
-            .dateCreated(formattedDate)
-            .cardOneId(drawnCards.get(0).getId().intValue())
-            .cardOneOrientation(drawnCards.get(0).getOrientation())
-            .cardTwoId(drawnCards.get(1).getId().intValue())
-            .cardTwoOrientation(drawnCards.get(1).getOrientation())
-            .cardThreeId(drawnCards.get(2).getId().intValue())
-            .cardThreeOrientation(drawnCards.get(2).getOrientation())
-            .interpretation(interpretation)
-            .build();
-
-    Amplify.API.mutate(
-            ModelMutation.create(readingToSave),
-            successResponse -> {
-              Log.i(TAG, "ReadingActivity.pushReadingToDynamo(): made Reading successfully");
-            },
-            failureResponse -> Log.i(TAG, "ReadingActivity.pushReadingToDynamo(): failed with this response" + failureResponse)
-    );
   }
 
 
