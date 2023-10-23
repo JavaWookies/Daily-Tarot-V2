@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.amcwustl.dailytarot'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.amcwustl.dailytarot"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -39,14 +39,6 @@ dependencies {
     // Card RecyclerView Dependencies
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-
-    // Amplify core dependency
-    implementation 'com.amplifyframework:core:2.13.0'
-    implementation 'com.amplifyframework:aws-api:2.13.0'
-    implementation 'com.amplifyframework:aws-datastore:2.11.2'
-    implementation 'com.amplifyframework:aws-storage-s3:2.12.0'
-    implementation 'com.amplifyframework:aws-auth-cognito:2.13.0'
-
 
     implementation 'com.google.android.gms:play-services-ads:22.3.0'
     implementation 'androidx.preference:preference:1.2.0'

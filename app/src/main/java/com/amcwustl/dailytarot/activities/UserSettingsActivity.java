@@ -13,12 +13,10 @@ import android.widget.Toast;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
-import com.amplifyframework.auth.AuthUser;
 
 public class UserSettingsActivity extends AppCompatActivity {
     public static final String CARD_TYPE_TAG = "cardType";
     SharedPreferences preferences;
-    AuthUser authUser;
     Spinner cardDisplaySpinner;
     Button saveSettingsButton;
 
