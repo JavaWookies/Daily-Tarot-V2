@@ -1,7 +1,6 @@
 package com.amcwustl.dailytarot.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +19,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewAllCardsActivity extends AppCompatActivity {
+public class ViewAllCardsActivity extends BaseActivity {
   private static final String TAG = "ViewAllCardsActivity";
 
   RecyclerView recyclerView;
@@ -29,8 +28,8 @@ public class ViewAllCardsActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_view_all_cards);
+    super.onCreate(savedInstanceState);
 
     Log.d(TAG, "onCreate: Started.");
 

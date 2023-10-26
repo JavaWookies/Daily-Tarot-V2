@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class ReadingActivity extends AppCompatActivity {
+public class ReadingActivity extends BaseActivity {
   private static final String TAG = "Reading Activity";
   private static final String HAS_READING_FOR_TODAY = "HAS_READING_FOR_TODAY";
   private Button drawCardsButton;
@@ -56,8 +56,8 @@ public class ReadingActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_reading);
+    super.onCreate(savedInstanceState);
 
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
