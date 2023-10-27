@@ -688,7 +688,10 @@
       "type": "minor",
       "meaning_up": "Application, study, scholarship, reflection another reading says news, messages and the bringer thereof; also rule, management.",
       "meaning_rev": "Prodigality, dissipation, liberality, luxury; unfavourable news.",
-      "desc": "A youthful figure, looking intently at the pentacle which hovers over his raised hands. He moves slowly, insensible of that which is about him."
+      "desc": "A youthful figure, looking intently at the pentacle which hovers over his raised hands. He moves slowly, insensible of that which is about him.",
+      "int_past": "A youthful curiosity about material matters, new studies, or a tangible message influenced your past.",
+      "int_present": "A curious exploration of material matters, new studies, or a tangible message is influencing your present situation.",
+      "int_future": "Curiosity about tangible matters, new learning opportunities, or a significant message will influence upcoming events."
     },
     {
       "name": "Knight of Pentacles",
@@ -699,7 +702,10 @@
       "type": "minor",
       "meaning_up": "Utility, serviceableness, interest, responsibility, rectitude-all on the normal and external plane.",
       "meaning_rev": "inertia, idleness, repose of that kind, stagnation; also placidity, discouragement, carelessness.",
-      "desc": "He rides a slow, enduring, heavy horse, to which his own aspect corresponds. He exhibits his symbol, but does not look therein."
+      "desc": "He rides a slow, enduring, heavy horse, to which his own aspect corresponds. He exhibits his symbol, but does not look therein.",
+      "int_past": "You approached situations methodically, reliably, and with unwavering focus in a past phase.",
+      "int_present": "You're approaching tasks methodically, with steadfastness and a focus on the long term.",
+      "int_future": "A methodical approach, steady progress, and reliability will characterize future endeavors."
     },
     {
       "name": "Queen of Pentacles",
@@ -710,7 +716,10 @@
       "type": "minor",
       "meaning_up": "Opulence, generosity, magnificence, security, liberty.",
       "meaning_rev": "Evil, suspicion, suspense, fear, mistrust.",
-      "desc": "The face suggests that of a dark woman, whose qualities might be summed up in the idea of greatness of soul; she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein."
+      "desc": "The face suggests that of a dark woman, whose qualities might be summed up in the idea of greatness of soul; she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein.",
+      "int_past": "Nurturing in practical matters, taking care of physical needs, or a grounding presence played a role in your past.",
+      "int_present": "Nurturing your practical needs, taking care of your physical environment, or a grounding presence defines your current phase.",
+      "int_future": "Nurturing in practical areas, attentiveness to physical well-being, or a grounding influence will be prominent in the future."
     },
     {
       "name": "King of Pentacles",
@@ -721,7 +730,10 @@
       "type": "minor",
       "meaning_up": "Valour, realizing intelligence, business and normal intellectual aptitude, sometimes mathematical gifts and attainments of this kind; success in these paths.",
       "meaning_rev": "Vice, weakness, ugliness, perversity, corruption, peril.",
-      "desc": "The figure calls for no special description the face is rather dark, suggesting also courage, but somewhat lethargic in tendency. The bull's head should be noted as a recurrent symbol on the throne. The sign of this suit is represented throughout as engraved or blazoned with the pentagram, typifying the correspondence of the four elements in human nature and that by which they may be governed. In many old Tarot packs this suit stood for current coin, money, deniers. I have not invented the substitution of pentacles and I have no special cause to sustain in respect of the alternative. But the consensus of divinatory meanings is on the side of some change, because the cards do not happen to deal especially with questions of money."
+      "desc": "The figure calls for no special description the face is rather dark, suggesting also courage, but somewhat lethargic in tendency. The bull's head should be noted as a recurrent symbol on the throne. The sign of this suit is represented throughout as engraved or blazoned with the pentagram, typifying the correspondence of the four elements in human nature and that by which they may be governed. In many old Tarot packs this suit stood for current coin, money, deniers. I have not invented the substitution of pentacles and I have no special cause to sustain in respect of the alternative. But the consensus of divinatory meanings is on the side of some change, because the cards do not happen to deal especially with questions of money.",
+      "int_past": "Mastery in financial matters, a stable and prosperous leadership role, or a guiding presence in material endeavors marked a previous period.",
+      "int_present": "Mastery in material matters, leadership in financial endeavors, or a guiding influence is prominent in your life right now.",
+      "int_future": "Leadership in financial or material matters, prosperity, and guidance in tangible endeavors will shape upcoming experiences."
     },
     {
       "name": "Ace of Pentacles",
@@ -732,7 +744,10 @@
       "type": "minor",
       "meaning_up": "Perfect contentment, felicity, ecstasy; also speedy intelligence; gold.",
       "meaning_rev": "The evil side of wealth, bad intelligence; also great riches. In any case it shews prosperity, comfortable material conditions, but whether these are of advantage to the possessor will depend on whether the card is reversed or not.",
-      "desc": "A hand--issuing, as usual, from a cloud--holds up a pentacle."
+      "desc": "A hand--issuing, as usual, from a cloud--holds up a pentacle.",
+      "int_past": "A new financial beginning, job opportunity, or tangible gift played a role in your past.",
+      "int_present": "A fresh financial or practical opportunity is presenting itself to you right now.",
+      "int_future": "Look forward to a new financial or practical opportunity on the horizon."
     },
     {
       "name": "Two of Pentacles",
@@ -743,7 +758,10 @@
       "type": "minor",
       "meaning_up": "On the one hand it is represented as a card of gaiety, recreation and its connexions, which is the subject of the design; but it is read also as news and messages in writing, as obstacles, agitation, trouble, embroilment.",
       "meaning_rev": "Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange.",
-      "desc": "A young man, in the act of dancing, has a pentacle in either hand, and they are joined by that endless cord which is like the number 8 reversed."
+      "desc": "A young man, in the act of dancing, has a pentacle in either hand, and they are joined by that endless cord which is like the number 8 reversed.",
+      "int_past": "You juggled multiple responsibilities, balanced finances, or faced fluctuating circumstances previously.",
+      "int_present": "You're currently juggling multiple tasks, balancing finances, or navigating fluctuating circumstances.",
+      "int_future": "You'll soon be managing multiple tasks, perhaps balancing finances or navigating changing circumstances."
     },
     {
       "name": "Three of Pentacles",
@@ -754,7 +772,10 @@
       "type": "minor",
       "meaning_up": "Métier, trade, skilled labour; usually, however, regarded as a card of nobility, aristocracy, renown, glory.",
       "meaning_rev": "Mediocrity, in work and otherwise, puerility, pettiness, weakness.",
-      "desc": "A sculptor at his work in a monastery. Compare the design which illustrates the Eight of Pentacles. The apprentice or amateur therein has received his reward and is now at work in earnest."
+      "desc": "A sculptor at his work in a monastery. Compare the design which illustrates the Eight of Pentacles. The apprentice or amateur therein has received his reward and is now at work in earnest.",
+      "int_past": "Past collaborations, team efforts, or recognition for your skills and craftsmanship marked a significant phase.",
+      "int_present": "Collaboration, teamwork, or gaining recognition for your skills is at the forefront of your current situation.",
+      "int_future": "Future collaborations, teamwork, or recognition for your skills and craftsmanship await."
     },
     {
       "name": "Four of Pentacles",
@@ -765,7 +786,10 @@
       "type": "minor",
       "meaning_up": "The surety of possessions, cleaving to that which one has, gift, legacy, inheritance.",
       "meaning_rev": "Suspense, delay, opposition.",
-      "desc": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet. He holds to that which he has."
+      "desc": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet. He holds to that which he has.",
+      "int_past": "You held tightly to resources, possibly out of security concerns or fear of loss in a previous period.",
+      "int_present": "You might be holding onto resources tightly, prioritizing security or guarding against potential loss.",
+      "int_future": "You may find yourself prioritizing security, potentially guarding resources or being cautious with expenditures."
     },
     {
       "name": "Five of Pentacles",
@@ -776,7 +800,10 @@
       "type": "minor",
       "meaning_up": "The card foretells material trouble above all, whether in the form illustrated--that is, destitution--or otherwise. For some cartomancists, it is a card of love and lovers-wife, husband, friend, mistress; also concordance, affinities. These alternatives cannot be harmonized.",
       "meaning_rev": "Disorder, chaos, ruin, discord, profligacy.",
-      "desc": "Two mendicants in a snow-storm pass a lighted casement."
+      "desc": "Two mendicants in a snow-storm pass a lighted casement.",
+      "int_past": "Financial hardship, feelings of being left out, or challenges in material matters affected your past.",
+      "int_present": "You're currently facing challenges in material matters, possibly feeling isolated or left out in the cold.",
+      "int_future": "Prepare for potential challenges in material matters or feelings of isolation from resources or support."
     },
     {
       "name": "Six of Pentacles",
@@ -787,7 +814,10 @@
       "type": "minor",
       "meaning_up": "Presents, gifts, gratification another account says attention, vigilance now is the accepted time, present prosperity, etc.",
       "meaning_rev": "Desire, cupidity, envy, jealousy, illusion.",
-      "desc": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed. It is a testimony to his own success in life, as well as to his goodness of heart."
+      "desc": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed. It is a testimony to his own success in life, as well as to his goodness of heart.",
+      "int_past": "Generosity, receiving or giving aid, or a balance in financial dealings played a part in your history.",
+      "int_present": "A balance in give-and-take, either offering or receiving assistance, characterizes your current situation.",
+      "int_future": "Generosity, either in giving or receiving, will play a role in upcoming financial or practical interactions."
     },
     {
       "name": "Seven of Pentacles",
@@ -798,7 +828,10 @@
       "type": "minor",
       "meaning_up": "These are exceedingly contradictory; in the main, it is a card of money, business, barter; but one reading gives altercation, quarrels--and another innocence, ingenuity, purgation.",
       "meaning_rev": "Cause for anxiety regarding money which it may be proposed to lend.",
-      "desc": "A young man, leaning on his staff, looks intently at seven pentacles attached to a clump of greenery on his right; one would say that these were his treasures and that his heart was there."
+      "desc": "A young man, leaning on his staff, looks intently at seven pentacles attached to a clump of greenery on his right; one would say that these were his treasures and that his heart was there.",
+      "int_past": "You paused to reflect on your efforts, evaluate progress, or waited for results in a past situation.",
+      "int_present": "You're in a phase of reflection, assessing your efforts and awaiting the results of your hard work.",
+      "int_future": "Anticipate a period of assessment, patience, and reflection on your efforts and their outcomes."
     },
     {
       "name": "Eight of Pentacles",
@@ -809,7 +842,10 @@
       "type": "minor",
       "meaning_up": "Work, employment, commission, craftsmanship, skill in craft and business, perhaps in the preparatory stage.",
       "meaning_rev": "Voided ambition, vanity, cupidity, exaction, usury. It may also signify the possession of skill, in the sense of the ingenious mind turned to cunning and intrigue.",
-      "desc": "An artist in stone at his work, which he exhibits in the form of trophies."
+      "desc": "An artist in stone at his work, which he exhibits in the form of trophies.",
+      "int_past": "A period of diligent work, honing skills, or apprenticeship shaped your previous experiences.",
+      "int_present": "Diligence, skill-building, and dedication to your craft or work are defining your present endeavors.",
+      "int_future": "A future phase of dedicated work, skill improvement, or meticulous focus on a project is in store."
     },
     {
       "name": "Nine of Pentacles",
@@ -820,7 +856,10 @@
       "type": "minor",
       "meaning_up": "Prudence, safety, success, accomplishment, certitude, discernment.",
       "meaning_rev": "Roguery, deception, voided project, bad faith.",
-      "desc": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines in the garden of a manorial house. It is a wide domain, suggesting plenty in all things. Possibly it is her own possession and testifies to material well-being."
+      "desc": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines in the garden of a manorial house. It is a wide domain, suggesting plenty in all things. Possibly it is her own possession and testifies to material well-being.",
+      "int_past": "You enjoyed the fruits of your labor, experienced financial independence, or embraced solitude in the past.",
+      "int_present": "You're experiencing financial comfort, independence, or enjoying the rewards of your efforts.",
+      "int_future": "Enjoyment of financial comfort, independence, or the rewards of past labors will be forthcoming."
     },
     {
       "name": "Ten of Pentacles",
@@ -831,7 +870,10 @@
       "type": "minor",
       "meaning_up": "Gain, riches; family matters, archives, extraction, the abode of a family.",
       "meaning_rev": "Chance, fatality, loss, robbery, games of hazard; sometimes gift, dowry, pension.",
-      "desc": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground. The child's hand is on one of them."
+      "desc": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground. The child's hand is on one of them.",
+      "int_past": "A phase of familial wealth, inheritance, or long-term security marked a significant moment in your history.",
+      "int_present": "Stability, familial wealth, or long-term security is a significant aspect of your current life.",
+      "int_future": "Expect stability, possible wealth or inheritance matters, or long-term security to play a role in your future."
     },
     {
       "name": "Page of Swords",
@@ -842,7 +884,10 @@
       "type": "minor",
       "meaning_up": "Authority, overseeing, secret service, vigilance, spying, examination, and the qualities thereto belonging.",
       "meaning_rev": "More evil side of these qualities; what is unforeseen, unprepared state; sickness is also intimated.",
-      "desc": "A lithe, active figure holds a sword upright in both hands, while in the act of swift walking. He is passing over rugged land, and about his way the clouds are collocated wildly. He is alert and lithe, looking this way and that, as if an expected enemy might appear at any moment."
+      "desc": "A lithe, active figure holds a sword upright in both hands, while in the act of swift walking. He is passing over rugged land, and about his way the clouds are collocated wildly. He is alert and lithe, looking this way and that, as if an expected enemy might appear at any moment.",
+      "int_past": "Curiosity, a thirst for knowledge, or a challenging message influenced past events.",
+      "int_present": "Your current environment is marked by curiosity, keen observation, or the challenge of a new message or insight.",
+      "int_future": "Be ready for new information, curiosity-driven endeavors, or a challenging message in the future."
     },
     {
       "name": "Knight of Swords",
@@ -853,7 +898,10 @@
       "type": "minor",
       "meaning_up": "Skill, bravery, capacity, defence, address, enmity, wrath, war, destruction, opposition, resistance, ruin. There is therefore a sense in which the card signifies death, but it carries this meaning only in its proximity to other cards of fatality.",
       "meaning_rev": "Imprudence, incapacity, extravagance.",
-      "desc": "He is riding in full course, as if scattering his enemies. In the design he is really a prototypical hero of romantic chivalry. He might almost be Galahad, whose sword is swift and sure because he is clean of heart."
+      "desc": "He is riding in full course, as if scattering his enemies. In the design he is really a prototypical hero of romantic chivalry. He might almost be Galahad, whose sword is swift and sure because he is clean of heart.",
+      "int_past": "You acted hastily, pursued ideas with zeal, or faced confrontations head-on in the past.",
+      "int_present": "Swift actions, pursuit of ideas, or confrontations define your present endeavors.",
+      "int_future": "Swift actions, strong convictions, or potential confrontations will characterize upcoming endeavors."
     },
     {
       "name": "Queen of Swords",
@@ -864,7 +912,10 @@
       "type": "minor",
       "meaning_up": "Widowhood, female sadness and embarrassment, absence, sterility, mourning, privation, separation.",
       "meaning_rev": "Malice, bigotry, artifice, prudery, bale, deceit.",
-      "desc": "Her right hand raises the weapon vertically and the hilt rests on an arm of her royal chair the left hand is extended, the arm raised her countenance is severe but chastened; it suggests familiarity with sorrow. It does not represent mercy, and, her sword notwithstanding, she is scarcely a symbol of power."
+      "desc": "Her right hand raises the weapon vertically and the hilt rests on an arm of her royal chair the left hand is extended, the arm raised her countenance is severe but chastened; it suggests familiarity with sorrow. It does not represent mercy, and, her sword notwithstanding, she is scarcely a symbol of power.",
+      "int_past": "Clear thinking, honest communication, or the influence of a sharp-witted individual marked a previous period.",
+      "int_present": "Clear communication, intellectual discernment, or the influence of a candid individual is significant in your current context.",
+      "int_future": "The future calls for clear communication, intellectual discernment, or interactions with someone possessing sharp wit and candor."
     },
     {
       "name": "King of Swords",
@@ -875,7 +926,10 @@
       "type": "minor",
       "meaning_up": "Whatsoever arises out of the idea of judgment and all its connexions-power, command, authority, militant intelligence, law, offices of the crown, and so forth.",
       "meaning_rev": "Cruelty, perversity, barbarity, perfidy, evil intention.",
-      "desc": "He sits in judgment, holding the unsheathed sign of his suit. He recalls, of course, the conventional Symbol of justice in the Trumps Major, and he may represent this virtue, but he is rather the power of life and death, in virtue of his office."
+      "desc": "He sits in judgment, holding the unsheathed sign of his suit. He recalls, of course, the conventional Symbol of justice in the Trumps Major, and he may represent this virtue, but he is rather the power of life and death, in virtue of his office.",
+      "int_past": "Logical decision-making, authoritative communication, or guidance from a clear-minded individual played a significant role in your past.",
+      "int_present": "Decision-making based on logic, authoritative guidance, or seeking the truth is central to your current phase.",
+      "int_future": "Logical decision-making, authoritative guidance, or seeking objective truth will play a significant role in forthcoming scenarios."
     },
     {
       "name": "Ace of Swords",
@@ -886,7 +940,10 @@
       "type": "minor",
       "meaning_up": "Triumph, the excessive degree in everything, conquest, triumph of force. It is a card of great force, in love as well as in hatred. The crown may carry a much higher significance than comes usually within the sphere of fortune-telling.",
       "meaning_rev": "The same, but the results are disastrous; another account says--conception, childbirth, augmentation, multiplicity.",
-      "desc": "A hand issues from a cloud, grasping as word, the point of which is encircled by a crown."
+      "desc": "A hand issues from a cloud, grasping as word, the point of which is encircled by a crown.",
+      "int_past": "A breakthrough in clarity, a new idea, or a decisive moment played a significant role in your past.",
+      "int_present": "You're experiencing a moment of clarity, breakthrough, or a fresh perspective right now.",
+      "int_future": "Expect a forthcoming moment of clarity, insight, or a new understanding."
     },
     {
       "name": "Two of Swords",
@@ -897,7 +954,10 @@
       "type": "minor",
       "meaning_up": "Conformity and the equipoise which it suggests, courage, friendship, concord in a state of arms; another reading gives tenderness, affection, intimacy. The suggestion of harmony and other favourable readings must be considered in a qualified manner, as Swords generally are not symbolical of beneficent forces in human affairs.",
       "meaning_rev": "Imposture, falsehood, duplicity, disloyalty.",
-      "desc": "A hoodwinked female figure balances two swords upon her shoulders."
+      "desc": "A hoodwinked female figure balances two swords upon her shoulders.",
+      "int_past": "You faced a difficult decision, a stalemate, or a need to balance conflicting ideas in a previous phase.",
+      "int_present": "You're currently facing a decision, a crossroads, or a need to balance opposing views.",
+      "int_future": "A decision, balancing act, or challenging choice awaits you in the near future."
     },
     {
       "name": "Three of Swords",
@@ -908,7 +968,10 @@
       "type": "minor",
       "meaning_up": "Removal, absence, delay, division, rupture, dispersion, and all that the design signifies naturally, being too simple and obvious to call for specific enumeration.",
       "meaning_rev": "Mental alienation, error, loss, distraction, disorder, confusion.",
-      "desc": "Three swords piercing a heart; cloud and rain behind."
+      "desc": "Three swords piercing a heart; cloud and rain behind.",
+      "int_past": "Heartbreak, disappointment, or emotional pain marked a significant event or period in your history.",
+      "int_present": "Heartache, disappointment, or emotional pain is at the forefront of your present circumstances.",
+      "int_future": "Prepare for potential heartache, disappointment, or emotional challenges on the horizon."
     },
     {
       "name": "Four of Swords",
@@ -919,7 +982,10 @@
       "type": "minor",
       "meaning_up": "Vigilance, retreat, solitude, hermit's repose, exile, tomb and coffin. It is these last that have suggested the design.",
       "meaning_rev": "Wise administration, circumspection, economy, avarice, precaution, testament.",
-      "desc": "The effigy of a knight in the attitude of prayer, at full length upon his tomb."
+      "desc": "The effigy of a knight in the attitude of prayer, at full length upon his tomb.",
+      "int_past": "A time of rest, recuperation, or mental retreat was essential in your past journey.",
+      "int_present": "A necessary period of rest, meditation, or retreat from external noise is defining your current state.",
+      "int_future": "Anticipate a necessary period of rest, reflection, or recuperation in the upcoming phase."
     },
     {
       "name": "Five of Swords",
@@ -930,7 +996,10 @@
       "type": "minor",
       "meaning_up": "Degradation, destruction, revocation, infamy, dishonour, loss, with the variants and analogues of these.",
       "meaning_rev": "The same; burial and obsequies.",
-      "desc": "A disdainful man looks after two retreating and dejected figures. Their swords lie upon the ground. He carries two others on his left shoulder, and a third sword is in his right hand, point to earth. He is the master in possession of the field."
+      "desc": "A disdainful man looks after two retreating and dejected figures. Their swords lie upon the ground. He carries two others on his left shoulder, and a third sword is in his right hand, point to earth. He is the master in possession of the field.",
+      "int_past": "Conflicts, victories at a personal cost, or contentious situations characterized a previous phase.",
+      "int_present": "Conflicts, challenges, or situations demanding strategic navigation characterize your present scenario.",
+      "int_future": "Future situations might involve conflicts, strategic decisions, or navigating contentious scenarios."
     },
     {
       "name": "Six of Swords",
@@ -941,7 +1010,10 @@
       "type": "minor",
       "meaning_up": "Journey by water, route, way, envoy, commissionary, expedient.",
       "meaning_rev": "Declaration, confession, publicity; one account says that it is a proposal of love.",
-      "desc": "A ferryman carrying passengers in his punt to the further shore. The course is smooth, and seeing that the freight is light, it may be noted that the work is not beyond his strength."
+      "desc": "A ferryman carrying passengers in his punt to the further shore. The course is smooth, and seeing that the freight is light, it may be noted that the work is not beyond his strength.",
+      "int_past": "You transitioned from troubled waters to calmer shores, seeking a better situation or understanding in the past.",
+      "int_present": "You're in a phase of transitioning from difficulties to a clearer or more stable situation.",
+      "int_future": "You'll be transitioning towards a more peaceful or clearer situation, moving away from challenges."
     },
     {
       "name": "Seven of Swords",
@@ -952,7 +1024,10 @@
       "type": "minor",
       "meaning_up": "Design, attempt, wish, hope, confidence; also quarrelling, a plan that may fail, annoyance. The design is uncertain in its import, because the significations are widely at variance with each other.",
       "meaning_rev": "Good advice, counsel, instruction, slander, babbling.",
-      "desc": "A man in the act of carrying away five swords rapidly; the two others of the card remain stuck in the ground. A camp is close at hand."
+      "desc": "A man in the act of carrying away five swords rapidly; the two others of the card remain stuck in the ground. A camp is close at hand.",
+      "int_past": "Strategy, cunning, or possibly deceitful actions played a part in prior events.",
+      "int_present": "Strategy, subtlety, or possibly deceptive tactics are influencing your current situation.",
+      "int_future": "Strategy, potential cunning actions, or navigating a tricky scenario will play a part in upcoming events."
     },
     {
       "name": "Eight of Swords",
@@ -963,7 +1038,10 @@
       "type": "minor",
       "meaning_up": "Bad news, violent chagrin, crisis, censure, power in trammels, conflict, calumny; also sickness.",
       "meaning_rev": "Disquiet, difficulty, opposition, accident, treachery; what is unforeseen; fatality.",
-      "desc": "A woman, bound and hoodwinked, with the swords of the card about her. Yet it is rather a card of temporary durance than of irretrievable bondage."
+      "desc": "A woman, bound and hoodwinked, with the swords of the card about her. Yet it is rather a card of temporary durance than of irretrievable bondage.",
+      "int_past": "You felt trapped, restricted, or blinded to possibilities in a past situation.",
+      "int_present": "Feelings of limitation, being trapped, or mental restrictions are prevalent right now.",
+      "int_future": "You might feel confined, restricted, or face a situation where you'll need to seek new perspectives."
     },
     {
       "name": "Nine of Swords",
@@ -974,7 +1052,10 @@
       "type": "minor",
       "meaning_up": "Death, failure, miscarriage, delay, deception, disappointment, despair.",
       "meaning_rev": "Imprisonment, suspicion, doubt, reasonable fear, shame.",
-      "desc": "One seated on her couch in lamentation, with the swords over her. She is as one who knows no sorrow which is like unto hers. It is a card of utter desolation."
+      "desc": "One seated on her couch in lamentation, with the swords over her. She is as one who knows no sorrow which is like unto hers. It is a card of utter desolation.",
+      "int_past": "Worries, anxieties, or sleepless nights marked a significant period in your history.",
+      "int_present": "Current worries, anxieties, or overwhelming thoughts occupy your mind.",
+      "int_future": "Worries or anxieties may surface, urging you to address and manage them effectively."
     },
     {
       "name": "Ten of Swords",
@@ -985,7 +1066,10 @@
       "type": "minor",
       "meaning_up": "Whatsoever is intimated by the design; also pain, affliction, tears, sadness, desolation. It is not especially a card of violent death.",
       "meaning_rev": "Advantage, profit, success, favour, but none of these are permanent; also power and authority.",
-      "desc": "A prostrate figure, pierced by all the swords belonging to the card."
+      "desc": "A prostrate figure, pierced by all the swords belonging to the card.",
+      "int_past": "You underwent an ending, a profound setback, or felt betrayed in a previous phase.",
+      "int_present": "You're experiencing an ending, a profound realization, or a situation demanding acceptance and release.",
+      "int_future": "An ending, acceptance of a challenging situation, or realization of a profound truth is on the horizon."
     }
   ]
 }
