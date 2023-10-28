@@ -26,9 +26,10 @@ public class CardContract {
                     CardEntry.COLUMN_NAME + " TEXT," +
                     CardEntry.COLUMN_MEANING_UP + " TEXT," +
                     CardEntry.COLUMN_MEANING_REV + " TEXT," +
-                    CardEntry.COLUMN_DESC + " TEXT" +
+                    CardEntry.COLUMN_DESC + " TEXT," + // <-- Added missing comma here
                     CardEntry.COLUMN_INT_PAST + " TEXT," +
                     CardEntry.COLUMN_INT_PRESENT + " TEXT," +
                     CardEntry.COLUMN_INT_FUTURE + " TEXT" +
                     ")";
+
 }

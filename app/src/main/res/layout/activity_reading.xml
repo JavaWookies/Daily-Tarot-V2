@@ -76,34 +76,15 @@
             app:layout_constraintStart_toEndOf="@+id/ReadingActivityDrawnCardTwo"
             app:layout_constraintTop_toTopOf="@+id/ReadingActivityDrawnCardTwo" />
 
-        <ScrollView
-            android:id="@+id/CardDetailActivityScrollView"
-            android:layout_width="365dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+        <Button
+            android:id="@+id/ReadingActivityGetInterpretatationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_interpretation"
             app:layout_constraintBottom_toTopOf="@+id/ReadingActivityDeckImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ReadingActivityDrawnCardTwo">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/ReadingActivityInterpretationPlaceHolder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4dp"
-                    android:padding="16dp"
-                    android:text="@string/draw_cards_interpretation"
-                    android:textSize="16sp"
-                    app:fontFamily="@font/kalam_light" />
-
-            </LinearLayout>
-        </ScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/ReadingActivityDrawnCardTwo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

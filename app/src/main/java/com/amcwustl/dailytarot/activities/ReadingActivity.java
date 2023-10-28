@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,6 +53,10 @@ public class ReadingActivity extends BaseActivity {
   private String userId;
   private RewardedAd rewardedAd;
   private int userCoinCount = 0;
+  private AlertDialog interpretationDialog;
+  private TextView tvInterpretationContent;
+  private Button btnGetInterpretation;
+  private String currentInterpretation;
   SharedPreferences preferences;
 
   @Override
@@ -68,6 +73,9 @@ public class ReadingActivity extends BaseActivity {
     cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
     deck = findViewById(R.id.ReadingActivityDeckImage);
 
+    btnGetInterpretation = findViewById(R.id.ReadingActivityGetInterpretatationButton);
+    btnGetInterpretation.setVisibility(View.GONE);
+    btnGetInterpretation.setOnClickListener(view -> showInterpretationModal());
     drawCardsButton = findViewById(R.id.ReadingActivityDrawCardsButton);
     rewardAdButton = findViewById(R.id.ReadingActivityRewardAdButton);
     dbHelper = new CardDbHelper(this);
@@ -145,7 +153,6 @@ public class ReadingActivity extends BaseActivity {
     cardOne.setRotation(0);
     cardTwo.setRotation(0);
     cardThree.setRotation(0);
-    TextView description = findViewById(R.id.ReadingActivityInterpretationPlaceHolder);
 
     Random random = new Random();
     int maxCardId = 78;
@@ -166,21 +173,22 @@ public class ReadingActivity extends BaseActivity {
     }
 
     setupCardImages(drawnCards);
+    btnGetInterpretation.setVisibility(View.VISIBLE);
+
 
     StringBuilder interpretation = new StringBuilder();
-    for (Card c : drawnCards) {
-      interpretation.append(c.getName()).append(": ");
-      if (c.getOrientation() == 0) {
-        interpretation.append(c.getMeaningUp()).append("\n");
+    for (int i = 0; i < 3; i++){
+      if(i == 0){
+        interpretation.append(drawnCards.get(0).getIntPast()).append(" ");
+      } else if (i == 1) {
+        interpretation.append(drawnCards.get(1).getIntPresent()).append(" ");
       } else {
-        interpretation.append(c.getMeaningRev()).append("\n");
+        interpretation.append(drawnCards.get(2).getIntFuture());
       }
     }
 
-    String result = interpretation.toString();
-    description.setText(result);
+    currentInterpretation = interpretation.toString();
     userCoinCount -= 10;
-//    pushReadingToDynamo(drawnCards, result);
     setupRewardAd();
     markReadingForToday();
     runOnUiThread(this::updateUIBasedOnCoinCount);
@@ -222,6 +230,22 @@ public class ReadingActivity extends BaseActivity {
         Log.e(TAG, "Resource not found for card: " + cardName);
       }
     }
+  }
+
+  private void showInterpretationModal() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    View view = getLayoutInflater().inflate(R.layout.interpretation_modal, null);
+
+    tvInterpretationContent = view.findViewById(R.id.tv_interpretation_content);
+    if (currentInterpretation != null) {
+      tvInterpretationContent.setText(currentInterpretation);
+    }
+    Button btnCloseModal = view.findViewById(R.id.btn_close_modal);
+    btnCloseModal.setOnClickListener(v -> interpretationDialog.dismiss());
+
+    builder.setView(view);
+    interpretationDialog = builder.create();
+    interpretationDialog.show();
   }
 
   private void navigateToCardDetail(Long cardId) {
