@@ -2,7 +2,6 @@ package com.amcwustl.dailytarot.activities;
 
 import androidx.annotation.NonNull;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import android.app.Activity;
