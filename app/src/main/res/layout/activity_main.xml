@@ -48,8 +48,6 @@
 
     </FrameLayout>
 
-    <!-- The navigation drawer that comes from the left -->
-    <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/MainActivityNavigationView"
         android:layout_width="wrap_content"

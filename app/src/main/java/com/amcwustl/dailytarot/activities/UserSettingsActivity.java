@@ -1,10 +1,9 @@
 package com.amcwustl.dailytarot.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -14,7 +13,7 @@ import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
 
-public class UserSettingsActivity extends AppCompatActivity {
+public class UserSettingsActivity extends BaseActivity {
     public static final String CARD_TYPE_TAG = "cardType";
     SharedPreferences preferences;
     Spinner cardDisplaySpinner;
@@ -23,8 +22,8 @@ public class UserSettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
+        super.onCreate(savedInstanceState);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 

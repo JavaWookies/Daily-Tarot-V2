@@ -10,7 +10,7 @@ import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
 
-public class CardDetailActivity extends AppCompatActivity {
+public class CardDetailActivity extends BaseActivity {
 
   // Define your views
   private TextView nameTextView, meaningUpTextView, meaningRevTextView, descTextView;
@@ -18,8 +18,8 @@ public class CardDetailActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_card_detail);
+    super.onCreate(savedInstanceState);
 
     // Initialize your views
     nameTextView = findViewById(R.id.CardDetailActivityCardNameTextView);
