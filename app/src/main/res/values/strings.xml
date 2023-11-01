@@ -62,5 +62,7 @@
     <string name="view_interpretation">View Interpretation</string>
     <string name="interpretation">Placeholder interpretation.</string>
     <string name="close">Close</string>
+    <string name="gold_themed_tarot_card">Gold Themed Tarot Card</string>
+    <string name="light_themed_tarot_card">Light Themed Tarot Card</string>
 
 </resources>
