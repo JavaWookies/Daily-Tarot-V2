@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#D3E0D7"
+        android:background="@drawable/night_sky_gradient"
         tools:context=".activities.CardDetailActivity">
 
 
@@ -20,6 +20,7 @@
             android:layout_height="315dp"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/image_value"
+            android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CardDetailActivityCardNameTextView"
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textColor="#000000"
+            android:textColor="#FFD700"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,8 +62,9 @@
                     android:id="@+id/CardDetailActivityCardDescTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/kalam_light"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
                     tools:layout_editor_absoluteX="85dp"
                     tools:layout_editor_absoluteY="579dp"
                     tools:text="@string/main_description" />
@@ -76,8 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/description"
-            android:textColor="#000000"
-            android:textSize="18sp"
+            android:textColor="#FFD700"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CardDetailActivitySingleCardImageView" />

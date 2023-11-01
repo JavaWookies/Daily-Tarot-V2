@@ -11,7 +11,7 @@
     <string name="login_button">Login!</string>
     <string name="move_to_sign_up_page">Move to sign up page!</string>
     <string name="view_all_cards">View All Cards</string>
-    <string name="viewing_all_cards">Viewing All Cards</string>
+    <string name="viewing_all_cards">All Cards</string>
     <string name="image_value">Image of Tarot Card</string>
     <string name="tarot_name">Tarot Name</string>
     <string name="view_my_reading">View My Reading</string>
