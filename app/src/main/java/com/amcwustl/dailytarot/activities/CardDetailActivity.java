@@ -13,7 +13,8 @@ import com.amcwustl.dailytarot.models.Card;
 public class CardDetailActivity extends BaseActivity {
 
   // Define your views
-  private TextView nameTextView, meaningUpTextView, meaningRevTextView, descTextView;
+  private TextView nameTextView;
+  private TextView descTextView;
   private ImageView cardImageView;
 
   @Override
@@ -23,8 +24,6 @@ public class CardDetailActivity extends BaseActivity {
 
     // Initialize your views
     nameTextView = findViewById(R.id.CardDetailActivityCardNameTextView);
-    meaningUpTextView = findViewById(R.id.CardDetailActivityCardMeaningUpTextView);
-    meaningRevTextView = findViewById(R.id.CardDetailActivityCardMeaningRevTextView);
     descTextView = findViewById(R.id.CardDetailActivityCardDescTextView);
     cardImageView = findViewById(R.id.CardDetailActivitySingleCardImageView);
 
@@ -36,9 +35,13 @@ public class CardDetailActivity extends BaseActivity {
 
     if (card != null) {
       nameTextView.setText(card.getName());
-      meaningUpTextView.setText(card.getMeaningUp());
-      meaningRevTextView.setText(card.getMeaningRev());
-      descTextView.setText(card.getDesc());
+
+      StringBuilder cardInfoBuilder = new StringBuilder();
+      cardInfoBuilder.append("Card Description: ").append(card.getDesc()).append("\n\n")
+              .append("Card Meaning Face Up: ").append(card.getMeaningUp()).append("\n\n")
+              .append("Card Meaning Reversed: ").append(card.getMeaningRev());
+
+      descTextView.setText(cardInfoBuilder.toString());
 
       int imageResId = getResources().getIdentifier(
               card.getNameShort(),
