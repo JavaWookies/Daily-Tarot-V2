@@ -20,6 +20,7 @@ import com.amcwustl.dailytarot.MainActivity;
 import com.amcwustl.dailytarot.R;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
@@ -35,6 +36,7 @@ public class UserSettingsActivity extends BaseActivity {
     Spinner cardDisplaySpinner;
     Button saveSettingsButton;
     private InterstitialAd mInterstitialAd;
+    private AdView mAdViewBanner;
 
 
     @Override
@@ -47,8 +49,13 @@ public class UserSettingsActivity extends BaseActivity {
         cardDisplaySpinner = findViewById(R.id.UserSettingsCardTypeSpinner);
         saveSettingsButton = findViewById(R.id.UserSettingsActivitySaveButton);
 
+
         setupCardDisplaySpinner();
         setupSaveSettingsButton();
+
+        mAdViewBanner = findViewById(R.id.adView);
+        AdRequest adRequestBanner = new AdRequest.Builder().build();
+        mAdViewBanner.loadAd(adRequestBanner);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override

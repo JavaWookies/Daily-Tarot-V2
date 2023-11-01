@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="48dp"
             android:text="@string/select_card_style"
             android:textColor="#FFD700"
             android:textSize="24sp"
@@ -39,20 +39,21 @@
         <ImageView
             android:id="@+id/UserSettingsActivityGoldCardImage"
             android:layout_width="140dp"
-            android:layout_height="205dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="32dp"
             android:contentDescription="@string/gold_themed_tarot_card"
-            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/cover"
             app:layout_constraintEnd_toStartOf="@+id/UserSettingsActivityLightCardImage"
-            app:layout_constraintTop_toBottomOf="@id/UserSettingsCardTypeSpinner"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
-            android:src="@drawable/cover" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UserSettingsCardTypeSpinner" />
 
         <TextView
             android:id="@+id/UserAttributesGoldImageLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/gold"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityGoldCardImage"
@@ -62,18 +63,19 @@
         <ImageView
             android:id="@+id/UserSettingsActivityLightCardImage"
             android:layout_width="140dp"
-            android:layout_height="205dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="32dp"
             android:contentDescription="@string/light_themed_tarot_card"
-            app:layout_constraintStart_toEndOf="@+id/UserSettingsActivityGoldCardImage"
+            android:src="@drawable/cover_light"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/UserSettingsCardTypeSpinner"
-            android:src="@drawable/cover_light" />
+            app:layout_constraintStart_toEndOf="@+id/UserSettingsActivityGoldCardImage"
+            app:layout_constraintTop_toBottomOf="@id/UserSettingsCardTypeSpinner" />
 
         <TextView
             android:id="@+id/UserAttributesLightImageLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/light"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityLightCardImage"
@@ -95,6 +97,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/UserAttributesGoldImageLabel" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
