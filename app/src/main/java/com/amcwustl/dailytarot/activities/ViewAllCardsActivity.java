@@ -89,13 +89,10 @@ public class ViewAllCardsActivity extends BaseActivity {
     });
     Log.d(TAG, "setupRecyclerView: Added ItemDecoration.");
 
-    cardAdapter = new CardAdapter(tarotCardsList, this, new CardAdapter.OnItemClickListener() {
-      @Override
-      public void onItemClick(Card card) {
-        Intent intent = new Intent(ViewAllCardsActivity.this, CardDetailActivity.class);
-        intent.putExtra("card_id", card.getId());
-        startActivity(intent);
-      }
+    cardAdapter = new CardAdapter(tarotCardsList, this, card -> {
+      Intent intent = new Intent(ViewAllCardsActivity.this, CardDetailActivity.class);
+      intent.putExtra("card_id", card.getId());
+      startActivity(intent);
     });
     recyclerView.setAdapter(cardAdapter);
   }

@@ -64,5 +64,7 @@
     <string name="close">Close</string>
     <string name="gold_themed_tarot_card">Gold Themed Tarot Card</string>
     <string name="light_themed_tarot_card">Light Themed Tarot Card</string>
+    <string name="cover_description">back cover of gold theme deck</string>
+    <string name="ar00_light_description">the fool light card</string>
 
 </resources>
