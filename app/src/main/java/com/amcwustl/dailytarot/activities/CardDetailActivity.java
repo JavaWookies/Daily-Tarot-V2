@@ -1,7 +1,9 @@
 package com.amcwustl.dailytarot.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,11 +18,14 @@ public class CardDetailActivity extends BaseActivity {
   private TextView nameTextView;
   private TextView descTextView;
   private ImageView cardImageView;
+  SharedPreferences preferences;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_card_detail);
     super.onCreate(savedInstanceState);
+
+    preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     // Initialize your views
     nameTextView = findViewById(R.id.CardDetailActivityCardNameTextView);
@@ -43,12 +48,12 @@ public class CardDetailActivity extends BaseActivity {
 
       descTextView.setText(cardInfoBuilder.toString());
 
-      int imageResId = getResources().getIdentifier(
-              card.getNameShort(),
-              "drawable",
-              getPackageName()
-      );
-      cardImageView.setImageResource(imageResId);
+      String cardName = card.getNameShort();
+      String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
+      String resourceName = cardName + cardType;
+      int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+
+      cardImageView.setImageResource(resourceId);
     }
   }
 }
