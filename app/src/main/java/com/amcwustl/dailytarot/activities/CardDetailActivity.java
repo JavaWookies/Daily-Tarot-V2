@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class CardDetailActivity extends BaseActivity {
 
@@ -18,12 +20,17 @@ public class CardDetailActivity extends BaseActivity {
   private TextView nameTextView;
   private TextView descTextView;
   private ImageView cardImageView;
+  private AdView mAdView;
   SharedPreferences preferences;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_card_detail);
     super.onCreate(savedInstanceState);
+
+    mAdView = findViewById(R.id.adView);
+    AdRequest adRequest = new AdRequest.Builder().build();
+    mAdView.loadAd(adRequest);
 
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -55,6 +62,30 @@ public class CardDetailActivity extends BaseActivity {
 
       cardImageView.setImageResource(resourceId);
     }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (mAdView != null) {
+      mAdView.resume();
+    }
+  }
+
+  @Override
+  public void onPause() {
+    if (mAdView != null) {
+      mAdView.pause();
+    }
+    super.onPause();
+  }
+
+  @Override
+  public void onDestroy() {
+    if (mAdView != null) {
+      mAdView.destroy();
+    }
+    super.onDestroy();
   }
 }
 
