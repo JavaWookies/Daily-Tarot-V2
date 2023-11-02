@@ -11,15 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.ReadingActivity"
-        android:background="#D3E0D7">
+        android:background="@drawable/night_sky_gradient">
 
         <Button
             android:id="@+id/ReadingActivityDrawCardsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:text="@string/draw_cards"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="#FFD700"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="VisualLintOverlap" />
@@ -28,17 +32,21 @@
             android:id="@+id/ReadingActivityRewardAdButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:text="@string/watch_ad"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="#FFD700"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/ReadingActivityDeckImage"
-            android:layout_width="120dp"
-            android:layout_height="160dp"
-            android:layout_marginBottom="96dp"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="140dp"
             android:contentDescription="@string/deck"
             android:src="@drawable/cover"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,18 +55,19 @@
 
         <ImageView
             android:id="@+id/ReadingActivityDrawnCardOne"
-            android:layout_width="120dp"
-            android:layout_height="160dp"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
             android:contentDescription="@string/drawn_card_one"
             android:src="@drawable/cover"
             app:layout_constraintEnd_toStartOf="@+id/ReadingActivityDrawnCardTwo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ReadingActivityDrawnCardTwo" />
+            app:layout_constraintTop_toTopOf="@+id/ReadingActivityDrawnCardTwo"
+            tools:ignore="VisualLintBounds" />
 
         <ImageView
             android:id="@+id/ReadingActivityDrawnCardTwo"
-            android:layout_width="120dp"
-            android:layout_height="160dp"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/second_drawn_card"
             android:src="@drawable/cover"
@@ -68,23 +77,39 @@
 
         <ImageView
             android:id="@+id/ReadingActivityDrawnCardThree"
-            android:layout_width="120dp"
-            android:layout_height="160dp"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
             android:contentDescription="@string/third_drawn_card"
             android:src="@drawable/cover"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ReadingActivityDrawnCardTwo"
-            app:layout_constraintTop_toTopOf="@+id/ReadingActivityDrawnCardTwo" />
+            app:layout_constraintTop_toTopOf="@+id/ReadingActivityDrawnCardTwo"
+            tools:ignore="VisualLintBounds" />
 
         <Button
             android:id="@+id/ReadingActivityGetInterpretatationButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/view_interpretation"
+            android:background="@drawable/rounded_button"
+            android:textColor="#FFD700"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             app:layout_constraintBottom_toTopOf="@+id/ReadingActivityDeckImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ReadingActivityDrawnCardTwo" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -93,6 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/navigation_menu" />
+        app:menu="@menu/navigation_menu"
+        tools:ignore="VisualLintBounds" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

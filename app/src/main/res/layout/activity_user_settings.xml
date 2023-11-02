@@ -10,125 +10,104 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/night_sky_gradient"
         tools:context=".activities.UserSettingsActivity">
 
-        <ImageView
-            android:id="@+id/SignUpBackgroundImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cover"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <TextView
+            android:id="@+id/UserSettingsActivitySpinnerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/select_card_style"
+            android:textColor="#FFD700"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/SettingsContentContainer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/rounded_bg"
-            android:orientation="vertical"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <Spinner
+            android:id="@+id/UserSettingsCardTypeSpinner"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.8"
-            app:layout_constraintHeight_percent="0.8">
+            app:layout_constraintTop_toBottomOf="@id/UserSettingsActivitySpinnerLabel" />
 
-            <TextView
-                android:id="@+id/UserSettingsActivitySpinnerLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="@string/select_card_style"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/UserSettingsCardTypeSpinner"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/UserSettingsActivityGoldCardImage"
+            android:layout_width="140dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/gold_themed_tarot_card"
+            android:src="@drawable/cover"
+            app:layout_constraintEnd_toStartOf="@+id/UserSettingsActivityLightCardImage"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UserSettingsCardTypeSpinner" />
 
-            <Spinner
-                android:id="@+id/UserSettingsCardTypeSpinner"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:minHeight="48dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UserSettingsActivitySpinnerLabel" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp">
-
-                <ImageView
-                android:id="@+id/UserSettingsActivityLightCardImage"
-                android:layout_width="120dp"
-                android:layout_height="205dp"
-                android:layout_marginTop="40dp"
-                android:contentDescription="@string/light_theme"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/cover_light" />
-
-                <ImageView
-                    android:id="@+id/UserSettingsActivityGoldCardImage"
-                    android:layout_width="120dp"
-                    android:layout_height="205dp"
-                    android:layout_marginTop="40dp"
-                    android:contentDescription="@string/gold_theme"
-                    app:layout_constraintEnd_toStartOf="@+id/UserSettingsActivityLightCardImage"
-                    android:layout_marginStart="24dp"
-                    app:srcCompat="@drawable/cover" />
-
-            </LinearLayout>
-        <LinearLayout
+        <TextView
+            android:id="@+id/UserAttributesGoldImageLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:text="@string/gold"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityGoldCardImage"
+            app:layout_constraintStart_toStartOf="@id/UserSettingsActivityGoldCardImage"
+            app:layout_constraintTop_toBottomOf="@id/UserSettingsActivityGoldCardImage" />
 
-            <TextView
-                android:id="@+id/UserAttributesLightImageLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:text="@string/light"
-                android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="@+id/UserSettingsActivityLightCardImage"
-                app:layout_constraintStart_toStartOf="@+id/UserSettingsActivityLightCardImage"
-                app:layout_constraintTop_toBottomOf="@+id/UserSettingsActivityLightCardImage" />
+        <ImageView
+            android:id="@+id/UserSettingsActivityLightCardImage"
+            android:layout_width="140dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/light_themed_tarot_card"
+            android:src="@drawable/cover_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/UserSettingsActivityGoldCardImage"
+            app:layout_constraintTop_toBottomOf="@id/UserSettingsCardTypeSpinner" />
 
-            <TextView
-                android:id="@+id/UserAttributesGoldImageLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="56dp"
-                android:layout_marginTop="0dp"
-                android:text="@string/gold"
-                android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="@+id/UserSettingsActivityGoldCardImage"
-                app:layout_constraintStart_toStartOf="@+id/UserSettingsActivityGoldCardImage"
-                app:layout_constraintTop_toBottomOf="@+id/UserSettingsActivityGoldCardImage" />
-
-
-        </LinearLayout>
-
-            <Button
-                android:id="@+id/UserSettingsActivitySaveButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:minHeight="48dp"
-                android:text="@string/save_settings" />
+        <TextView
+            android:id="@+id/UserAttributesLightImageLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/light"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityLightCardImage"
+            app:layout_constraintStart_toStartOf="@id/UserSettingsActivityLightCardImage"
+            app:layout_constraintTop_toBottomOf="@id/UserSettingsActivityLightCardImage" />
 
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/UserSettingsActivitySaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:minHeight="48dp"
+            android:text="@string/save_settings"
+            android:background="@drawable/rounded_button"
+            android:textColor="#FFD700"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UserAttributesGoldImageLabel" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -136,6 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/navigation_menu" />
+        app:menu="@menu/navigation_menu"
+        tools:ignore="VisualLintBounds" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

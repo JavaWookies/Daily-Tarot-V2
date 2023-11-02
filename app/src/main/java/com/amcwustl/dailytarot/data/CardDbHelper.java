@@ -28,12 +28,10 @@ import java.util.List;
 public class CardDbHelper extends SQLiteOpenHelper {
   private static final int DATABASE_VERSION = 1;
   private static final String DATABASE_NAME = "TarotCardDatabase.db";
-  private Context mContext;
 
 
   public CardDbHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    mContext = context;
   }
 
   @Override
@@ -124,7 +122,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
     return cards;
   }
 
-  public long insertCard(Card card) {
+  public void insertCard(Card card) {
     SQLiteDatabase db = getWritableDatabase();
     ContentValues values = new ContentValues();
     values.put(CardContract.CardEntry.COLUMN_TYPE, card.getType());
@@ -137,7 +135,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
     values.put(CardContract.CardEntry.COLUMN_INT_PRESENT, card.getIntPresent());
     values.put(CardContract.CardEntry.COLUMN_INT_FUTURE, card.getIntFuture());
 
-    return db.insert(CardContract.CardEntry.TABLE_NAME, null, values);
+    db.insert(CardContract.CardEntry.TABLE_NAME, null, values);
   }
 
 

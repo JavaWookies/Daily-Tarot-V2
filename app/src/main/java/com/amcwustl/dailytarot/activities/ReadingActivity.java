@@ -2,7 +2,6 @@ package com.amcwustl.dailytarot.activities;
 
 import androidx.annotation.NonNull;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import android.app.Activity;
@@ -22,6 +21,7 @@ import com.amcwustl.dailytarot.models.Card;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
@@ -57,6 +57,7 @@ public class ReadingActivity extends BaseActivity {
   private TextView tvInterpretationContent;
   private Button btnGetInterpretation;
   private String currentInterpretation;
+  private AdView mAdView;
   SharedPreferences preferences;
 
   @Override
@@ -85,12 +86,35 @@ public class ReadingActivity extends BaseActivity {
     setupRewardAdButton();
     checkReadingForToday();
 
+    mAdView = findViewById(R.id.adView);
+    AdRequest adRequest = new AdRequest.Builder().build();
+    mAdView.loadAd(adRequest);
+
   }
 
   @Override
   protected void onResume() {
     super.onResume();
     setupRewardAd();
+    if (mAdView != null) {
+      mAdView.resume();
+    }
+  }
+
+  @Override
+  public void onPause() {
+    if (mAdView != null) {
+      mAdView.pause();
+    }
+    super.onPause();
+  }
+
+  @Override
+  public void onDestroy() {
+    if (mAdView != null) {
+      mAdView.destroy();
+    }
+    super.onDestroy();
   }
 
   private void setupCardTypes() {
@@ -332,6 +356,7 @@ public class ReadingActivity extends BaseActivity {
         });
       } else {
         Log.d(TAG, "The rewarded ad wasn't ready yet.");
+        setupRewardAd();
       }
     });
   }

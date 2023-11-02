@@ -52,7 +52,7 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    private void setupNavClick(){
+    protected void setupNavClick(){
         myNavView.setNavigationItemSelectedListener(item -> {
 
             int itemId = item.getItemId();
