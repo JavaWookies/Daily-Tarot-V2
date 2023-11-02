@@ -356,6 +356,7 @@ public class ReadingActivity extends BaseActivity {
         });
       } else {
         Log.d(TAG, "The rewarded ad wasn't ready yet.");
+        setupRewardAd();
       }
     });
   }
