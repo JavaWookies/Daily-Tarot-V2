@@ -1,36 +1,32 @@
 package com.amcwustl.dailytarot.activities;
 
-import androidx.annotation.NonNull;
-
-import androidx.preference.PreferenceManager;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
+
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
-
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.OnUserEarnedRewardListener;
-
-import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
-
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,14 +46,14 @@ public class ReadingActivity extends BaseActivity {
   private ImageView cardTwo;
   private ImageView cardThree;
   private CardDbHelper dbHelper;
-  private String userId;
   private RewardedAd rewardedAd;
   private int userCoinCount = 0;
   private AlertDialog interpretationDialog;
-  private TextView tvInterpretationContent;
   private Button btnGetInterpretation;
   private String currentInterpretation;
   private AdView mAdView;
+  private int retryDelaySeconds = 5;
+  private static final int MAX_RETRY_DELAY_SECONDS = 120;
   SharedPreferences preferences;
 
   @Override
@@ -121,7 +117,7 @@ public class ReadingActivity extends BaseActivity {
     String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
     String resourceName = "cover" + cardType;
 
-    int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+    @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
     if (resourceId != 0) {
       deck.setImageResource(resourceId);
       cardOne.setImageResource(resourceId);
@@ -136,7 +132,7 @@ public class ReadingActivity extends BaseActivity {
   private void checkReadingForToday() {
     SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
 
-    String todayKey = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    @SuppressLint("SimpleDateFormat") String todayKey = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
 
 
@@ -166,9 +162,7 @@ public class ReadingActivity extends BaseActivity {
   }
 
   private void setupDrawCardsButton() {
-    drawCardsButton.setOnClickListener(view -> {
-      drawThreeRandomCards();
-    });
+    drawCardsButton.setOnClickListener(view -> drawThreeRandomCards());
   }
 
   private void drawThreeRandomCards() {
@@ -222,7 +216,7 @@ public class ReadingActivity extends BaseActivity {
     SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
 
-    String todayKey = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    @SuppressLint("SimpleDateFormat") String todayKey = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
     editor.putBoolean(todayKey + HAS_READING_FOR_TODAY, true);
     editor.apply();
@@ -239,7 +233,7 @@ public class ReadingActivity extends BaseActivity {
       String cardName = card.getNameShort();
       String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
       String resourceName = cardName + cardType;
-      int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+      @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
 
       if (resourceId != 0) {
         ImageView imageView = imageViewList.get(i);
@@ -260,7 +254,7 @@ public class ReadingActivity extends BaseActivity {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     View view = getLayoutInflater().inflate(R.layout.interpretation_modal, null);
 
-    tvInterpretationContent = view.findViewById(R.id.tv_interpretation_content);
+    TextView tvInterpretationContent = view.findViewById(R.id.tv_interpretation_content);
     if (currentInterpretation != null) {
       tvInterpretationContent.setText(currentInterpretation);
     }
@@ -288,10 +282,17 @@ public class ReadingActivity extends BaseActivity {
                 // Handle the error.
                 Log.d(TAG, loadAdError.toString());
                 rewardedAd = null;
+
+                new Handler().postDelayed(() -> {
+                  setupRewardAd();
+                  // Double the delay for the next possible retry
+                  retryDelaySeconds = Math.min(retryDelaySeconds * 2, MAX_RETRY_DELAY_SECONDS);
+                }, retryDelaySeconds * 1000L);
               }
 
               @Override
               public void onAdLoaded(@NonNull RewardedAd ad) {
+                retryDelaySeconds = 5;
                 rewardedAd = ad;
                 Log.d(TAG, "Ad was loaded.");
               }
@@ -302,19 +303,16 @@ public class ReadingActivity extends BaseActivity {
     rewardAdButton.setOnClickListener(view -> {
       if (rewardedAd != null) {
         Activity activityContext = ReadingActivity.this;
-        rewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
-          @Override
-          public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-            // Handle the reward.
-            Log.d(TAG, "The user earned the reward.");
-            int rewardAmount = rewardItem.getAmount();
-            String rewardType = rewardItem.getType();
-            Log.d(TAG, "Earned " + rewardAmount + " " + rewardType);
-            userCoinCount += rewardAmount;
-            runOnUiThread(() -> updateUIBasedOnCoinCount());
+        rewardedAd.show(activityContext, rewardItem -> {
+          // Handle the reward.
+          Log.d(TAG, "The user earned the reward.");
+          int rewardAmount = rewardItem.getAmount();
+          String rewardType = rewardItem.getType();
+          Log.d(TAG, "Earned " + rewardAmount + " " + rewardType);
+          userCoinCount += rewardAmount;
+          runOnUiThread(this::updateUIBasedOnCoinCount);
 
-            setupRewardAd();
-          }
+          setupRewardAd();
         });
 
         rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -335,7 +333,7 @@ public class ReadingActivity extends BaseActivity {
           }
 
           @Override
-          public void onAdFailedToShowFullScreenContent(AdError adError) {
+          public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
             // Called when ad fails to show.
             Log.e(TAG, "Ad failed to show fullscreen content.");
             rewardedAd = null;

@@ -1,12 +1,12 @@
 package com.amcwustl.dailytarot.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
-
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
@@ -16,10 +16,6 @@ import com.google.android.gms.ads.AdView;
 
 public class CardDetailActivity extends BaseActivity {
 
-  // Define your views
-  private TextView nameTextView;
-  private TextView descTextView;
-  private ImageView cardImageView;
   private AdView mAdView;
   SharedPreferences preferences;
 
@@ -35,9 +31,10 @@ public class CardDetailActivity extends BaseActivity {
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     // Initialize your views
-    nameTextView = findViewById(R.id.CardDetailActivityCardNameTextView);
-    descTextView = findViewById(R.id.CardDetailActivityCardDescTextView);
-    cardImageView = findViewById(R.id.CardDetailActivitySingleCardImageView);
+    // Define your views
+    TextView nameTextView = findViewById(R.id.CardDetailActivityCardNameTextView);
+    TextView descTextView = findViewById(R.id.CardDetailActivityCardDescTextView);
+    ImageView cardImageView = findViewById(R.id.CardDetailActivitySingleCardImageView);
 
     Long cardId = getIntent().getLongExtra("card_id", -1);
 
@@ -48,17 +45,16 @@ public class CardDetailActivity extends BaseActivity {
     if (card != null) {
       nameTextView.setText(card.getName());
 
-      StringBuilder cardInfoBuilder = new StringBuilder();
-      cardInfoBuilder.append("Card Description: ").append(card.getDesc()).append("\n\n")
-              .append("Card Meaning Face Up: ").append(card.getMeaningUp()).append("\n\n")
-              .append("Card Meaning Reversed: ").append(card.getMeaningRev());
+      String cardInfoBuilder = "Card Description: " + card.getDesc() + "\n\n" +
+              "Card Meaning Face Up: " + card.getMeaningUp() + "\n\n" +
+              "Card Meaning Reversed: " + card.getMeaningRev();
 
-      descTextView.setText(cardInfoBuilder.toString());
+      descTextView.setText(cardInfoBuilder);
 
       String cardName = card.getNameShort();
       String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
       String resourceName = cardName + cardType;
-      int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+      @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
 
       cardImageView.setImageResource(resourceId);
     }
