@@ -56,6 +56,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
       cursor.close();
 
     }
+    db.close();
     return count == 0;
   }
 
@@ -136,6 +137,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
     values.put(CardContract.CardEntry.COLUMN_INT_FUTURE, card.getIntFuture());
 
     db.insert(CardContract.CardEntry.TABLE_NAME, null, values);
+    db.close();
   }
 
 
@@ -206,7 +208,7 @@ public class CardDbHelper extends SQLiteOpenHelper {
       }
       cursor.close();
     }
-
+    db.close();
     return card;
   }
 }

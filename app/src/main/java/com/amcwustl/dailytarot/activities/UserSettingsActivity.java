@@ -1,7 +1,6 @@
 package com.amcwustl.dailytarot.activities;
 
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
@@ -24,8 +22,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
@@ -36,7 +32,6 @@ public class UserSettingsActivity extends BaseActivity {
     Spinner cardDisplaySpinner;
     Button saveSettingsButton;
     private InterstitialAd mInterstitialAd;
-    private AdView mAdViewBanner;
 
 
     @Override
@@ -53,14 +48,11 @@ public class UserSettingsActivity extends BaseActivity {
         setupCardDisplaySpinner();
         setupSaveSettingsButton();
 
-        mAdViewBanner = findViewById(R.id.adView);
+        AdView mAdViewBanner = findViewById(R.id.adView);
         AdRequest adRequestBanner = new AdRequest.Builder().build();
         mAdViewBanner.loadAd(adRequestBanner);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {}
-        });
+        MobileAds.initialize(this, initializationStatus -> {});
         AdRequest adRequest = new AdRequest.Builder().build();
 
         InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
@@ -143,7 +135,7 @@ public class UserSettingsActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                         Log.e(TAG, "Ad failed to show fullscreen content.");
                         mInterstitialAd = null;
                         handleNavigationItemClick(item); // Consider performing navigation if ad fails to show
@@ -205,7 +197,7 @@ public class UserSettingsActivity extends BaseActivity {
             }
 
             @Override
-            public void onAdFailedToShowFullScreenContent(AdError adError) {
+            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                 Log.e(TAG, "Ad failed to show fullscreen content.");
                 mInterstitialAd = null;
             }

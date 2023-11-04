@@ -14,6 +14,8 @@ import com.amcwustl.dailytarot.MainActivity;
 import com.amcwustl.dailytarot.R;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 public class BaseActivity extends AppCompatActivity {
 
     public DrawerLayout drawerLayout;
@@ -36,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // Set up item click for navigation
         setupNavClick();

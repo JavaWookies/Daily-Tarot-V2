@@ -1,5 +1,7 @@
 package com.amcwustl.dailytarot.models;
 
+import androidx.annotation.NonNull;
+
 public class Card {
 
     private Long id;
@@ -135,6 +137,7 @@ public class Card {
         this.intFuture = intFuture;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Card{" +

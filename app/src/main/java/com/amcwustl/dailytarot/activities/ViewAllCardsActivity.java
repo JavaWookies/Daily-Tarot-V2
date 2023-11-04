@@ -1,14 +1,14 @@
 package com.amcwustl.dailytarot.activities;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.adapters.CardAdapter;
@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ViewAllCardsActivity extends BaseActivity {
   private static final String TAG = "ViewAllCardsActivity";
@@ -26,6 +27,7 @@ public class ViewAllCardsActivity extends BaseActivity {
   CardAdapter cardAdapter;
   List<Card> tarotCardsList = new ArrayList<>();
 
+  @SuppressWarnings("resource")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_view_all_cards);
@@ -46,17 +48,15 @@ public class ViewAllCardsActivity extends BaseActivity {
   @Override
   public void onTrimMemory(int level) {
     super.onTrimMemory(level);
-    if (Glide.get(this) != null) {
-      Glide.get(this).trimMemory(level);
-    }
+    Glide.get(this);
+    Glide.get(this).trimMemory(level);
   }
 
   @Override
   public void onLowMemory() {
     super.onLowMemory();
-    if (Glide.get(this) != null) {
-      Glide.get(this).clearMemory();
-    }
+    Glide.get(this);
+    Glide.get(this).clearMemory();
   }
 
   void setupRecyclerView(){
@@ -81,7 +81,7 @@ public class ViewAllCardsActivity extends BaseActivity {
         outRect.left = halfSpace;
         outRect.right = halfSpace;
 
-        int totalItemCount = parent.getAdapter().getItemCount();
+        int totalItemCount = Objects.requireNonNull(parent.getAdapter()).getItemCount();
         if (position >= totalItemCount - (totalItemCount % 3)) {
           outRect.bottom = 0;
         }
