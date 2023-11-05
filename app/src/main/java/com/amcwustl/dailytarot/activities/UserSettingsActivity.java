@@ -48,11 +48,12 @@ public class UserSettingsActivity extends BaseActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.card_display_options,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_item
         );
 
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
 
         cardDisplaySpinner.setAdapter(adapter);
     }
