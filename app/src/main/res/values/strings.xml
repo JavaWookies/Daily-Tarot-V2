@@ -66,5 +66,6 @@
     <string name="light_themed_tarot_card">Light Themed Tarot Card</string>
     <string name="cover_description">back cover of gold theme deck</string>
     <string name="ar00_light_description">the fool light card</string>
+    <string name="card_of_the_day">Card of the Day</string>
 
 </resources>

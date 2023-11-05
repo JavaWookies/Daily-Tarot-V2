@@ -87,7 +87,7 @@
             tools:ignore="VisualLintBounds" />
 
         <Button
-            android:id="@+id/ReadingActivityGetInterpretatationButton"
+            android:id="@+id/DailyCardActivityViewCardDetailsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/view_interpretation"

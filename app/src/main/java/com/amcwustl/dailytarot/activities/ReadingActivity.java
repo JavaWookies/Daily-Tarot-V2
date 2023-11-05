@@ -70,7 +70,7 @@ public class ReadingActivity extends BaseActivity {
     cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
     deck = findViewById(R.id.ReadingActivityDeckImage);
 
-    btnGetInterpretation = findViewById(R.id.ReadingActivityGetInterpretatationButton);
+    btnGetInterpretation = findViewById(R.id.DailyCardActivityViewCardDetailsButton);
     btnGetInterpretation.setVisibility(View.GONE);
     btnGetInterpretation.setOnClickListener(view -> showInterpretationModal());
     drawCardsButton = findViewById(R.id.ReadingActivityDrawCardsButton);
