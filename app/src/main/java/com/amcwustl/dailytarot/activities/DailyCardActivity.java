@@ -3,8 +3,11 @@ package com.amcwustl.dailytarot.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.preference.PreferenceManager;
@@ -24,6 +27,7 @@ public class DailyCardActivity extends BaseActivity {
     private static final String LAST_CARD_DAY_KEY = "lastCardDay";
     private static final String HAS_SEEN_CARD_KEY = "hasSeenCard";
     private CardDbHelper dbHelper;
+    private Button moreInfoButton;
     private ImageView card;
     private AdView mAdView;
     private long todaysCardId;
@@ -39,6 +43,7 @@ public class DailyCardActivity extends BaseActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         card = findViewById(R.id.DailyCardActivityCardImageView);
+        moreInfoButton = findViewById(R.id.DailyCardActivityViewCardDetailsButton);
 
         dbHelper = new CardDbHelper(this);
 
@@ -48,6 +53,7 @@ public class DailyCardActivity extends BaseActivity {
 
         checkAndGenerateCardForToday();
         setupCardForDisplay();
+        setupMoreInfoButton();
 
     }
 
@@ -66,6 +72,7 @@ public class DailyCardActivity extends BaseActivity {
 
         if (!hasSeenCard) {
             showCardBack();
+            moreInfoButton.setVisibility(View.GONE);
             card.setOnClickListener(v -> {
                 flipCard();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -124,6 +131,13 @@ public class DailyCardActivity extends BaseActivity {
             card.setImageResource(resourceId);
         }
 
+        card.setOnClickListener(v -> navigateToCardDetail(todaysCardId));
+        moreInfoButton.setVisibility(View.VISIBLE);
+
+    }
+
+    private void setupMoreInfoButton(){
+        moreInfoButton.setOnClickListener(v -> navigateToCardDetail(todaysCardId));
     }
 
     private long generateRandomCardId(){
@@ -147,5 +161,11 @@ public class DailyCardActivity extends BaseActivity {
         } else {
             todaysCardId = sharedPreferences.getLong(CARD_ID_KEY, -1);
         }
+    }
+
+    private void navigateToCardDetail(Long cardId) {
+        Intent intent = new Intent(DailyCardActivity.this, CardDetailActivity.class);
+        intent.putExtra("card_id", cardId);
+        startActivity(intent);
     }
 }
