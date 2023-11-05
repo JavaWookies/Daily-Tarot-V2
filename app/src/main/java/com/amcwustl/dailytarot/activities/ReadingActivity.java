@@ -55,6 +55,9 @@ public class ReadingActivity extends BaseActivity {
   private int retryDelaySeconds = 5;
   private static final int MAX_RETRY_DELAY_SECONDS = 120;
   SharedPreferences preferences;
+  private boolean isAdLoadFailureRepeated = false;
+  private int adLoadFailureCount = 0;
+  private static final int AD_LOAD_FAILURE_THRESHOLD = 8;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +73,7 @@ public class ReadingActivity extends BaseActivity {
     cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
     deck = findViewById(R.id.ReadingActivityDeckImage);
 
-    btnGetInterpretation = findViewById(R.id.ReadingActivityGetInterpretatationButton);
+    btnGetInterpretation = findViewById(R.id.DailyCardActivityViewCardDetailsButton);
     btnGetInterpretation.setVisibility(View.GONE);
     btnGetInterpretation.setOnClickListener(view -> showInterpretationModal());
     drawCardsButton = findViewById(R.id.ReadingActivityDrawCardsButton);
@@ -273,7 +276,7 @@ public class ReadingActivity extends BaseActivity {
   }
 
 
-  public void setupRewardAd() {
+  private void setupRewardAd() {
     AdRequest adRequest = new AdRequest.Builder().build();
     RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
             adRequest, new RewardedAdLoadCallback() {
@@ -282,12 +285,18 @@ public class ReadingActivity extends BaseActivity {
                 // Handle the error.
                 Log.d(TAG, loadAdError.toString());
                 rewardedAd = null;
+                adLoadFailureCount++;
 
-                new Handler().postDelayed(() -> {
-                  setupRewardAd();
-                  // Double the delay for the next possible retry
-                  retryDelaySeconds = Math.min(retryDelaySeconds * 2, MAX_RETRY_DELAY_SECONDS);
-                }, retryDelaySeconds * 1000L);
+                if (adLoadFailureCount >= AD_LOAD_FAILURE_THRESHOLD) {
+                  isAdLoadFailureRepeated = true;
+                  handlePotentialAdBlocker();
+                } else {
+                  new Handler().postDelayed(() -> {
+                    setupRewardAd();
+                    // Double the delay for the next possible retry
+                    retryDelaySeconds = Math.min(retryDelaySeconds * 2, MAX_RETRY_DELAY_SECONDS);
+                  }, retryDelaySeconds * 1000L);
+                }
               }
 
               @Override
@@ -295,8 +304,26 @@ public class ReadingActivity extends BaseActivity {
                 retryDelaySeconds = 5;
                 rewardedAd = ad;
                 Log.d(TAG, "Ad was loaded.");
+                adLoadFailureCount = 0;
+                isAdLoadFailureRepeated = false;
               }
             });
+  }
+
+  private void handlePotentialAdBlocker() {
+    runOnUiThread(() -> {
+      AlertDialog.Builder builder = new AlertDialog.Builder(ReadingActivity.this);
+      builder.setTitle("Ad Loading Issue");
+      builder.setMessage("We're unable to load the reward ad required to get a new reading, which may be due to a network issue or an ad blocker. If you have global ad blocking enabled, please consider disabling in order to support this application remaining free. The next reading is enabled but features may not work as intended. ");
+      builder.setPositiveButton("OK", (dialog, id) -> {
+      });
+      AlertDialog dialog = builder.create();
+      dialog.show();
+      userCoinCount += 10;
+      updateUIBasedOnCoinCount();
+      adLoadFailureCount = 0;
+      isAdLoadFailureRepeated = false;
+    });
   }
 
   public void setupRewardAdButton() {

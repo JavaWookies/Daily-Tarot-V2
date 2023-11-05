@@ -2,10 +2,17 @@ package com.amcwustl.dailytarot.activities;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
@@ -17,6 +24,7 @@ import com.google.android.gms.ads.AdView;
 public class CardDetailActivity extends BaseActivity {
 
   private AdView mAdView;
+  private int contentColor;
   SharedPreferences preferences;
 
   @Override
@@ -38,6 +46,8 @@ public class CardDetailActivity extends BaseActivity {
 
     Long cardId = getIntent().getLongExtra("card_id", -1);
 
+    contentColor = ContextCompat.getColor(this, R.color.translucent_off_white);
+
     // Retrieve the card details using this ID
     CardDbHelper dbHelper = new CardDbHelper(this);
     Card card = dbHelper.getCardById(cardId);
@@ -45,9 +55,12 @@ public class CardDetailActivity extends BaseActivity {
     if (card != null) {
       nameTextView.setText(card.getName());
 
-      String cardInfoBuilder = "Card Description: " + card.getDesc() + "\n\n" +
-              "Card Meaning Face Up: " + card.getMeaningUp() + "\n\n" +
-              "Card Meaning Reversed: " + card.getMeaningRev();
+      SpannableStringBuilder cardInfoBuilder = new SpannableStringBuilder();
+      cardInfoBuilder.append(getStyledCardInfo("Card Description: ", card.getDesc()));
+      cardInfoBuilder.append("\n\n");
+      cardInfoBuilder.append(getStyledCardInfo("Card Meaning Face Up: ", card.getMeaningUp()));
+      cardInfoBuilder.append("\n\n");
+      cardInfoBuilder.append(getStyledCardInfo("Card Meaning Reversed: ", card.getMeaningRev()));
 
       descTextView.setText(cardInfoBuilder);
 
@@ -83,5 +96,16 @@ public class CardDetailActivity extends BaseActivity {
     }
     super.onDestroy();
   }
+
+  private SpannableString getStyledCardInfo(String title, String content) {
+    SpannableString spannableContent = new SpannableString(title + content);
+
+    spannableContent.setSpan(new StyleSpan(Typeface.BOLD), 0, title.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+    spannableContent.setSpan(new ForegroundColorSpan(contentColor), title.length(), (title + content).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+    return spannableContent;
+  }
+
 }
 

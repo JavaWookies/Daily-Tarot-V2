@@ -2,7 +2,6 @@ package com.amcwustl.dailytarot.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -26,11 +25,9 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Note: Assuming you have the views set up in every child activity's layout
         myNavView = findViewById(R.id.MainActivityNavigationView);
         drawerLayout = findViewById(R.id.my_drawer_layout);
 
-        // Setup the drawer toggle and other common navigation tasks
         setupNavigation();
     }
 
@@ -40,7 +37,6 @@ public class BaseActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // Set up item click for navigation
         setupNavClick();
     }
 
@@ -58,7 +54,6 @@ public class BaseActivity extends AppCompatActivity {
         myNavView.setNavigationItemSelectedListener(item -> {
 
             int itemId = item.getItemId();
-            Log.i("MainActivity", "the logged item is:" + itemId);
             if (itemId == R.id.nav_home) {
                 Intent mainActivityIntent = new Intent(this, MainActivity.class);
                 startActivity(mainActivityIntent);
@@ -66,7 +61,6 @@ public class BaseActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_settings) {
                 Intent userSettingsIntent = new Intent(this, UserSettingsActivity.class);
                 startActivity(userSettingsIntent);
-                Log.i("MainActivity", "User Settings Clicked");
                 return true;
             } else if (itemId == R.id.nav_library) {
                 Intent viewAllCardsIntent = new Intent(this, ViewAllCardsActivity.class);
@@ -75,6 +69,10 @@ public class BaseActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_reading) {
                 Intent readingIntent = new Intent(this, ReadingActivity.class);
                 startActivity(readingIntent);
+                return true;
+            } else if (itemId == R.id.nav_card_of_the_day) {
+                Intent cardOfTheDayIntent = new Intent(this, DailyCardActivity.class);
+                startActivity(cardOfTheDayIntent);
                 return true;
             }
 //      drawerLayout.closeDrawer();

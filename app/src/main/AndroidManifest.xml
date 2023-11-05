@@ -16,17 +16,24 @@
         android:theme="@style/Theme.DailyTarot"
         tools:targetApi="31">
         <activity
-            android:name=".activities.BaseActivity"
+            android:name=".activities.DailyCardActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".activities.BaseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.CardDetailActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".activities.UserSettingsActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -34,12 +41,14 @@
 
         <activity
             android:name=".activities.ViewAllCardsActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activities.ReadingActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
