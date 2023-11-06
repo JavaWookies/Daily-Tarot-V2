@@ -9,6 +9,8 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +23,12 @@ import com.amcwustl.dailytarot.models.Card;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+@SuppressWarnings("resource")
 public class CardDetailActivity extends BaseActivity {
 
   private AdView mAdView;
   private int contentColor;
+  private int titleColor;
   SharedPreferences preferences;
 
   @Override
@@ -33,6 +37,7 @@ public class CardDetailActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
 
     mAdView = findViewById(R.id.adView);
+    mAdView.setVisibility(View.GONE);
     AdRequest adRequest = new AdRequest.Builder().build();
     mAdView.loadAd(adRequest);
 
@@ -47,6 +52,7 @@ public class CardDetailActivity extends BaseActivity {
     Long cardId = getIntent().getLongExtra("card_id", -1);
 
     contentColor = ContextCompat.getColor(this, R.color.translucent_off_white);
+    titleColor = ContextCompat.getColor(this, R.color.white);
 
     // Retrieve the card details using this ID
     CardDbHelper dbHelper = new CardDbHelper(this);
@@ -56,11 +62,14 @@ public class CardDetailActivity extends BaseActivity {
       nameTextView.setText(card.getName());
 
       SpannableStringBuilder cardInfoBuilder = new SpannableStringBuilder();
-      cardInfoBuilder.append(getStyledCardInfo("Card Description: ", card.getDesc()));
+      cardInfoBuilder.append(getStyledTitles("Card Description: "));
+      cardInfoBuilder.append(getStyledCardInfo(card.getDesc()));
       cardInfoBuilder.append("\n\n");
-      cardInfoBuilder.append(getStyledCardInfo("Card Meaning Face Up: ", card.getMeaningUp()));
+      cardInfoBuilder.append(getStyledTitles("Card Meaning Face Up: "));
+      cardInfoBuilder.append(getStyledCardInfo(card.getMeaningUp()));
       cardInfoBuilder.append("\n\n");
-      cardInfoBuilder.append(getStyledCardInfo("Card Meaning Reversed: ", card.getMeaningRev()));
+      cardInfoBuilder.append(getStyledTitles("Card Meaning Reversed: "));
+      cardInfoBuilder.append(card.getMeaningRev());
 
       descTextView.setText(cardInfoBuilder);
 
@@ -97,12 +106,19 @@ public class CardDetailActivity extends BaseActivity {
     super.onDestroy();
   }
 
-  private SpannableString getStyledCardInfo(String title, String content) {
-    SpannableString spannableContent = new SpannableString(title + content);
+  private SpannableString getStyledTitles(String title) {
+    SpannableString spannableTitle = new SpannableString(title);
 
-    spannableContent.setSpan(new StyleSpan(Typeface.BOLD), 0, title.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+    spannableTitle.setSpan(new ForegroundColorSpan(titleColor), 0, title.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    spannableTitle.setSpan(new StyleSpan(Typeface.BOLD), 0, title.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    spannableTitle.setSpan(new UnderlineSpan(), 0, title.length() - 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    return spannableTitle;
+  }
 
-    spannableContent.setSpan(new ForegroundColorSpan(contentColor), title.length(), (title + content).length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+  private SpannableString getStyledCardInfo(String content) {
+    SpannableString spannableContent = new SpannableString(content);
+
+    spannableContent.setSpan(new ForegroundColorSpan(contentColor), 0, content.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
     return spannableContent;
   }
