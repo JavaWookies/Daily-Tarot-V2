@@ -10,6 +10,7 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class CardDetailActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
 
     mAdView = findViewById(R.id.adView);
+    mAdView.setVisibility(View.GONE);
     AdRequest adRequest = new AdRequest.Builder().build();
     mAdView.loadAd(adRequest);
 
