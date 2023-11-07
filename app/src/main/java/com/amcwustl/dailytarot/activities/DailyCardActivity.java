@@ -3,6 +3,7 @@ package com.amcwustl.dailytarot.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,7 +23,6 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class DailyCardActivity extends BaseActivity {
-    private static final String TAG = "Daily Card Activity";
     private static final String CARD_ID_KEY = "cardId";
     private static final String LAST_CARD_DAY_KEY = "lastCardDay";
     private static final String HAS_SEEN_CARD_KEY = "hasSeenCard";
@@ -91,7 +91,7 @@ public class DailyCardActivity extends BaseActivity {
         String cardType = sharedPreferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
         String resourceName = "cover" + cardType;
 
-        int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+        @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
         if (resourceId != 0) {
             card.setImageResource(resourceId);
         }
@@ -126,7 +126,7 @@ public class DailyCardActivity extends BaseActivity {
         Card todaysCard = dbHelper.getCardById(todaysCardId);
         String resourceName = todaysCard.getNameShort() + cardType;
 
-        int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+        @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
         if (resourceId != 0) {
             card.setImageResource(resourceId);
         }

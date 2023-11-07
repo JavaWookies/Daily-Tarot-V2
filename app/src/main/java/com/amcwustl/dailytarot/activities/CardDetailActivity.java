@@ -43,8 +43,6 @@ public class CardDetailActivity extends BaseActivity {
 
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-    // Initialize your views
-    // Define your views
     TextView nameTextView = findViewById(R.id.CardDetailActivityCardNameTextView);
     TextView descTextView = findViewById(R.id.CardDetailActivityCardDescTextView);
     ImageView cardImageView = findViewById(R.id.CardDetailActivitySingleCardImageView);

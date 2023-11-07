@@ -24,7 +24,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
@@ -65,8 +64,6 @@ public class ReadingActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
 
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-    initializeMobileAds();
 
     cardOne = findViewById(R.id.ReadingActivityDrawnCardOne);
     cardTwo = findViewById(R.id.ReadingActivityDrawnCardTwo);
@@ -157,11 +154,6 @@ public class ReadingActivity extends BaseActivity {
       drawCardsButton.setVisibility(View.GONE);
       rewardAdButton.setVisibility(View.VISIBLE);
     }
-  }
-
-  private void initializeMobileAds() {
-    MobileAds.initialize(this, initializationStatus -> {
-    });
   }
 
   private void setupDrawCardsButton() {
@@ -278,7 +270,7 @@ public class ReadingActivity extends BaseActivity {
 
   private void setupRewardAd() {
     AdRequest adRequest = new AdRequest.Builder().build();
-    RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+    RewardedAd.load(this, "ca-app-pub-9366728814901706/9031755209",
             adRequest, new RewardedAdLoadCallback() {
               @Override
               public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

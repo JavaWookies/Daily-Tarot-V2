@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.amcwustl.dailytarot.MainActivity;
 import com.amcwustl.dailytarot.R;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -29,6 +30,12 @@ public class BaseActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.my_drawer_layout);
 
         setupNavigation();
+        initializeMobileAds();
+    }
+
+    private void initializeMobileAds() {
+        MobileAds.initialize(this, initializationStatus -> {
+        });
     }
 
     protected void setupNavigation() {
