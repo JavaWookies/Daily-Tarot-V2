@@ -72,5 +72,7 @@
     <string name="reading_description">Classic three card spread. Use your intuition or view an interpretation of your reading.</string>
     <string name="card_of_day_description">Draw a card that describes your day. View detailed description and possible meanings.</string>
     <string name="view_all_cards_desc">View all cards of major and minor arcana. Select any card to learn more.</string>
+    <string name="tarot_quiz">Tarot Quiz</string>
+    <string name="quiz_text">Test and improve your knowledge of Tarot Card meanings to improve your own readings!</string>
 
 </resources>

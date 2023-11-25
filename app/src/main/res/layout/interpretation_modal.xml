@@ -5,20 +5,32 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="@drawable/card_background_noround">
 
     <TextView
         android:id="@+id/tv_interpretation_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/card_background"
+        android:fontFamily="@font/notosans_display"
         android:text="@string/interpretation"
-        android:textSize="16sp" />
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="16dp" />
 
     <Button
         android:id="@+id/btn_close_modal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
         android:text="@string/close"
-        android:layout_marginTop="8dp"/>
+        android:textColor="#FFD700" />
 
 </LinearLayout>

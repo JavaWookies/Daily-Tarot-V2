@@ -9,9 +9,13 @@
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <TextView
             android:id="@+id/welcome_text"
@@ -19,14 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/cinzel_bold"
             android:gravity="center"
-            android:lineSpacingExtra="10sp"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="16dp"
             android:text="@string/welcome_text"
-            android:textColor="#FFD700"
-            android:textSize="34sp"
-            android:textStyle="bold"
+            android:textColor="#FFFFF0"
+            android:textSize="32sp"
             tools:ignore="TextSizeCheck" />
 
         <FrameLayout
@@ -37,9 +39,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/card_background"
             android:clickable="true"
-            android:elevation="4dp"
+            android:elevation="16dp"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground">
 
@@ -51,12 +54,13 @@
                 tools:ignore="UselessParent">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:id="@+id/imageView_card_1"
+                    android:layout_width="70dp"
+                    android:layout_height="124dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
                     android:contentDescription="@string/cover_description"
                     android:src="@drawable/cover" />
 
@@ -72,6 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/lora_regular"
                         android:gravity="center"
                         android:text="@string/daily_reading"
                         android:textColor="#FFD700"
@@ -83,9 +88,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:fontFamily="@font/notosans_display"
                         android:text="@string/reading_description"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -96,11 +102,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_daily_reading"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/card_background"
             android:clickable="true"
-            android:elevation="4dp"
+            android:elevation="16dp"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground">
 
@@ -112,12 +118,13 @@
                 tools:ignore="UselessParent">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:id="@+id/imageView_card_2"
+                    android:layout_width="70dp"
+                    android:layout_height="124dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
                     android:contentDescription="@string/cover_description"
                     android:src="@drawable/cover" />
 
@@ -134,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:fontFamily="@font/lora_regular"
                         android:text="@string/card_of_the_day"
                         android:textColor="#FFD700"
                         android:textSize="24sp"
@@ -143,10 +151,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/notosans_display"
                         android:gravity="center"
                         android:text="@string/card_of_day_description"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -157,11 +166,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_of_the_day"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/card_background"
             android:clickable="true"
-            android:elevation="4dp"
+            android:elevation="16dp"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground">
 
@@ -173,12 +182,13 @@
                 tools:ignore="UselessParent">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:id="@+id/imageView_card_3"
+                    android:layout_width="70dp"
+                    android:layout_height="124dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
                     android:contentDescription="@string/cover_description"
                     android:src="@drawable/cover" />
 
@@ -195,6 +205,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:fontFamily="@font/lora_regular"
                         android:text="@string/view_all_cards"
                         android:textColor="#FFD700"
                         android:textSize="24sp"
@@ -205,15 +216,80 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:fontFamily="@font/notosans_display"
                         android:text="@string/view_all_cards_desc"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
 
+            <FrameLayout
+                android:id="@+id/tarot_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_all_cards"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/card_background"
+                android:clickable="true"
+                android:elevation="16dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
+
+                    <ImageView
+                        android:id="@+id/imageView_card_4"
+                        android:layout_width="70dp"
+                        android:layout_height="124dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:contentDescription="@string/cover_description"
+                        android:src="@drawable/cover" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="16dp"
+                        tools:ignore="RtlSymmetry">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:fontFamily="@font/lora_regular"
+                            android:text="@string/tarot_quiz"
+                            android:textColor="#FFD700"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:fontFamily="@font/notosans_display"
+                            android:text="@string/quiz_text"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/MainActivityNavigationView"
