@@ -19,6 +19,7 @@ import androidx.preference.PreferenceManager;
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.amcwustl.dailytarot.utilities.CardStateUtil;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -81,6 +82,13 @@ public class ReadingActivity extends BaseActivity {
     setupRewardAd();
     setupRewardAdButton();
     checkReadingForToday();
+
+    List<Card> restoredCards = CardStateUtil.restoreReadingState(preferences, dbHelper, "ReadingActivity");
+    if (!restoredCards.isEmpty()) {
+      setupCardImages(restoredCards);
+      currentInterpretation = generateInterpretation(restoredCards);
+      btnGetInterpretation.setVisibility(View.VISIBLE);
+    }
 
     mAdView = findViewById(R.id.adView);
     AdRequest adRequest = new AdRequest.Builder().build();
@@ -189,23 +197,33 @@ public class ReadingActivity extends BaseActivity {
     btnGetInterpretation.setVisibility(View.VISIBLE);
 
 
-    StringBuilder interpretation = new StringBuilder();
-    for (int i = 0; i < 3; i++){
-      if(i == 0){
-        interpretation.append(drawnCards.get(0).getIntPast()).append(" ");
-      } else if (i == 1) {
-        interpretation.append(drawnCards.get(1).getIntPresent()).append(" ");
-      } else {
-        interpretation.append(drawnCards.get(2).getIntFuture());
-      }
-    }
+    CardStateUtil.saveReadingState(preferences, drawnCards, "ReadingActivity");
 
-    currentInterpretation = interpretation.toString();
+    currentInterpretation = generateInterpretation(drawnCards);
     userCoinCount -= 10;
     setupRewardAd();
     markReadingForToday();
     runOnUiThread(this::updateUIBasedOnCoinCount);
   }
+
+  private String generateInterpretation(List<Card> drawnCards) {
+    StringBuilder interpretation = new StringBuilder();
+    for (int i = 0; i < drawnCards.size(); i++) {
+      switch (i) {
+        case 0:
+          interpretation.append(drawnCards.get(i).getIntPast()).append(" ");
+          break;
+        case 1:
+          interpretation.append(drawnCards.get(i).getIntPresent()).append(" ");
+          break;
+        case 2:
+          interpretation.append(drawnCards.get(i).getIntFuture());
+          break;
+      }
+    }
+    return interpretation.toString();
+  }
+
 
   private void markReadingForToday() {
     SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);

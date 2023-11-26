@@ -1,7 +1,5 @@
 package com.amcwustl.dailytarot.models;
 
-import androidx.annotation.NonNull;
-
 public class Card {
 
     private Long id;
@@ -14,12 +12,13 @@ public class Card {
     private String intPast;
     private String intPresent;
     private String intFuture;
+    private String associatedWords;
     private int orientation;
 
     public Card() {
     }
 
-    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, int orientation, String intPast, String intPresent, String intFuture) {
+    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, int orientation, String intPast, String intPresent, String intFuture, String associatedWords) {
         this.id = id;
         this.type = type;
         this.nameShort = nameShort;
@@ -31,9 +30,10 @@ public class Card {
         this.intPast = intPast;
         this.intPresent = intPresent;
         this.intFuture = intFuture;
+        this.associatedWords = associatedWords;
     }
 
-    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, String intPast, String intPresent, String intFuture) {
+    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, String intPast, String intPresent, String intFuture, String associatedWords) {
         this.id = id;
         this.type = type;
         this.nameShort = nameShort;
@@ -45,6 +45,7 @@ public class Card {
         this.intPast = intPast;
         this.intPresent = intPresent;
         this.intFuture = intFuture;
+        this.associatedWords = associatedWords;
     }
 
     public Long getId() {
@@ -137,21 +138,14 @@ public class Card {
         this.intFuture = intFuture;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "Card{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", nameShort='" + nameShort + '\'' +
-                ", name='" + name + '\'' +
-                ", meaningUp='" + meaningUp + '\'' +
-                ", meaningRev='" + meaningRev + '\'' +
-                ", desc='" + desc + '\'' +
-                ", intPast='" + intPast + '\'' +
-                ", intPresent='" + intPresent + '\'' +
-                ", intFuture='" + intFuture + '\'' +
-                ", orientation=" + orientation +
-                '}';
+    public String getAssociatedWords() {
+        return associatedWords;
     }
+
+    public void setAssociatedWords(String associatedWords) {
+        this.associatedWords = associatedWords;
+    }
+
+
+
 }

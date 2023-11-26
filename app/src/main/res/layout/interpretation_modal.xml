@@ -16,8 +16,8 @@
         android:fontFamily="@font/notosans_display"
         android:text="@string/interpretation"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:padding="16dp" />
+        android:textSize="20sp"
+        android:padding="12dp" />
 
     <Button
         android:id="@+id/btn_close_modal"
@@ -31,6 +31,7 @@
         android:paddingRight="16dp"
         android:paddingBottom="8dp"
         android:text="@string/close"
-        android:textColor="#FFD700" />
+        android:textColor="#FFD700"
+        android:textSize="18sp" />
 
 </LinearLayout>

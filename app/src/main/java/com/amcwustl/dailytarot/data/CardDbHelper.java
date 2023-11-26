@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardDbHelper extends SQLiteOpenHelper {
-  private static final int DATABASE_VERSION = 1;
+  private static final int DATABASE_VERSION = 2;
   private static final String DATABASE_NAME = "TarotCardDatabase.db";
 
 
@@ -41,8 +41,10 @@ public class CardDbHelper extends SQLiteOpenHelper {
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+    db.execSQL("DROP TABLE IF EXISTS " + CardContract.CardEntry.TABLE_NAME);
+    onCreate(db);
   }
+
 
 
   public boolean isDatabaseEmpty() {
@@ -86,6 +88,11 @@ public class CardDbHelper extends SQLiteOpenHelper {
           card.setIntPast(jsonCard.getString("int_past"));
           card.setIntPresent(jsonCard.getString("int_present"));
           card.setIntFuture(jsonCard.getString("int_future"));
+          card.setAssociatedWords(jsonCard.getString("associated_words"));
+
+
+
+
 
           // Insert the tarotCard into the database
           this.insertCard(card);
@@ -115,6 +122,9 @@ public class CardDbHelper extends SQLiteOpenHelper {
         card.setIntPast(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_PAST)));
         card.setIntPresent(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_PRESENT)));
         card.setIntFuture(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_FUTURE)));
+        card.setAssociatedWords(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS)));
+
+
         card.setOrientation(0);
         cards.add(card);
       } while (cursor.moveToNext());
@@ -135,6 +145,8 @@ public class CardDbHelper extends SQLiteOpenHelper {
     values.put(CardContract.CardEntry.COLUMN_INT_PAST, card.getIntPast());
     values.put(CardContract.CardEntry.COLUMN_INT_PRESENT, card.getIntPresent());
     values.put(CardContract.CardEntry.COLUMN_INT_FUTURE, card.getIntFuture());
+    values.put(CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS, card.getAssociatedWords());
+
 
     db.insert(CardContract.CardEntry.TABLE_NAME, null, values);
     db.close();
@@ -175,7 +187,8 @@ public class CardDbHelper extends SQLiteOpenHelper {
             CardContract.CardEntry.COLUMN_DESC,
             CardContract.CardEntry.COLUMN_INT_PAST,
             CardContract.CardEntry.COLUMN_INT_PRESENT,
-            CardContract.CardEntry.COLUMN_INT_FUTURE
+            CardContract.CardEntry.COLUMN_INT_FUTURE,
+            CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS
     };
 
     String selection = CardContract.CardEntry._ID + " = ?";
@@ -204,6 +217,8 @@ public class CardDbHelper extends SQLiteOpenHelper {
         card.setIntPast(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_PAST)));
         card.setIntPresent(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_PRESENT)));
         card.setIntFuture(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_FUTURE)));
+        card.setAssociatedWords(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS)));
+
 
       }
       cursor.close();
