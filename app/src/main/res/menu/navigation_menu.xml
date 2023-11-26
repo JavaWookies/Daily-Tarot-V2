@@ -23,4 +23,9 @@
         android:id="@+id/nav_library"
         android:icon="@drawable/ic_library"
         android:title="@string/view_all_cards" />
+
+    <item
+        android:id="@+id/nav_quiz"
+        android:icon="@drawable/baseline_quiz_black_24"
+        android:title="@string/quiz" />
 </menu>

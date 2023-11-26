@@ -74,5 +74,9 @@
     <string name="view_all_cards_desc">View all cards of major and minor arcana. Select any card to learn more.</string>
     <string name="tarot_quiz">Tarot Quiz</string>
     <string name="quiz_text">Test and improve your knowledge of Tarot Card meanings to improve your own readings!</string>
+    <string name="card_four">Card Four</string>
+    <string name="quiz_question">Which card is most associated with:</string>
+    <string name="placeholder">Placeholder Text</string>
+    <string name="quiz">Tarot Quiz</string>
 
 </resources>

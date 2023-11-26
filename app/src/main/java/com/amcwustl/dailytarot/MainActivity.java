@@ -12,6 +12,7 @@ import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.activities.BaseActivity;
 import com.amcwustl.dailytarot.activities.DailyCardActivity;
+import com.amcwustl.dailytarot.activities.QuizActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
 import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
@@ -26,6 +27,7 @@ public class MainActivity extends BaseActivity {
   private FrameLayout cardDailyReading;
   private FrameLayout cardOfTheDay;
   private FrameLayout viewAllCards;
+  private FrameLayout tarotQuiz;
   private ImageView cardOne;
   private ImageView cardTwo;
   private ImageView cardThree;
@@ -44,6 +46,7 @@ public class MainActivity extends BaseActivity {
     cardDailyReading = findViewById(R.id.card_daily_reading);
     cardOfTheDay = findViewById(R.id.card_of_the_day);
     viewAllCards = findViewById(R.id.view_all_cards);
+    tarotQuiz = findViewById(R.id.tarot_quiz);
 
     cardOne = findViewById(R.id.imageView_card_1);
     cardTwo = findViewById(R.id.imageView_card_2);
@@ -78,6 +81,11 @@ public class MainActivity extends BaseActivity {
     viewAllCards.setOnClickListener(v -> {
       Intent viewAllCardsIntent = new Intent(MainActivity.this, ViewAllCardsActivity.class);
       startActivity(viewAllCardsIntent);
+    });
+
+    tarotQuiz.setOnClickListener(v -> {
+      Intent tarotQuizIntent = new Intent(MainActivity.this, QuizActivity.class);
+      startActivity(tarotQuizIntent);
     });
 
 
