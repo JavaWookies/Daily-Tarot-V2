@@ -1,5 +1,8 @@
 package com.amcwustl.dailytarot.activities;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -250,16 +253,35 @@ public class ReadingActivity extends BaseActivity {
 
       if (resourceId != 0) {
         ImageView imageView = imageViewList.get(i);
-        imageView.setImageResource(resourceId);
-        if (card.getOrientation() == 1) {
-          imageView.setRotation(180f);
-        }
+        float cameraDistance = 20 * getResources().getDisplayMetrics().density * imageView.getWidth();
+        imageView.setCameraDistance(cameraDistance);
 
-        final int cardIndex = i;
-        imageView.setOnClickListener(v -> navigateToCardDetail(drawnCards.get(cardIndex).getId()));
+        ObjectAnimator firstHalfFlip = ObjectAnimator.ofFloat(imageView, "rotationY", 0f, 90f);
+        firstHalfFlip.setDuration(250);
+
+        ObjectAnimator secondHalfFlip = ObjectAnimator.ofFloat(imageView, "rotationY", -90f, 0f);
+        secondHalfFlip.setDuration(250);
+
+        firstHalfFlip.addListener(new AnimatorListenerAdapter() {
+          @Override
+          public void onAnimationEnd(Animator animation) {
+            imageView.setImageResource(resourceId);
+            if (card.getOrientation() == 1) {
+              imageView.setRotation(180f);
+            }
+            secondHalfFlip.start();
+          }
+        });
+
+        firstHalfFlip.start();
+        imageView.setOnLongClickListener(view -> {
+          navigateToCardDetail(card.getId());
+          return true;
+        });
       } else {
         Log.e(TAG, "Resource not found for card: " + cardName);
       }
+
     }
   }
 

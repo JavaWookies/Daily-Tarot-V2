@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +14,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -30,14 +36,22 @@ public class QuizActivity extends BaseActivity {
     private static final String TAG = "Quiz Activity";
     private int correctCardIndex;
     private int selectedCardIndex = -1;
+    private int currentStreak = 0;
+    private int longestStreak;
     private ImageView cardOne;
     private ImageView cardTwo;
     private ImageView cardThree;
     private ImageView cardZero;
+    private List<Card> drawnCards;
+    private String correctCardName;
     private TextView quizHeader;
     private TextView associatedWords;
+    private TextView currentStreakText;
+    private TextView longestStreakText;
+    private TextView tapAndHold;
     private CardDbHelper dbHelper;
     private Button startQuizButton;
+    private Button submitButton;
     SharedPreferences preferences;
 
     @Override
@@ -46,6 +60,7 @@ public class QuizActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        longestStreak = preferences.getInt("longestStreak", 0);
 
         cardZero = findViewById(R.id.cardZero);
         cardOne = findViewById(R.id.cardOne);
@@ -53,7 +68,9 @@ public class QuizActivity extends BaseActivity {
         cardThree = findViewById(R.id.cardThree);
 
 
-        startQuizButton = findViewById(R.id.test_button);
+        startQuizButton = findViewById(R.id.start_button);
+        submitButton = findViewById(R.id.submit_button);
+        submitButton.setVisibility(View.GONE);
 
         dbHelper = new CardDbHelper(this);
 
@@ -61,10 +78,36 @@ public class QuizActivity extends BaseActivity {
         associatedWords.setVisibility(View.INVISIBLE);
         quizHeader = findViewById(R.id.tv_quiz_question);
         quizHeader.setVisibility(View.INVISIBLE);
+        currentStreakText = findViewById(R.id.QuizActivityCurrentStreak);
+        longestStreakText = findViewById(R.id.QuizActivityLongestStreak);
+        tapAndHold = findViewById(R.id.QuizActivityTapHold);
+        tapAndHold.setVisibility(View.INVISIBLE);
+
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         setupCardTypes();
         setupStartQuizButton();
+        updateStreakDisplay();
 
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("currentStreak", currentStreak);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.containsKey("currentStreak")) {
+            currentStreak = savedInstanceState.getInt("currentStreak");
+        }
     }
 
     private void setupCardTypes() {
@@ -88,7 +131,9 @@ public class QuizActivity extends BaseActivity {
             drawFourRandomCards();
             associatedWords.setVisibility(View.VISIBLE);
             quizHeader.setVisibility(View.VISIBLE);
+            submitButton.setVisibility(View.VISIBLE);
             startQuizButton.setVisibility(View.GONE);
+            tapAndHold.setVisibility(View.VISIBLE);
         });
     }
 
@@ -96,7 +141,7 @@ public class QuizActivity extends BaseActivity {
     private void drawFourRandomCards() {
         resetCardBorders();
         selectedCardIndex = -1;
-        List<Card> drawnCards = new ArrayList<>();
+        drawnCards = new ArrayList<>();
         Random random = new Random();
         int maxCardId = 78;
         HashSet<Integer> seenCards = new HashSet<>();
@@ -159,6 +204,7 @@ public class QuizActivity extends BaseActivity {
         Random random = new Random();
         int randomCardIndex = random.nextInt(4);
         correctCardIndex = randomCardIndex;
+        correctCardName = drawnCards.get(randomCardIndex).getName();
         associatedWords.setText(drawnCards.get(randomCardIndex).getAssociatedWords());
         setupSubmitButton();
         setupCardSelection();
@@ -173,7 +219,16 @@ public class QuizActivity extends BaseActivity {
                 selectedCardIndex = finalI;
                 highlightSelectedCard(finalI);
             });
+            cards.get(i).setOnLongClickListener(v -> {
+                // Start Activity or DialogFragment with card details
+                Intent intent = new Intent(QuizActivity.this, CardDetailActivity.class);
+                intent.putExtra("card_id", drawnCards.get(finalI).getId());
+                startActivity(intent);
+                return true;
+            });
         }
+
+
     }
 
     private void highlightSelectedCard(int cardIndex) {
@@ -181,7 +236,7 @@ public class QuizActivity extends BaseActivity {
         // Add yellow border to the selected card
         ImageView selectedCard = Arrays.asList(cardZero, cardOne, cardTwo, cardThree).get(cardIndex);
         // Assuming you have a drawable for the yellow border
-        selectedCard.setBackground(getResources().getDrawable(R.drawable.yellow_border));
+        selectedCard.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.yellow_border, null));
 
     }
 
@@ -193,7 +248,6 @@ public class QuizActivity extends BaseActivity {
     }
 
     private void setupSubmitButton() {
-        Button submitButton = findViewById(R.id.submit_button);
         submitButton.setOnClickListener(v -> {
             if (selectedCardIndex != -1) {
                 checkAnswerAndProvideFeedback();
@@ -206,23 +260,48 @@ public class QuizActivity extends BaseActivity {
         ImageView correctCard = Arrays.asList(cardZero, cardOne, cardTwo, cardThree).get(correctCardIndex);
 
         if (selectedCardIndex == correctCardIndex) {
-            // User selected the correct card
+            currentStreak++;
+            updateStreak();
             selectedCard.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.green_border, null));
             showResultBanner(true);
         } else {
-            // User selected the wrong card
+            currentStreak = 0;
+            updateStreakDisplay();
             selectedCard.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.red_border, null));
             correctCard.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.green_border, null));
             showResultBanner(false);
         }
     }
 
+    private void updateStreak() {
+        if (currentStreak > longestStreak) {
+            longestStreak = currentStreak;
+            updateStreakDisplay();
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("longestStreak", longestStreak);
+            editor.apply();
+        }
+    }
+
+    private void updateStreakDisplay(){
+        String currentResource = "Current Streak: " + currentStreak;
+        String longestResource = "Longest Streak: " + longestStreak;
+        currentStreakText.setText(currentResource);
+        longestStreakText.setText(longestResource);
+    }
+
     private void showResultBanner(boolean isCorrect) {
-        String message = isCorrect ? "Correct! Well done." : "Wrong answer. Try again!";
+        String message = isCorrect ? "✨ Correct! Well done." : "❌ Sorry wrong answer! The correct answer was " + correctCardName +".";
         Snackbar snackbar = Snackbar.make(findViewById(R.id.my_drawer_layout), message, Snackbar.LENGTH_INDEFINITE);
 
+        if (isCorrect) {
+            snackbar.setBackgroundTint(Color.parseColor("#006400")); // Dark green
+        } else {
+            snackbar.setBackgroundTint(Color.parseColor("#8B0000")); // Dark red
+        }
+        snackbar.setActionTextColor(Color.parseColor("#FFFFFF"));
+
         snackbar.setAction("Next Question", view -> {
-            // Reset borders and start a new round
             resetCardBorders();
             drawFourRandomCards();
         });

@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:adSize="BANNER"
-            app:adUnitId="INSERT_YOUR_AD_UNIT_ID_HERE"
+            app:adUnitId="ca-app-pub-9366728814901706/4724826021"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,29 +34,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.10" />
+            app:layout_constraintGuide_percent="0.15" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.40" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/bottom_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.70" />
+            app:layout_constraintGuide_percent="0.65" />
 
         <ImageView
             android:id="@+id/cardZero"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/card_one"
-            android:src="@drawable/cover"
             android:padding="8dp"
+            android:src="@drawable/cover"
             app:layout_constraintBottom_toTopOf="@id/top_horizontal_guideline"
             app:layout_constraintDimensionRatio="0.583:1"
             app:layout_constraintEnd_toStartOf="@id/vertical_center_guideline"
@@ -68,8 +68,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/card_two"
-            android:src="@drawable/cover"
             android:padding="8dp"
+            android:src="@drawable/cover"
             app:layout_constraintBottom_toTopOf="@id/top_horizontal_guideline"
             app:layout_constraintDimensionRatio="0.583:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,8 +81,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/card_three"
-            android:src="@drawable/cover"
             android:padding="8dp"
+            android:src="@drawable/cover"
             app:layout_constraintBottom_toTopOf="@+id/bottom_horizontal_guideline"
             app:layout_constraintDimensionRatio="0.583:1"
             app:layout_constraintEnd_toStartOf="@id/vertical_center_guideline"
@@ -94,8 +94,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/card_four"
-            android:src="@drawable/cover"
             android:padding="8dp"
+            android:src="@drawable/cover"
             app:layout_constraintBottom_toTopOf="@+id/bottom_horizontal_guideline"
             app:layout_constraintDimensionRatio="0.583:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,36 +120,86 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="12dp"
-            android:text="@string/placeholder"
-            android:gravity="center_horizontal"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/notosans_display"
-            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:text="@string/placeholder"
             android:textColor="#FFFFFF"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_quiz_question" />
 
         <Button
-            android:id="@+id/test_button"
+            android:id="@+id/start_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Button"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_button"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/start_quiz"
+            android:textColor="#FFD700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_placeholder" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_placeholder"
+            tools:ignore="VisualLintOverlap" />
 
         <Button
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:text="Submit"
+            android:background="@drawable/rounded_button"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/sumbit"
+            android:textColor="#FFD700"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_placeholder" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_placeholder"
+            tools:ignore="VisualLintOverlap" />
+
+        <TextView
+            android:id="@+id/QuizActivityCurrentStreak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/lora_regular"
+            android:text="@string/current_streak"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ad_horizontal_guideline"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_center_guideline"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/QuizActivityLongestStreak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/lora_regular"
+            android:text="@string/longest_streak"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ad_horizontal_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/vertical_center_guideline" />
+
+        <TextView
+            android:id="@+id/QuizActivityTapHold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_display"
+            android:text="@string/tap_hold"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottom_horizontal_guideline" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

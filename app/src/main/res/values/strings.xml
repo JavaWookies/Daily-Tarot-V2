@@ -78,5 +78,10 @@
     <string name="quiz_question">Which card is most associated with:</string>
     <string name="placeholder">Placeholder Text</string>
     <string name="quiz">Tarot Quiz</string>
+    <string name="current_streak">Current Streak:</string>
+    <string name="longest_streak">Longest Streak:</string>
+    <string name="start_quiz">Start Quiz</string>
+    <string name="sumbit">Submit Answer</string>
+    <string name="tap_hold">🔎 Tap and Hold to Peek Card Details</string>
 
 </resources>
