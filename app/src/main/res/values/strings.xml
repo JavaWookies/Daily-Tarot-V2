@@ -88,5 +88,6 @@
     <string name="lock_layout">Lock Layout</string>
     <string name="reset_spread">Reset Layout</string>
     <string name="instructions">Instructions</string>
+    <string name="custom_spread_desc">Create your own custom spread layout with up to 12 cards.</string>
 
 </resources>

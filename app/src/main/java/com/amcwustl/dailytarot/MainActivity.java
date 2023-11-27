@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.activities.BaseActivity;
+import com.amcwustl.dailytarot.activities.CustomSpreadActivity;
 import com.amcwustl.dailytarot.activities.DailyCardActivity;
 import com.amcwustl.dailytarot.activities.QuizActivity;
 import com.amcwustl.dailytarot.activities.ReadingActivity;
@@ -28,10 +29,12 @@ public class MainActivity extends BaseActivity {
   private FrameLayout cardOfTheDay;
   private FrameLayout viewAllCards;
   private FrameLayout tarotQuiz;
+  private FrameLayout customSpread;
   private ImageView cardOne;
   private ImageView cardTwo;
   private ImageView cardThree;
   private ImageView cardFour;
+  private ImageView cardFive;
 
   SharedPreferences preferences;
 
@@ -47,11 +50,14 @@ public class MainActivity extends BaseActivity {
     cardOfTheDay = findViewById(R.id.card_of_the_day);
     viewAllCards = findViewById(R.id.view_all_cards);
     tarotQuiz = findViewById(R.id.tarot_quiz);
+    customSpread = findViewById(R.id.custom_spread);
+
 
     cardOne = findViewById(R.id.imageView_card_1);
     cardTwo = findViewById(R.id.imageView_card_2);
     cardThree = findViewById(R.id.imageView_card_3);
     cardFour = findViewById(R.id.imageView_card_4);
+    cardFive = findViewById(R.id.imageView_card_5);
 
 
 
@@ -88,6 +94,11 @@ public class MainActivity extends BaseActivity {
       startActivity(tarotQuizIntent);
     });
 
+    customSpread.setOnClickListener(v -> {
+      Intent customSpreadIntent = new Intent(MainActivity.this, CustomSpreadActivity.class);
+      startActivity(customSpreadIntent);
+    });
+
 
   }
 
@@ -101,6 +112,7 @@ public class MainActivity extends BaseActivity {
       cardTwo.setImageResource(resourceId);
       cardThree.setImageResource(resourceId);
       cardFour.setImageResource(resourceId);
+      cardFive.setImageResource(resourceId);
     } else {
       Log.e(TAG, "Resource not found for card type: " + cardType);
     }
