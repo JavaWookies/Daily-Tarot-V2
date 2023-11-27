@@ -74,12 +74,14 @@
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
+                android:id="@+id/lockIcon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:contentDescription="@string/lock_layout"
                 android:src="@drawable/baseline_lock_24" />
 
             <TextView
+                android:id="@+id/lockText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

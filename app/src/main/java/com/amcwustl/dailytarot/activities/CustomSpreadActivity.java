@@ -1,22 +1,31 @@
 package com.amcwustl.dailytarot.activities;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
+import com.amcwustl.dailytarot.models.Card;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +44,7 @@ public class CustomSpreadActivity extends BaseActivity {
     private HashMap<Integer, Long> drawnCards;
     private int drawnCardCount = 0;
     private List<ImageView> droppedImages;
+    private LinearLayout lockLayout;
 
 
 
@@ -45,6 +55,8 @@ public class CustomSpreadActivity extends BaseActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
+
+        lockLayout = findViewById(R.id.lockLayout);
 
         deckImageView = findViewById(R.id.deckImageView);
         droppableArea = findViewById(R.id.droppableArea);
@@ -57,6 +69,7 @@ public class CustomSpreadActivity extends BaseActivity {
         setupCardType();
         setupDeckTouchListener();
         setupDroppableArea();
+        setupLockLayoutButton();
     }
 
     private void setupCardType(){
@@ -128,8 +141,13 @@ public class CustomSpreadActivity extends BaseActivity {
                     long cardId = drawRandomCard();
                     drawnCards.put(drawnCardCount, cardId);
                     drawnCardCount ++;
+                    Log.d(TAG, "Drawn card count is: " + drawnCardCount);
                     droppedImages.add((ImageView) draggedView);
-                    setupDeckTouchListener();
+                    if (drawnCardCount < 9){
+//                        setupDeckTouchListener();
+                    } else {
+                        lockLayout();
+                    }
                     return true;
             }
             return false;
@@ -147,4 +165,84 @@ public class CustomSpreadActivity extends BaseActivity {
         return randomValue;
 
     }
+
+    private void setupLockLayoutButton(){
+        lockLayout.setOnClickListener(view -> {
+            ImageView lockIcon = findViewById(R.id.lockIcon);
+            TextView lockText = findViewById(R.id.lockText);
+
+            int goldColor = Color.parseColor("#FFD700");
+
+            lockIcon.setColorFilter(goldColor, PorterDuff.Mode.SRC_IN);
+
+            lockText.setTextColor(goldColor);
+
+            lockLayout();
+
+        });
+    }
+
+    private void lockLayout(){
+        deckImageView.setOnLongClickListener(null);
+        Log.d(TAG, "Method is being called");
+
+        for (int i = 0; i < drawnCardCount;i++){
+            int finalI = i;
+            ImageView card = droppedImages.get(i);
+            card.setOnClickListener(view -> {
+                flipCard(card, drawnCards.get(finalI));
+            });
+        }
+
+    }
+
+    private void flipCard(ImageView card, long cardId) {
+
+        Random random = new Random();
+        int randomOrientation = random.nextInt(2);
+        Card drawnCard = dbHelper.getCardById(cardId);
+        drawnCard.setOrientation(randomOrientation);
+        String cardName = drawnCard.getNameShort();
+        String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
+        String resourceName = cardName + cardType;
+
+        @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+
+        if (resourceId != 0) {
+            float cameraDistance = 20 * getResources().getDisplayMetrics().density * card.getWidth();
+            card.setCameraDistance(cameraDistance);
+
+            ObjectAnimator firstHalfFlip = ObjectAnimator.ofFloat(card, "rotationY", 0f, 90f);
+            firstHalfFlip.setDuration(250);
+
+            ObjectAnimator secondHalfFlip = ObjectAnimator.ofFloat(card, "rotationY", -90f, 0f);
+            secondHalfFlip.setDuration(250);
+
+            firstHalfFlip.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    card.setImageResource(resourceId);
+                    if (drawnCard.getOrientation() == 1) {
+                        card.setRotation(180f);
+                    }
+                    secondHalfFlip.start();
+                }
+            });
+
+            firstHalfFlip.start();
+            card.setOnLongClickListener(view -> {
+                navigateToCardDetail(drawnCard.getId());
+                return true;
+            });
+        } else {
+            Log.e(TAG, "Resource not found for card: " + cardName);
+        }
+    }
+
+    private void navigateToCardDetail(Long cardId) {
+        Intent intent = new Intent(CustomSpreadActivity.this, CardDetailActivity.class);
+        intent.putExtra("card_id", cardId);
+        startActivity(intent);
+    }
+
 }
