@@ -83,5 +83,10 @@
     <string name="start_quiz">Start Quiz</string>
     <string name="sumbit">Submit Answer</string>
     <string name="tap_hold">🔎 Tap and Hold to Peek Card Details</string>
+    <string name="custom_spread">Custom Spread</string>
+    <string name="help_button">Help Button</string>
+    <string name="lock_layout">Lock Layout</string>
+    <string name="reset_spread">Reset Layout</string>
+    <string name="instructions">Instructions</string>
 
 </resources>

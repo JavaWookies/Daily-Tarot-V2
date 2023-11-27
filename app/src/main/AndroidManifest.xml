@@ -15,10 +15,13 @@
         android:theme="@style/Theme.DailyTarot"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CustomSpreadActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.QuizActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.DailyCardActivity"
             android:exported="false"
