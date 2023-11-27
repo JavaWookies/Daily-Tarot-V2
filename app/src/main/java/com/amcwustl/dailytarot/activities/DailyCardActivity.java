@@ -7,8 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.preference.PreferenceManager;
@@ -27,7 +25,6 @@ public class DailyCardActivity extends BaseActivity {
     private static final String LAST_CARD_DAY_KEY = "lastCardDay";
     private static final String HAS_SEEN_CARD_KEY = "hasSeenCard";
     private CardDbHelper dbHelper;
-    private Button moreInfoButton;
     private ImageView card;
     private AdView mAdView;
     private long todaysCardId;
@@ -43,7 +40,6 @@ public class DailyCardActivity extends BaseActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         card = findViewById(R.id.DailyCardActivityCardImageView);
-        moreInfoButton = findViewById(R.id.DailyCardActivityViewCardDetailsButton);
 
         dbHelper = new CardDbHelper(this);
 
@@ -53,8 +49,6 @@ public class DailyCardActivity extends BaseActivity {
 
         checkAndGenerateCardForToday();
         setupCardForDisplay();
-        setupMoreInfoButton();
-
     }
 
     @Override
@@ -72,7 +66,6 @@ public class DailyCardActivity extends BaseActivity {
 
         if (!hasSeenCard) {
             showCardBack();
-            moreInfoButton.setVisibility(View.GONE);
             card.setOnClickListener(v -> {
                 flipCard();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -98,7 +91,7 @@ public class DailyCardActivity extends BaseActivity {
     }
 
     private void flipCard() {
-        // Change the pivot point for the flip animation
+
         card.setCameraDistance(20 * getResources().getDisplayMetrics().density * card.getWidth());
 
         ObjectAnimator firstHalfFlip = ObjectAnimator.ofFloat(card, "rotationY", 0f, 90f);
@@ -117,7 +110,6 @@ public class DailyCardActivity extends BaseActivity {
             }
         });
 
-        // Start the first half of the flip
         firstHalfFlip.start();
     }
 
@@ -131,14 +123,13 @@ public class DailyCardActivity extends BaseActivity {
             card.setImageResource(resourceId);
         }
 
-        card.setOnClickListener(v -> navigateToCardDetail(todaysCardId));
-        moreInfoButton.setVisibility(View.VISIBLE);
+        card.setOnLongClickListener(view -> {
+            navigateToCardDetail(todaysCardId);
+            return true;
+        });
 
     }
 
-    private void setupMoreInfoButton(){
-        moreInfoButton.setOnClickListener(v -> navigateToCardDetail(todaysCardId));
-    }
 
     private long generateRandomCardId(){
         Random random = new Random();

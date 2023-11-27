@@ -21,6 +21,7 @@
             android:layout_marginTop="48dp"
             android:text="@string/select_card_style"
             android:textColor="#FFD700"
+            android:fontFamily="@font/lora_regular"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,6 +56,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/gold"
             android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosans_display"
             app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityGoldCardImage"
             app:layout_constraintStart_toStartOf="@id/UserSettingsActivityGoldCardImage"
             app:layout_constraintTop_toBottomOf="@id/UserSettingsActivityGoldCardImage" />
@@ -77,6 +79,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/light"
             android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosans_display"
             app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityLightCardImage"
             app:layout_constraintStart_toStartOf="@id/UserSettingsActivityLightCardImage"
             app:layout_constraintTop_toBottomOf="@id/UserSettingsActivityLightCardImage" />
