@@ -19,8 +19,19 @@
         android:id="@+id/nav_card_of_the_day"
         android:icon="@drawable/ic_today"
         android:title="@string/card_of_the_day" />
+
+    <item
+        android:id="@+id/nav_custom_spread"
+        android:icon="@drawable/baseline_dashboard_customize_24"
+        android:title="@string/custom_spread" />
+
     <item
         android:id="@+id/nav_library"
         android:icon="@drawable/ic_library"
         android:title="@string/view_all_cards" />
+
+    <item
+        android:id="@+id/nav_quiz"
+        android:icon="@drawable/baseline_quiz_black_24"
+        android:title="@string/quiz" />
 </menu>

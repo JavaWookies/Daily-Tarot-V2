@@ -81,9 +81,16 @@ public class BaseActivity extends AppCompatActivity {
                 Intent cardOfTheDayIntent = new Intent(this, DailyCardActivity.class);
                 startActivity(cardOfTheDayIntent);
                 return true;
+            } else if (itemId == R.id.nav_quiz){
+                Intent quizIntent = new Intent(this, QuizActivity.class);
+                startActivity(quizIntent);
+                return true;
+            } else if (itemId == R.id.nav_custom_spread){
+                Intent customSpreadIntent = new Intent(this, CustomSpreadActivity.class);
+                startActivity(customSpreadIntent);
+                return true;
             }
-//      drawerLayout.closeDrawer();
-            return true;
+            return false;
         });
     }
 }

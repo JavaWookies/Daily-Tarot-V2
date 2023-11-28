@@ -1,5 +1,8 @@
 package com.amcwustl.dailytarot.activities;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +22,7 @@ import androidx.preference.PreferenceManager;
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.amcwustl.dailytarot.utilities.CardStateUtil;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -81,6 +85,13 @@ public class ReadingActivity extends BaseActivity {
     setupRewardAd();
     setupRewardAdButton();
     checkReadingForToday();
+
+    List<Card> restoredCards = CardStateUtil.restoreReadingState(preferences, dbHelper, "ReadingActivity");
+    if (!restoredCards.isEmpty()) {
+      setupCardImages(restoredCards);
+      currentInterpretation = generateInterpretation(restoredCards);
+      btnGetInterpretation.setVisibility(View.VISIBLE);
+    }
 
     mAdView = findViewById(R.id.adView);
     AdRequest adRequest = new AdRequest.Builder().build();
@@ -189,23 +200,33 @@ public class ReadingActivity extends BaseActivity {
     btnGetInterpretation.setVisibility(View.VISIBLE);
 
 
-    StringBuilder interpretation = new StringBuilder();
-    for (int i = 0; i < 3; i++){
-      if(i == 0){
-        interpretation.append(drawnCards.get(0).getIntPast()).append(" ");
-      } else if (i == 1) {
-        interpretation.append(drawnCards.get(1).getIntPresent()).append(" ");
-      } else {
-        interpretation.append(drawnCards.get(2).getIntFuture());
-      }
-    }
+    CardStateUtil.saveReadingState(preferences, drawnCards, "ReadingActivity");
 
-    currentInterpretation = interpretation.toString();
+    currentInterpretation = generateInterpretation(drawnCards);
     userCoinCount -= 10;
     setupRewardAd();
     markReadingForToday();
     runOnUiThread(this::updateUIBasedOnCoinCount);
   }
+
+  private String generateInterpretation(List<Card> drawnCards) {
+    StringBuilder interpretation = new StringBuilder();
+    for (int i = 0; i < drawnCards.size(); i++) {
+      switch (i) {
+        case 0:
+          interpretation.append(drawnCards.get(i).getIntPast()).append(" ");
+          break;
+        case 1:
+          interpretation.append(drawnCards.get(i).getIntPresent()).append(" ");
+          break;
+        case 2:
+          interpretation.append(drawnCards.get(i).getIntFuture());
+          break;
+      }
+    }
+    return interpretation.toString();
+  }
+
 
   private void markReadingForToday() {
     SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
@@ -232,16 +253,35 @@ public class ReadingActivity extends BaseActivity {
 
       if (resourceId != 0) {
         ImageView imageView = imageViewList.get(i);
-        imageView.setImageResource(resourceId);
-        if (card.getOrientation() == 1) {
-          imageView.setRotation(180f);
-        }
+        float cameraDistance = 20 * getResources().getDisplayMetrics().density * imageView.getWidth();
+        imageView.setCameraDistance(cameraDistance);
 
-        final int cardIndex = i;
-        imageView.setOnClickListener(v -> navigateToCardDetail(drawnCards.get(cardIndex).getId()));
+        ObjectAnimator firstHalfFlip = ObjectAnimator.ofFloat(imageView, "rotationY", 0f, 90f);
+        firstHalfFlip.setDuration(250);
+
+        ObjectAnimator secondHalfFlip = ObjectAnimator.ofFloat(imageView, "rotationY", -90f, 0f);
+        secondHalfFlip.setDuration(250);
+
+        firstHalfFlip.addListener(new AnimatorListenerAdapter() {
+          @Override
+          public void onAnimationEnd(Animator animation) {
+            imageView.setImageResource(resourceId);
+            if (card.getOrientation() == 1) {
+              imageView.setRotation(180f);
+            }
+            secondHalfFlip.start();
+          }
+        });
+
+        firstHalfFlip.start();
+        imageView.setOnLongClickListener(view -> {
+          navigateToCardDetail(card.getId());
+          return true;
+        });
       } else {
         Log.e(TAG, "Resource not found for card: " + cardName);
       }
+
     }
   }
 

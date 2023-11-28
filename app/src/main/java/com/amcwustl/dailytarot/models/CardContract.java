@@ -16,6 +16,7 @@ public class CardContract {
         public static final String COLUMN_INT_PAST = "int_past";
         public static final String COLUMN_INT_PRESENT = "int_present";
         public static final String COLUMN_INT_FUTURE = "int_future";
+        public static final String COLUMN_ASSOCIATED_WORDS = "associated_words";
     }
 
     public static final String SQL_CREATE_ENTRIES =
@@ -26,10 +27,11 @@ public class CardContract {
                     CardEntry.COLUMN_NAME + " TEXT," +
                     CardEntry.COLUMN_MEANING_UP + " TEXT," +
                     CardEntry.COLUMN_MEANING_REV + " TEXT," +
-                    CardEntry.COLUMN_DESC + " TEXT," + // <-- Added missing comma here
+                    CardEntry.COLUMN_DESC + " TEXT," +
                     CardEntry.COLUMN_INT_PAST + " TEXT," +
                     CardEntry.COLUMN_INT_PRESENT + " TEXT," +
-                    CardEntry.COLUMN_INT_FUTURE + " TEXT" +
-                    ")";
+                    CardEntry.COLUMN_INT_FUTURE + " TEXT," +
+                    CardEntry.COLUMN_ASSOCIATED_WORDS + " TEXT)";
+
 
 }

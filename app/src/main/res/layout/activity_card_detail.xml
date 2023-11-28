@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/cinzel_bold"
             android:textColor="#FFD700"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,12 +43,12 @@
             android:id="@+id/CardDetailActivityScrollView"
             android:layout_width="365dp"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/adView"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CardDetailActivityCardDescTitleTextView">
+            app:layout_constraintTop_toBottomOf="@+id/CardDetailActivitySingleCardImageView">
 
             <LinearLayout
                 android:id="@+id/CardDetailActivityDescriptionLinearLayout"
@@ -62,9 +63,9 @@
                     android:id="@+id/CardDetailActivityCardDescTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/notosans_display"
                     android:lineSpacingExtra="10sp"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="85dp"
                     tools:layout_editor_absoluteY="579dp"
@@ -72,18 +73,6 @@
 
             </LinearLayout>
         </ScrollView>
-
-        <TextView
-            android:id="@+id/CardDetailActivityCardDescTitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/description"
-            android:textColor="#FFD700"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CardDetailActivitySingleCardImageView" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
