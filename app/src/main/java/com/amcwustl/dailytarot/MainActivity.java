@@ -135,7 +135,7 @@ public class MainActivity extends BaseActivity {
   private boolean shouldShowRatingDialog() {
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     long firstLaunchDate = prefs.getLong("first_launch_date", 0);
-    long fourteenDaysInMillis = 1 * 24 * 60 * 60 * 1000L;
+    long fourteenDaysInMillis = 14 * 24 * 60 * 60 * 1000L;
     return System.currentTimeMillis() - firstLaunchDate >= fourteenDaysInMillis;
   }
 

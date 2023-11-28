@@ -34,8 +34,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
@@ -373,10 +371,7 @@ public class CustomSpreadActivity extends BaseActivity {
     }
 
     private void setupInterstitial(){
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {}
-        });
+        MobileAds.initialize(this, initializationStatus -> {});
         loadInterstitialAd();
     }
 
@@ -398,7 +393,7 @@ public class CustomSpreadActivity extends BaseActivity {
                             }
 
                             @Override
-                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                                 // Called when ad fails to show.
                                 Log.e(TAG, "Ad failed to show fullscreen content.");
                                 mInterstitialAd = null;
