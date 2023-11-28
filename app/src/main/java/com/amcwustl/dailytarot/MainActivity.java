@@ -140,18 +140,28 @@ public class MainActivity extends BaseActivity {
   }
 
   private void showRatingDialogIfNeeded() {
-//    if (shouldShowRatingDialog()) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    boolean hasAskedForRating = prefs.getBoolean("has_asked_for_rating", false);
+
+    if (shouldShowRatingDialog() && !hasAskedForRating) {
       new AlertDialog.Builder(this)
               .setTitle("Enjoying the app?")
               .setMessage("Please help us out by providing a rating and review!")
-
               .setPositiveButton("Rate us", (dialog, which) -> {
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("has_asked_for_rating", true);
+                editor.apply();
                 redirectToStoreForRating();
               })
-              .setNegativeButton("Not now", (dialog, which) -> dialog.dismiss())
+              .setNegativeButton("Not now", (dialog, which) -> {
+                dialog.dismiss();
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("has_asked_for_rating", true);
+                editor.apply();
+              })
               .create()
               .show();
-//    }
+    }
   }
 
   private void redirectToStoreForRating() {
