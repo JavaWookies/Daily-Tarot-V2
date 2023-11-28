@@ -89,5 +89,12 @@
     <string name="reset_spread">Reset Layout</string>
     <string name="instructions">Instructions</string>
     <string name="custom_spread_desc">Create your own custom spread layout with up to 12 cards.</string>
+    <string name="custom_tap_hold">Tap and Hold Face Up Card to Peek Details</string>
+    <string name="custom_instructions_text">
+        1. Drag cards from the deck image into the gold bordered area (up to 9 cards).\n
+        2. Once the cards are laid out, tap the "Lock Layout" button. \n
+        3. Tap each card to flip it face up. Touch and hold a face up card to view details about the card. \n
+        4. Hit the reset button to create a new custom layout.
+    </string>
 
 </resources>
