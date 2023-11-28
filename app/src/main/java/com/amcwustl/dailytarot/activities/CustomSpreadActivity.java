@@ -22,27 +22,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
-import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
 public class CustomSpreadActivity extends BaseActivity {
     private static final String TAG = "Custom Spread Activity";
-    private static final String CUSTOM_COINS = "custom_coins";
-    private static final String LAST_COIN_RESET_DATE = "last_coin_reset_date";
     private CardDbHelper dbHelper;
     private ImageView deckImageView;
     private FrameLayout droppableArea;
@@ -55,9 +59,9 @@ public class CustomSpreadActivity extends BaseActivity {
     private LinearLayout lockLayout;
     private LinearLayout instructionsLayout;
     private LinearLayout resetLayout;
-
-    private int userCustomCoinCount = 0;
-    private RewardedAd rewardedAd;
+    private InterstitialAd mInterstitialAd;
+    private static final String RESET_COUNT_KEY = "reset_count";
+    private static final int RESET_COUNT_THRESHOLD = 6;
 
 
 
@@ -77,7 +81,6 @@ public class CustomSpreadActivity extends BaseActivity {
         droppableArea = findViewById(R.id.droppableArea);
 
 
-
         dbHelper = new CardDbHelper(this);
 
         drawnCards = new HashMap<>();
@@ -87,11 +90,11 @@ public class CustomSpreadActivity extends BaseActivity {
         setupDeckTouchListener();
         setupDroppableArea();
         setupInstructionsLayoutButton();
-        checkCustomReadingForToday();
-        loadCustomCoins();
+        setupInterstitial();
+
     }
 
-    private void setupCardType(){
+    private void setupCardType() {
         String resourceName = "cover" + cardType;
         @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
         if (resourceId != 0) {
@@ -130,9 +133,9 @@ public class CustomSpreadActivity extends BaseActivity {
         int heightInPx = convertDpToPx(171);
 
         imageView.setLayoutParams(new FrameLayout.LayoutParams(widthInPx, heightInPx));
-        if(Objects.equals(cardType, "")){
+        if (Objects.equals(cardType, "")) {
             imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.cover, null));
-        }else {
+        } else {
             imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.cover_light, null));
         }
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -196,26 +199,26 @@ public class CustomSpreadActivity extends BaseActivity {
         });
     }
 
-    private void handleCardDropLogic(View draggedView){
+    private void handleCardDropLogic(View draggedView) {
         Object tag = draggedView.getTag();
-        if (tag != null && tag.toString().startsWith("newCard_")){
+        if (tag != null && tag.toString().startsWith("newCard_")) {
             long cardId = drawRandomCard();
             drawnCards.put(drawnCardCount, cardId);
             drawnCardCount++;
-            if (drawnCardCount == 1){
+            if (drawnCardCount == 1) {
                 setupLockLayoutButton();
                 setupResetButton();
             }
             droppedImages.add((ImageView) draggedView);
             draggedView.setTag(null);
 
-            if (drawnCardCount == 9){
+            if (drawnCardCount == 9) {
                 deckImageView.setOnLongClickListener(null);
             }
         }
     }
 
-    private long drawRandomCard(){
+    private long drawRandomCard() {
         Random random = new Random();
         long maxCardId = 78;
         long randomValue;
@@ -227,7 +230,7 @@ public class CustomSpreadActivity extends BaseActivity {
 
     }
 
-    private void setupLockLayoutButton(){
+    private void setupLockLayoutButton() {
         lockLayout.setOnClickListener(view -> {
             ImageView lockIcon = findViewById(R.id.lockIcon);
             TextView lockText = findViewById(R.id.lockText);
@@ -245,11 +248,11 @@ public class CustomSpreadActivity extends BaseActivity {
 
     @SuppressWarnings("ConstantConditions")
     @SuppressLint("ClickableViewAccessibility")
-    private void lockLayout(){
+    private void lockLayout() {
         deckImageView.setOnLongClickListener(null);
 
 
-        for (View cardView : droppedImages){
+        for (View cardView : droppedImages) {
 
             ImageView card = (ImageView) cardView;
 
@@ -309,7 +312,7 @@ public class CustomSpreadActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void setupInstructionsLayoutButton(){
+    private void setupInstructionsLayoutButton() {
         instructionsLayout.setOnClickListener(view -> showInstructionsModal());
     }
 
@@ -331,18 +334,25 @@ public class CustomSpreadActivity extends BaseActivity {
         resetLayout.setOnClickListener(view -> resetLayout());
     }
 
+
     private void resetLayout() {
-        if (userCustomCoinCount >= 10) {
-            userCustomCoinCount -= 10;
-            saveCustomCoins();
-            performReset();
-        } else {
-            // Show rewarded ad here to give the user 20 more coins
-            showRewardedAd();
+        int resetCount = preferences.getInt(RESET_COUNT_KEY, 0);
+
+        resetCount++;
+
+        if (resetCount >= RESET_COUNT_THRESHOLD) {
+            showInterstitialAd();
+            resetCount = 0;
         }
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(RESET_COUNT_KEY, resetCount);
+        editor.apply();
+
+        performReset();
     }
 
-    private void performReset() {
+    private void performReset(){
         drawnCards.clear();
         drawnCardCount = 0;
         for (View cardView : droppedImages) {
@@ -362,27 +372,71 @@ public class CustomSpreadActivity extends BaseActivity {
         setupDeckTouchListener();
     }
 
-    private void checkCustomReadingForToday() {
-        String lastResetDate = preferences.getString(LAST_COIN_RESET_DATE, "");
-        String todayDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    private void setupInterstitial(){
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        loadInterstitialAd();
+    }
 
-        if (!todayDate.equals(lastResetDate)) {
-            userCustomCoinCount = 20;
-            saveCustomCoins();
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(LAST_COIN_RESET_DATE, todayDate);
-            editor.apply();
+    private void loadInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this,"ca-app-pub-9366728814901706/5839980039", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        mInterstitialAd = interstitialAd;
+                        Log.i(TAG, "onAdLoaded");
+                        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                // Called when ad is dismissed.
+                                Log.d(TAG, "Ad dismissed fullscreen content.");
+                                mInterstitialAd = null;
+                                loadInterstitialAd(); // Load a new ad
+                            }
+
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                // Called when ad fails to show.
+                                Log.e(TAG, "Ad failed to show fullscreen content.");
+                                mInterstitialAd = null;
+                            }
+
+                            @Override
+                            public void onAdClicked() {
+                                // Called when a click is recorded for an ad.
+                                Log.d(TAG, "Ad was clicked.");
+                            }
+
+                            @Override
+                            public void onAdImpression() {
+                                // Called when an impression is recorded for an ad.
+                                Log.d(TAG, "Ad recorded an impression.");
+                            }
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                                // Called when ad is shown.
+                                Log.d(TAG, "Ad showed fullscreen content.");
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        Log.d(TAG, loadAdError.toString());
+                        mInterstitialAd = null;
+                    }
+                });
+    }
+
+    private void showInterstitialAd(){
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(CustomSpreadActivity.this);
+        } else {
+            Log.d("TAG", "The interstitial ad wasn't ready yet.");
         }
-    }
-
-    private void loadCustomCoins() {
-        userCustomCoinCount = preferences.getInt(CUSTOM_COINS, 20);
-    }
-
-    private void saveCustomCoins() {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(CUSTOM_COINS, userCustomCoinCount);
-        editor.apply();
     }
 
 }

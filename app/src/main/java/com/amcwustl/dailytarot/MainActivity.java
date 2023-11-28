@@ -1,8 +1,10 @@
 package com.amcwustl.dailytarot;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -64,6 +66,8 @@ public class MainActivity extends BaseActivity {
 
     setupCardNavigation();
     setupCardTypes();
+    storeFirstLaunchDate();
+    showRatingDialogIfNeeded();
 
     CardDbHelper dbHelper = new CardDbHelper(this);
 
@@ -117,6 +121,48 @@ public class MainActivity extends BaseActivity {
       Log.e(TAG, "Resource not found for card type: " + cardType);
     }
 
+  }
+
+  private void storeFirstLaunchDate() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    if (!prefs.contains("first_launch_date")) {
+      SharedPreferences.Editor editor = prefs.edit();
+      editor.putLong("first_launch_date", System.currentTimeMillis());
+      editor.apply();
+    }
+  }
+
+  private boolean shouldShowRatingDialog() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    long firstLaunchDate = prefs.getLong("first_launch_date", 0);
+    long fourteenDaysInMillis = 1 * 24 * 60 * 60 * 1000L;
+    return System.currentTimeMillis() - firstLaunchDate >= fourteenDaysInMillis;
+  }
+
+  private void showRatingDialogIfNeeded() {
+//    if (shouldShowRatingDialog()) {
+      new AlertDialog.Builder(this)
+              .setTitle("Enjoying the app?")
+              .setMessage("Please help us out by providing a rating and review!")
+
+              .setPositiveButton("Rate us", (dialog, which) -> {
+                redirectToStoreForRating();
+              })
+              .setNegativeButton("Not now", (dialog, which) -> dialog.dismiss())
+              .create()
+              .show();
+//    }
+  }
+
+  private void redirectToStoreForRating() {
+    final String appPackageName = getPackageName();
+    try {
+      startActivity(new Intent(Intent.ACTION_VIEW,
+              Uri.parse("market://details?id=" + appPackageName)));
+    } catch (android.content.ActivityNotFoundException anfe) {
+      startActivity(new Intent(Intent.ACTION_VIEW,
+              Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+    }
   }
 
 }
