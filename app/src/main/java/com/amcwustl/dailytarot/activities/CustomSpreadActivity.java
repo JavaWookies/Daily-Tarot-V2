@@ -127,8 +127,8 @@ public class CustomSpreadActivity extends BaseActivity {
 
     private ImageView createNewCardImageView() {
         ImageView imageView = new ImageView(this);
-        int widthInPx = convertDpToPx(100);
-        int heightInPx = convertDpToPx(171);
+        int widthInPx = convertDpToPx(90);
+        int heightInPx = convertDpToPx(155);
 
         imageView.setLayoutParams(new FrameLayout.LayoutParams(widthInPx, heightInPx));
         if (Objects.equals(cardType, "")) {

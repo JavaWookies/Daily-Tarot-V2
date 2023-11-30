@@ -34,21 +34,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.15" />
+            app:layout_constraintGuide_percent="0.20" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.40" />
+            app:layout_constraintGuide_percent="0.45" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/bottom_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
+            app:layout_constraintGuide_percent="0.70" />
 
         <ImageView
             android:id="@+id/cardZero"
@@ -106,7 +106,7 @@
             android:id="@+id/tv_quiz_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="48dp"
             android:fontFamily="@font/lora_regular"
             android:text="@string/quiz_question"
             android:textColor="#FFD700"
@@ -165,29 +165,29 @@
             android:id="@+id/QuizActivityCurrentStreak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/lora_regular"
             android:text="@string/current_streak"
-            android:textColor="#FFD700"
+            android:textColor="#FFFFF0"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ad_horizontal_guideline"
-            app:layout_constraintEnd_toStartOf="@+id/vertical_center_guideline"
+            app:layout_constraintBottom_toTopOf="@+id/QuizActivityLongestStreak"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/QuizActivityLongestStreak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:fontFamily="@font/lora_regular"
             android:text="@string/longest_streak"
-            android:textColor="#FFD700"
+            android:textColor="#FFFFF0"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/ad_horizontal_guideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/vertical_center_guideline" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/QuizActivityTapHold"
@@ -197,7 +197,7 @@
             android:fontFamily="@font/notosans_display"
             android:text="@string/tap_hold"
             android:textColor="#FFFFFF"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bottom_horizontal_guideline" />
