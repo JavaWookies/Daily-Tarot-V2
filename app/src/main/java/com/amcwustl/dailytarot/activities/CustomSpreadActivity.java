@@ -59,7 +59,7 @@ public class CustomSpreadActivity extends BaseActivity {
     private LinearLayout resetLayout;
     private InterstitialAd mInterstitialAd;
     private static final String RESET_COUNT_KEY = "reset_count";
-    private static final int RESET_COUNT_THRESHOLD = 6;
+    private static final int RESET_COUNT_THRESHOLD = 3;
 
 
 
@@ -127,8 +127,8 @@ public class CustomSpreadActivity extends BaseActivity {
 
     private ImageView createNewCardImageView() {
         ImageView imageView = new ImageView(this);
-        int widthInPx = convertDpToPx(100);
-        int heightInPx = convertDpToPx(171);
+        int widthInPx = convertDpToPx(90);
+        int heightInPx = convertDpToPx(155);
 
         imageView.setLayoutParams(new FrameLayout.LayoutParams(widthInPx, heightInPx));
         if (Objects.equals(cardType, "")) {

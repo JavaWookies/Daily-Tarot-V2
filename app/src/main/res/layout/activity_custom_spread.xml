@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
+            app:layout_constraintGuide_percent="0.70" />
 
 
         <LinearLayout
@@ -50,8 +50,8 @@
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/instructions"
                 android:src="@drawable/baseline_help_24" />
 
@@ -81,8 +81,8 @@
 
             <ImageView
                 android:id="@+id/lockIcon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/lock_layout"
                 android:src="@drawable/baseline_lock_open_24" />
 
@@ -111,8 +111,8 @@
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/reset_spread"
                 android:src="@drawable/baseline_refresh_24" />
 
@@ -128,8 +128,8 @@
 
         <ImageView
             android:id="@+id/deckImageView"
-            android:layout_width="100dp"
-            android:layout_height="171dp"
+            android:layout_width="90dp"
+            android:layout_height="155dp"
             android:contentDescription="@string/deck"
             android:src="@drawable/cover"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -146,7 +146,7 @@
             android:fontFamily="@font/notosans_display"
             android:text="@string/custom_tap_hold"
             android:textColor="#FFFFFF"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/droppableArea" />
