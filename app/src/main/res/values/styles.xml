@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:minWidth">180dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:elevation">16dp</item>
+        <item name="android:fontFamily">@font/notosans_display</item>
+    </style>
+
+</resources>

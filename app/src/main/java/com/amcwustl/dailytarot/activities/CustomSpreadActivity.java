@@ -59,7 +59,7 @@ public class CustomSpreadActivity extends BaseActivity {
     private LinearLayout resetLayout;
     private InterstitialAd mInterstitialAd;
     private static final String RESET_COUNT_KEY = "reset_count";
-    private static final int RESET_COUNT_THRESHOLD = 6;
+    private static final int RESET_COUNT_THRESHOLD = 3;
 
 
 
