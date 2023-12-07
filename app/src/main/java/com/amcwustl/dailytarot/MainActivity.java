@@ -20,7 +20,7 @@ import com.amcwustl.dailytarot.activities.ReadingActivity;
 import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
-
+import com.amcwustl.dailytarot.utilities.NotificationHelper;
 
 
 @SuppressWarnings("resource")
@@ -62,8 +62,6 @@ public class MainActivity extends BaseActivity {
     cardFive = findViewById(R.id.imageView_card_5);
 
 
-
-
     setupCardNavigation();
     setupCardTypes();
     storeFirstLaunchDate();
@@ -75,6 +73,13 @@ public class MainActivity extends BaseActivity {
       dbHelper.populateDatabaseWithJsonData(this);
       Log.d("MainActivity", "Database populated with data.");
     }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    storeLastActivityDate();
+    scheduleNotificationsIfNeeded();
   }
 
   private void setupCardNavigation() {
@@ -175,6 +180,25 @@ public class MainActivity extends BaseActivity {
     }
   }
 
+  private void storeLastActivityDate() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    SharedPreferences.Editor editor = prefs.edit();
+    editor.putLong("last_activity_date", System.currentTimeMillis());
+    editor.apply();
+  }
+
+  private void scheduleNotificationsIfNeeded() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    long lastActivityDate = prefs.getLong("last_activity_date", 0);
+    long currentTime = System.currentTimeMillis();
+
+    if (currentTime - lastActivityDate >= 3 * 24 * 60 * 60 * 1000L) { // 3 days
+      NotificationHelper.scheduleNotification(this, 0, 1); // Immediate notification
+    } else if (currentTime - lastActivityDate >= 7 * 24 * 60 * 60 * 1000L) { // 7 days
+      NotificationHelper.scheduleNotification(this, 0, 2); // Immediate notification
+    }
+
+  }
 }
 
 

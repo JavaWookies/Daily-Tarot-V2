@@ -11,6 +11,9 @@
       "int_past": "You tapped into your potential and made use of your skills and resources in the past.",
       "int_present": "Now is a time to harness your skills and resources to manifest your desires.",
       "int_future": "Your potential and ability to manifest will come to the forefront, empowering you to shape your destiny.",
+      "int_past_rev": "Previously, you may have experienced a lack of direction or misuse of your talents, hindering your progress.",
+      "int_present_rev": "Presently, there may be challenges in focusing your abilities, calling for a reassessment of your goals and methods.",
+      "int_future_rev": "In the future, be cautious of potential overconfidence or misapplication of your skills, which could lead to unintended outcomes.",
       "associated_words": "Skill, Manifestation, Resourcefulness, Power"
     },
     {
@@ -23,6 +26,9 @@
       "int_past": "Intuition, secrets, or hidden knowledge influenced your past decisions or situations.",
       "int_present": "Trust your intuition and pay attention to the unspoken or hidden truths in your current situation.",
       "int_future": "Secrets, hidden truths, or a deeper connection to your intuition will soon come into play.",
+      "int_past_rev": "In the past, you might have experienced confusion or been misled by illusions, obscuring your true path.",
+      "int_present_rev": "Currently, there may be a disconnect from your inner wisdom, leading to uncertainty or misjudgments.",
+      "int_future_rev": "The future could hold a risk of being swayed by superficial appearances, urging you to seek deeper understanding and truth.",
       "associated_words": "Intuition, Mystery, Subconscious, Spirituality"
     },
     {
@@ -35,6 +41,9 @@
       "int_past": "A time of nurturing, abundance, and creative expression blossomed in your past.",
       "int_present": "You're experiencing growth, creativity, and a nurturing energy in your life.",
       "int_future": "An upcoming phase of abundance, creativity, or nurturing will enrich your life.",
+      "int_past_rev": "In the past, there may have been a stagnation or lack of nurturing, leading to missed opportunities for growth or creativity.",
+      "int_present_rev": "Currently, you might face challenges in manifesting growth or feeling a sense of nurturing, either from yourself or others.",
+      "int_future_rev": "The future warns of a potential for overindulgence or neglecting creative and nurturing aspects, which could impede personal growth and abundance.",
       "associated_words": "Fertility, Nature, Nurturing, Abundance"
     },
     {
@@ -47,6 +56,9 @@
       "int_past": "Your past was marked by structure, authority, or a dominant figure or influence.",
       "int_present": "Structure, order, and authority are dominant themes for you at this moment.",
       "int_future": "Expect structure, authority, or clear leadership to play a significant role in your future.",
+      "int_past_rev": "Past experiences may have involved a lack of control or authority, leading to disorder or instability in your life.",
+      "int_present_rev": "Currently, there might be challenges in exercising control or authority effectively, potentially causing disorder or lack of direction.",
+      "int_future_rev": "In the future, be cautious of potential issues with authority or control, which could result in instability or ineffective leadership.",
       "associated_words": "Authority, Structure, Control, Fatherhood"
     },
     {
@@ -59,6 +71,9 @@
       "int_past": "Traditions, teachings, or spiritual guidance played a significant role in your past.",
       "int_present": "Seeking spiritual or traditional guidance is pertinent to your current situation.",
       "int_future": "Traditional values, teachings, or spiritual insights will provide guidance soon.",
+      "int_past_rev": "Previously, there may have been a rejection of traditional values or teachings, leading to a sense of loss or confusion.",
+      "int_present_rev": "Currently, you might be questioning traditional beliefs or established norms, seeking a more personal spiritual path.",
+      "int_future_rev": "In the future, expect challenges to traditional values or beliefs, urging you to find your own moral or spiritual compass.",
       "associated_words": "Tradition, Conformity, Morality, Guidance"
     },
     {
@@ -71,6 +86,9 @@
       "int_past": "Past choices, relationships, or partnerships significantly impacted your journey.",
       "int_present": "You are facing important choices, partnerships, or relationship matters now.",
       "int_future": "Future choices, relationships, or meaningful connections will deeply impact your path.",
+      "int_past_rev": "Past relationships or decisions may have led to misunderstandings or misalignments with your true desires.",
+      "int_present_rev": "Currently, you might be experiencing indecision or conflicts in relationships, highlighting the need for clarity and honest communication.",
+      "int_future_rev": "In the future, be cautious of potential misaligned relationships or choices that might not align with your deepest values or desires.",
       "associated_words": "Choices, Relationships, Love, Union"
     },
     {
@@ -83,6 +101,9 @@
       "int_past": "You faced challenges with determination and control, achieving victory in the past.",
       "int_present": "Determination and focus are driving you forward to conquer current challenges.",
       "int_future": "You'll harness drive and determination to overcome upcoming challenges and move forward.",
+      "int_past_rev": "Past struggles may have been exacerbated by a lack of direction or control, leading to setbacks or delays.",
+      "int_present_rev": "Currently, there's a risk of misdirected efforts or loss of control, which may hinder your progress or lead to conflicts.",
+      "int_future_rev": "In the future, be cautious of potential challenges due to a lack of focus or determination, which might result in not achieving desired outcomes.",
       "associated_words": "Determination, Willpower, Victory, Journey"
     },
     {
@@ -95,6 +116,9 @@
       "int_past": "Your past was marked by courage, patience, and inner strength, helping you overcome obstacles.",
       "int_present": "You are harnessing inner resilience and courage in the face of present obstacles.",
       "int_future": "An opportunity to showcase your courage and resilience will arise, guiding you through potential challenges.",
+      "int_past_rev": "Previously, there may have been moments of doubt or fear, leading to a retreat or avoidance of necessary confrontations.",
+      "int_present_rev": "Currently, you might be facing an internal struggle, where self-doubt or lack of confidence is impeding your progress.",
+      "int_future_rev": "In the future, be aware of the potential for a lack of resolve or inner strength, which could lead to missed opportunities for personal growth or overcoming challenges.",
       "associated_words": "Courage, Confidence, Patience, Compassion"
     },
     {
@@ -107,6 +131,9 @@
       "int_past": "A period of introspection, solitude, or seeking deeper truths marked your past.",
       "int_present": "A time for introspection, reflection, and solitude is calling you in the present.",
       "int_future": "A period of introspection, seeking wisdom, or solitude is on the horizon.",
+      "int_past_rev": "Previously, excessive isolation or introspection might have led to missed connections or opportunities for growth.",
+      "int_present_rev": "Currently, you may be experiencing a feeling of disconnection or withdrawal, which could be hindering your engagement with the world around you.",
+      "int_future_rev": "In the future, be mindful of the potential for excessive solitude or detachment, which might lead to feelings of alienation or a lack of guidance.",
       "associated_words": "Soul-searching, Introspection, Solitude, Guidance"
     },
     {
@@ -119,6 +146,9 @@
       "int_past": "Your past was characterized by cycles, fate, or significant turning points.",
       "int_present": "Fate, cycles, or unexpected turns are playing a significant role in your life now.",
       "int_future": "Expect shifts, cycles, or pivotal turns that will shape the course of your journey.",
+      "int_past_rev": "In the past, there may have been resistance to change, leading to stagnation or missed opportunities brought by life's cycles.",
+      "int_present_rev": "Currently, you might be experiencing a period of upheaval or disruption, challenging your ability to adapt to changing circumstances.",
+      "int_future_rev": "The future may present a phase where the natural flow of life's changes is resisted, potentially causing a sense of imbalance or missed chances.",
       "associated_words": "Cycles, Change, Fate, Luck"
     },
     {
@@ -131,6 +161,9 @@
       "int_past": "A decision, balance, or seeking fairness played a crucial role in your past experiences.",
       "int_present": "Seek balance and fairness in your current decisions and actions.",
       "int_future": "A situation demanding fairness, balance, or legal matters may soon be at the forefront.",
+      "int_past_rev": "Past situations may have been marked by unfairness or imbalance, which could have led to unresolved issues or feelings of injustice.",
+      "int_present_rev": "Currently, there might be a struggle with impartiality or fairness, which may be causing imbalances in your life or decisions.",
+      "int_future_rev": "In the future, be aware of potential situations where justice or fairness might not be served, leading to a need for careful assessment and balance.",
       "associated_words": "Fairness, Truth, Law, Cause and Effect"
     },
     {
@@ -143,6 +176,9 @@
       "int_past": "Sacrifice, seeing things from a different perspective, or letting go defined your past.",
       "int_present": "You're encouraged to see things from a different perspective or might be experiencing a period of pause.",
       "int_future": "Prepare for a period of pause, reflection, or seeing things from a fresh perspective.",
+      "int_past_rev": "In the past, there might have been a resistance to letting go or seeing things from a new perspective, leading to stagnation.",
+      "int_present_rev": "Currently, you may be struggling with the need to surrender or change your viewpoint, which might be causing a sense of being stuck or inflexible.",
+      "int_future_rev": "The future may challenge you to rethink your perspective or to let go of outdated views, which could be crucial for your personal growth and understanding.",
       "associated_words": "Surrender, New Perspectives, Sacrifice"
     },
     {
@@ -155,6 +191,9 @@
       "int_past": "Your past experienced a transformative end or transition, leading to a new beginning.",
       "int_present": "You are undergoing significant transformation or the end of a phase, making way for a new beginning.",
       "int_future": "A transformative change or the end of a significant phase will pave the way for a new beginning.",
+      "int_past_rev": "Previously, there might have been a resistance to necessary endings or transformations, causing prolonged stagnation or unfinished business.",
+      "int_present_rev": "Currently, you may be experiencing a reluctance to embrace change, leading to a state of limbo or a refusal to let go of the past.",
+      "int_future_rev": "In the future, be mindful of potential challenges in accepting or dealing with significant changes, which might hinder new beginnings and personal growth.",
       "associated_words": "Transformation, Endings, Transition, Metamorphosis"
     },
     {
@@ -167,6 +206,9 @@
       "int_past": "A time of harmony, balance, and blending opposites influenced your past.",
       "int_present": "Harmony, balance, and moderation are essential themes in your life at this moment.",
       "int_future": "Balance, harmony, and a blending of opposites will guide your upcoming experiences.",
+      "int_past_rev": "In the past, imbalance or extremes might have led to disharmony or difficulty in merging different aspects of your life.",
+      "int_present_rev": "Currently, there may be a lack of balance or moderation, leading to conflict or a struggle to find middle ground in various aspects of your life.",
+      "int_future_rev": "In the future, be cautious of potential imbalances or the inability to integrate different areas of your life, which might lead to a lack of harmony and purpose.",
       "associated_words": "Balance, Moderation, Patience, Purpose"
     },
     {
@@ -179,6 +221,9 @@
       "int_past": "Past attachments, addictions, or limiting situations may have held you back or challenged you.",
       "int_present": "Beware of current attachments, temptations, or situations that may be limiting your growth.",
       "int_future": "Stay vigilant for future temptations, attachments, or situations that might limit or trap you.",
+      "int_past_rev": "In the past, you may have overcome limiting beliefs or freed yourself from restrictive situations, leading to a sense of liberation.",
+      "int_present_rev": "Currently, there's a possibility of breaking free from unhealthy attachments or overcoming limiting behaviors that are hindering your progress.",
+      "int_future_rev": "The future may bring opportunities to liberate yourself from situations or mindsets that have been restricting your growth and personal freedom.",
       "associated_words": "Bondage, Addiction, Materialism, Playfulness"
     },
     {
@@ -191,6 +236,9 @@
       "int_past": "Sudden change, upheaval, or a revelation marked a pivotal moment in your past.",
       "int_present": "Unexpected changes or revelations are occurring, challenging your foundations.",
       "int_future": "Brace for unexpected changes or revelations that might shake up your status quo.",
+      "int_past_rev": "In the past, you may have experienced the avoidance of necessary upheaval, leading to a buildup of unresolved issues or tension.",
+      "int_present_rev": "Currently, there might be a denial or resistance to significant change, which could be preventing progress or necessary revelations.",
+      "int_future_rev": "The future may present a challenge in facing and accepting disruptive changes or truths, which are essential for personal growth and transformation.",
       "associated_words": "Upheaval, Awakening, Chaos, Revelation"
     },
     {
@@ -203,6 +251,9 @@
       "int_past": "Hope, inspiration, and healing guided you during a past period.",
       "int_present": "Hope, inspiration, and healing are guiding your path in the present.",
       "int_future": "A period of hope, rejuvenation, and inspiration will light up your path.",
+      "int_past_rev": "Previously, there may have been a loss of hope or disillusionment, which could have led to feelings of abandonment or cynicism.",
+      "int_present_rev": "Currently, you might be experiencing a lack of faith or inspiration, potentially causing a sense of disconnection from your aspirations or goals.",
+      "int_future_rev": "In the future, be aware of the potential for a disconnection from hope or inspiration, urging you to reconnect with your inner sense of faith and positivity.",
       "associated_words": "Hope, Faith, Renewal, Inspiration"
     },
     {
@@ -215,6 +266,9 @@
       "int_past": "Uncertainty, illusions, or emotions clouded your past, requiring intuition to navigate.",
       "int_present": "Trust your intuition and be wary of illusions or misunderstandings in your current situation.",
       "int_future": "Uncertainties, emotional undercurrents, or intuitive insights will shape your future experiences.",
+      "int_past_rev": "In the past, there may have been confusion or misinterpretation, leading to a lack of clarity and difficulty discerning reality from illusion.",
+      "int_present_rev": "Currently, you might be facing fluctuating emotions or unclear perceptions, urging you to seek clarity and ground your thoughts in reality.",
+      "int_future_rev": "The future may present challenges in dealing with uncertainty or emotional instability, requiring a careful balance between intuition and reality.",
       "associated_words": "Illusion, Fear, Anxiety, Subconscious"
     },
     {
@@ -223,10 +277,13 @@
       "name": "The Sun",
       "meaning_up": "Material happiness, fortunate marriage, contentment.",
       "meaning_rev": "The same in a lesser sense.",
-      "desc": "The naked child mounted on a white horse and displaying a red standard has been mentioned already as the better symbolism connected with this card. It is the destiny of the Supernatural East and the great and holy light which goes before the endless procession of humanity, coming out from the walled garden of the sensitive life and passing on the journey home. The card signifies, therefore, the transit from the manifest light of this world, represented by the glorious sun of earth, to the light of the world to come, which goes before aspiration and is typified by the heart of a child.\nBut the last allusion is again the key to a different form or aspect of the symbolism. The sun is that of consciousness in the spirit - the direct as the antithesis of the reflected light. The characteristic type of humanity has become a little child therein--a child in the sense of simplicity and innocence in the sense of wisdom. In that simplicity, he bears the seal of Nature and of Art; in that innocence, he signifies the restored world. When the self-knowing spirit has dawned in the consciousness above the natural mind, that mind in its renewal leads forth the animal nature in a state of perfect conformity.",
+      "desc": "The child mounted on a white horse and displaying a red standard has been mentioned already as the better symbolism connected with this card. It is the destiny of the Supernatural East and the great and holy light which goes before the endless procession of humanity, coming out from the walled garden of the sensitive life and passing on the journey home. The card signifies, therefore, the transit from the manifest light of this world, represented by the glorious sun of earth, to the light of the world to come, which goes before aspiration and is typified by the heart of a child.\nBut the last allusion is again the key to a different form or aspect of the symbolism. The sun is that of consciousness in the spirit - the direct as the antithesis of the reflected light. The characteristic type of humanity has become a little child therein--a child in the sense of simplicity and innocence in the sense of wisdom. In that simplicity, he bears the seal of Nature and of Art; in that innocence, he signifies the restored world. When the self-knowing spirit has dawned in the consciousness above the natural mind, that mind in its renewal leads forth the animal nature in a state of perfect conformity.",
       "int_past": "A past filled with joy, success, and clarity brought you warmth and happiness.",
       "int_present": "Joy, clarity, and positivity illuminate your current experiences.",
       "int_future": "Brighter days, joy, and success lie ahead, illuminating your path with positivity.",
+      "int_past_rev": "Previously, there might have been moments of diminished joy or success, leading to a lack of the full warmth and happiness usually associated with this card.",
+      "int_present_rev": "Currently, you may be experiencing a slight decrease in the usual clarity and positivity, suggesting a need to rediscover your sources of joy and success.",
+      "int_future_rev": "In the future, be aware of potential challenges that might slightly cloud your usual brightness and positivity, requiring a reconnection to your sources of happiness.",
       "associated_words": "Joy, Success, Celebration, Positivity"
     },
     {
@@ -239,6 +296,9 @@
       "int_past": "You faced a reckoning or called to review and assess situations in your past.",
       "int_present": "You're called to make important decisions or assessments about your life now.",
       "int_future": "A time of reckoning, renewal, or significant decisions will soon play a pivotal role.",
+      "int_past_rev": "In the past, there may have been a delay or avoidance in facing important decisions or judgments, leading to unresolved issues.",
+      "int_present_rev": "Currently, you might be experiencing indecision or hesitation in making critical assessments, which could be hindering progress or clarity.",
+      "int_future_rev": "The future may bring challenges in decision-making or assessing situations, which might require a deeper introspection or a more resolute approach.",
       "associated_words": "Reckoning, Awakening, Renewal, Purpose"
     },
     {
@@ -251,6 +311,9 @@
       "int_past": "A period of innocence and spontaneity marked your past, leading to a new beginning or unexpected journey.",
       "int_present": "You're currently on the brink of a new adventure, embracing the unknown with a sense of wonder.",
       "int_future": "A new journey or unexpected adventure awaits you, approach it with open-hearted curiosity.",
+      "int_past_rev": "In the past, there might have been missed opportunities due to carelessness or an unwillingness to venture into new experiences.",
+      "int_present_rev": "Currently, you may be experiencing hesitation or apathy, potentially causing a delay in embarking on new journeys or seizing fresh opportunities.",
+      "int_future_rev": "The future may present situations where your reluctance to embrace new beginnings or a sense of recklessness could hinder personal growth and exploration.",
       "associated_words": "Beginnings, Innocence, Spontaneity, Adventure"
     },
     {
@@ -263,6 +326,9 @@
       "int_past": "A period of completion, achievement, or a significant milestone marked your past experiences.",
       "int_present": "You are experiencing a sense of completion, wholeness, or achievement in your current phase.",
       "int_future": "Anticipate a time of fulfillment, completion, or achievement that brings your journey full circle.",
+      "int_past_rev": "In the past, there may have been a sense of unfulfilled potential or incomplete journeys, leading to a feeling of incompletion.",
+      "int_present_rev": "Currently, you might be experiencing delays in reaching a sense of fulfillment or completion, indicating a need to reassess and realign your goals.",
+      "int_future_rev": "The future may present challenges in achieving a sense of closure or completion, suggesting the importance of perseverance and reevaluation of your path.",
       "associated_words": "Completion, Wholeness, Accomplishment, Travel"
     },
     {
@@ -276,6 +342,9 @@
       "int_past": "A youthful energy of exploration, enthusiasm, or a new passionate endeavor influenced your past.",
       "int_present": "An energy of curiosity, exploration, or a budding passion is present in your life.",
       "int_future": "Anticipate a message or phase filled with curiosity, exploration, or new passionate endeavors.",
+      "int_past_rev": "In the past, there may have been a lack of enthusiasm or direction, possibly due to indecision or an unfocused approach to new endeavors.",
+      "int_present_rev": "Currently, you might be experiencing indecisiveness or a lack of motivation, which could be hindering your exploration or pursuit of new interests.",
+      "int_future_rev": "The future may present challenges in maintaining enthusiasm or focus, potentially leading to missed opportunities or unfulfilled passions.",
       "associated_words": "Exploration, Excitement, Freedom, Adventure"
     },
     {
@@ -289,6 +358,9 @@
       "int_past": "Previously, you pursued your passions or took risks, driven by adventure or impulsiveness.",
       "int_present": "You're being driven by enthusiasm, impulsiveness, or a sense of adventure right now.",
       "int_future": "A rush of adventurous, impulsive, or risk-taking energy will propel you forward.",
+      "int_past_rev": "In the past, you may have experienced impulsive actions leading to disruptions or instability, reflecting a lack of foresight or hasty decisions.",
+      "int_present_rev": "Currently, there might be a sense of recklessness or impatience, causing potential discord or hasty, ill-considered actions.",
+      "int_future_rev": "The future may bring challenges due to impulsive or rash decisions, leading to potential conflicts or a need to slow down and plan more carefully.",
       "associated_words": "Energy, Passion, Impulsive actions, Adventure-seeking"
     },
     {
@@ -302,6 +374,9 @@
       "int_past": "You embodied confidence, charisma, and creativity, influencing others with your warm presence.",
       "int_present": "You're embodying confidence, warmth, and creative energy, influencing situations with your vibrant spirit.",
       "int_future": "A future phase where confidence, charisma, and creativity shine, possibly influenced by a dynamic individual.",
+      "int_past_rev": "In the past, there may have been a lack of confidence or warmth, potentially leading to misunderstandings or a diminished ability to influence others positively.",
+      "int_present_rev": "Currently, you might be experiencing challenges in expressing your charisma or creativity, possibly leading to situations of jealousy or opposition.",
+      "int_future_rev": "The future may present obstacles in maintaining confidence and creativity, urging you to guard against potential deceit or misrepresentation.",
       "associated_words": "Confidence, Independence, Determination, Sociability"
     },
     {
@@ -315,6 +390,9 @@
       "int_past": "Leadership, vision, and a commanding energy marked a period where you took charge or influenced others.",
       "int_present": "You're taking charge, showcasing leadership qualities, and casting a vision for those around you.",
       "int_future": "Leadership, vision, and a commanding presence will play a significant role in your upcoming experiences.",
+      "int_past_rev": "In the past, there might have been instances of being overly strict or rigid, potentially leading to a harsh leadership style or a lack of flexibility.",
+      "int_present_rev": "Currently, you may be facing challenges in leadership, possibly due to a tendency towards severity or intolerance, which could be impacting your effectiveness.",
+      "int_future_rev": "The future may present situations where a strong but potentially austere leadership approach is involved, requiring a balance of firmness and tolerance.",
       "associated_words": "Boldness, Visionary, Leader, Charismatic"
     },
     {
@@ -328,6 +406,9 @@
       "int_past": "A spark of inspiration, new opportunity, or a creative beginning marked your past.",
       "int_present": "A new spark of inspiration, creativity, or opportunity is emerging in your life now.",
       "int_future": "A fresh burst of inspiration, creativity, or a new opportunity awaits you.",
+      "int_past_rev": "In the past, there might have been missed opportunities, a lack of inspiration, or the fading of a new venture, leading to a sense of unfulfilled potential.",
+      "int_present_rev": "Currently, you may be experiencing a delay or blockage in the flow of creativity or new beginnings, suggesting a need to reignite your passion or find a new source of inspiration.",
+      "int_future_rev": "The future may present challenges in harnessing new opportunities or creative ideas, potentially leading to a need for reevaluation or a change in direction.",
       "associated_words": "Inspiration, New beginnings, Creativity, Enthusiasm"
     },
     {
@@ -341,6 +422,9 @@
       "int_past": "You previously faced a decision between two paths or began planning for a future vision.",
       "int_present": "You're currently at a crossroads, contemplating future plans or deciding between paths.",
       "int_future": "You'll soon be considering future possibilities, making plans, or facing a decision between two options.",
+      "int_past_rev": "In the past, there may have been unexpected challenges or hesitations that caused you to second-guess your decisions or plans, leading to uncertainty or fear about the chosen path.",
+      "int_present_rev": "Currently, you might be experiencing a sense of apprehension or surprise in the face of making important choices, potentially causing emotional upheaval or indecision.",
+      "int_future_rev": "The future may present scenarios where you are confronted with unexpected developments or emotions as you plan or make decisions, urging you to approach with caution and careful consideration.",
       "associated_words": "Planning, Future goals, Progress, Decisions"
     },
     {
@@ -354,6 +438,9 @@
       "int_past": "In the past, you anticipated future growth, possibly expanding horizons or awaiting results from efforts.",
       "int_present": "You're in a phase of anticipation, looking forward to potential growth or awaiting outcomes.",
       "int_future": "Anticipate a period of expansion, awaiting outcomes, or looking to broaden your horizons.",
+      "int_past_rev": "In the past, there may have been delays or setbacks in your plans or ventures, causing a suspension of progress or a reassessment of your goals.",
+      "int_present_rev": "Currently, you might be experiencing a pause in your advancement or facing a halt in progress, prompting a need to realign your efforts or strategies.",
+      "int_future_rev": "The future may bring a period where you encounter an end to ongoing troubles, or a necessary pause in your ambitions, offering a chance for reflection and adjustment.",
       "associated_words": "Expansion, Foresight, Overseas opportunities, Achievement"
     },
     {
@@ -367,6 +454,9 @@
       "int_past": "You celebrated a milestone, achievement, or found stability and harmony in a particular phase.",
       "int_present": "Celebrations, achievements, or a sense of stability and harmony define your current situation.",
       "int_future": "A celebration, significant achievement, or a stable and harmonious period is on the horizon.",
+      "int_past_rev": "In the past, there may have been a subdued celebration or achievement, where the full sense of joy or fulfillment was somewhat muted or less prominent.",
+      "int_present_rev": "Currently, you might be experiencing a phase where celebrations or achievements feel less satisfying, or there's a slight lack of harmony in what should be a joyful time.",
+      "int_future_rev": "The future may bring occasions that are meant to be celebratory or fulfilling, but could lack the full sense of joy or harmony typically associated with such events.",
       "associated_words": "Celebration, Harmony, Marriage, Homecoming"
     },
     {
@@ -380,6 +470,9 @@
       "int_past": "You encountered competition, disagreements, or some form of conflict that tested your resolve.",
       "int_present": "Conflicts, competition, or differing viewpoints challenge you at this moment.",
       "int_future": "Be prepared for upcoming challenges, conflicts, or competition that will test your resolve.",
+      "int_past_rev": "In the past, there may have been unresolved disputes or conflicts, possibly due to miscommunication or misunderstandings, leading to a lack of harmony and progress.",
+      "int_present_rev": "Currently, you might be experiencing a reduction in open conflict, yet underlying tensions or disagreements may still persist, requiring careful navigation.",
+      "int_future_rev": "The future may bring a phase where overt conflict subsides, but underlying issues or latent disagreements could continue to cause friction or misunderstanding.",
       "associated_words": "Conflict, Disagreement, Competition, Tension"
     },
     {
@@ -393,6 +486,9 @@
       "int_past": "A past success, victory, or moment of recognition boosted your confidence and reputation.",
       "int_present": "You're experiencing success, recognition, or a boost in your confidence right now.",
       "int_future": "Success, recognition, and accolades are in your future, signaling a triumphant phase.",
+      "int_past_rev": "In the past, you may have encountered setbacks or delays in achieving recognition or success, leading to feelings of apprehension or uncertainty about your accomplishments.",
+      "int_present_rev": "Currently, there might be a lack of recognition or a feeling of uncertainty about your achievements, potentially causing doubts about your current path or successes.",
+      "int_future_rev": "The future may present challenges in gaining public recognition or success, possibly leading to a sense of delay or apprehension about your ability to achieve your goals.",
       "associated_words": "Victory, Success, Public recognition, Pride"
     },
     {
@@ -406,6 +502,9 @@
       "int_past": "You stood your ground against challenges or opposition, defending your beliefs or territory.",
       "int_present": "You're standing up for your beliefs, defending your position, or facing opposition.",
       "int_future": "You'll soon find yourself defending your beliefs, standing your ground, or facing some opposition.",
+      "int_past_rev": "In the past, you may have experienced feelings of being overwhelmed or indecisive in the face of opposition, leading to anxiety or a defensive stance.",
+      "int_present_rev": "Currently, you might be facing confusion or a lack of confidence in defending your position, possibly causing anxiety or uncertainty in how to proceed.",
+      "int_future_rev": "The future may bring situations where you feel challenged or under pressure, possibly leading to a need for clearer decision-making and stronger defense of your beliefs or position.",
       "associated_words": "Perseverance, Defensive, Challenge, Tenacity"
     },
     {
@@ -419,6 +518,9 @@
       "int_past": "Rapid changes, swift movement, or clear communication played a significant role in a previous phase.",
       "int_present": "Things are moving rapidly in your life, with swift changes or clear communication taking center stage.",
       "int_future": "Expect swift changes, rapid communication, or developments in the near future.",
+      "int_past_rev": "In the past, there may have been delays or stagnation, causing frustration due to the lack of progress or slow communication.",
+      "int_present_rev": "Currently, you might be experiencing a slowdown in activities or communication, leading to potential misunderstandings or a sense of impatience.",
+      "int_future_rev": "The future may bring challenges in the form of delays or miscommunications, potentially causing disruptions in the flow of events or plans.",
       "associated_words": "Speed, Action, Rapid movement, Swift change"
     },
     {
@@ -432,6 +534,9 @@
       "int_past": "You showed resilience and persistence, perhaps after facing weariness or anticipating a final challenge.",
       "int_present": "Despite weariness or past challenges, you're currently maintaining your ground and preparing for what's next.",
       "int_future": "Persistence will be required, as you'll face challenges that test your resilience and determination.",
+      "int_past_rev": "In the past, there might have been a sense of being overwhelmed by obstacles or adversity, possibly leading to weariness or a feeling of being unable to cope with the challenges.",
+      "int_present_rev": "Currently, you may be experiencing a phase of fatigue or discouragement, facing difficulties in maintaining resilience in the face of ongoing obstacles or adversity.",
+      "int_future_rev": "The future may present significant challenges or setbacks, testing your endurance and possibly leading to a sense of hardship or calamity that requires determination to overcome.",
       "associated_words": "Resilience, Courage, Persistence, Test of faith"
     },
     {
@@ -445,6 +550,9 @@
       "int_past": "In the past, you bore a heavy burden, responsibility, or felt overwhelmed by numerous obligations.",
       "int_present": "You're feeling burdened, overwhelmed, or carrying heavy responsibilities at this time.",
       "int_future": "A period where you'll feel burdened, overwhelmed, or take on heavy responsibilities is approaching.",
+      "int_past_rev": "In the past, there may have been a struggle with conflicting priorities or excessive burdens, possibly leading to feelings of being overextended or caught in complex situations.",
+      "int_present_rev": "Currently, you might be experiencing a sense of relief from burdens, yet there could still be lingering complexities or difficulties that need to be resolved.",
+      "int_future_rev": "The future may bring a reduction in the burdens you've been carrying, but it could also involve navigating through remaining challenges or complexities.",
       "associated_words": "Burden, Extra responsibility, Hard work, Overcommitment"
     },
     {
@@ -458,6 +566,9 @@
       "int_past": "A youthful, intuitive, or emotionally explorative energy influenced your previous experiences.",
       "int_present": "A fresh emotional or intuitive insight, possibly a surprising message, is playing a role in your life.",
       "int_future": "Expect a surprising emotional message, intuitive insight, or a new creative venture to emerge.",
+      "int_past_rev": "In the past, you might have experienced emotional immaturity or confusion, possibly leading to unrealistic expectations or misinterpretation of feelings.",
+      "int_present_rev": "Currently, there may be a tendency toward emotional impulsiveness or a lack of clarity in understanding your own feelings, possibly leading to misunderstandings in relationships.",
+      "int_future_rev": "The future may present challenges related to emotional understanding or communication, potentially causing uncertainty in expressing or interpreting feelings.",
       "associated_words": "Creativity, Romance, Charm, Imagination"
     },
     {
@@ -471,6 +582,9 @@
       "int_past": "You pursued your heart's desires, followed your dreams, or acted on your emotions in the past.",
       "int_present": "You're acting on heartfelt desires, being driven by dreams, or embracing romantic feelings.",
       "int_future": "Romantic pursuits, following your dreams, or an emotional journey will soon be in focus.",
+      "int_past_rev": "In the past, there may have been instances of being misled by emotions or falling prey to unrealistic romantic expectations, possibly leading to disappointment or deceit.",
+      "int_present_rev": "Currently, you might be experiencing a phase of emotional instability or deceit, which could involve being swayed by superficial charm or engaging in unrealistic romantic pursuits.",
+      "int_future_rev": "The future may present challenges in navigating emotional relationships or encounters, potentially involving insincerity, artifice, or being misled by romantic illusions.",
       "associated_words": "Romance, Charm, 'Knight in shining armor', Idealism"
     },
     {
@@ -484,6 +598,9 @@
       "int_past": "A nurturing, intuitive, and empathetic energy, possibly from an individual, impacted your past.",
       "int_present": "Your current environment is infused with nurturing, empathy, and deep intuitive understanding.",
       "int_future": "The future holds a period infused with nurturing energy, empathy, and a deepened intuitive understanding.",
+      "int_past_rev": "In the past, there may have been an encounter with emotional instability or a lack of empathy, possibly involving a person who was not as nurturing or trustworthy as they seemed.",
+      "int_present_rev": "Currently, you might be facing a phase where emotional understanding and empathy are challenged, potentially leading to situations involving insincerity or emotional manipulation.",
+      "int_future_rev": "The future may bring challenges related to emotional depth and understanding, cautioning against potential encounters with individuals who may not have your best emotional interests at heart.",
       "associated_words": "Empathy, Intuition, Compassion, Calmness"
     },
     {
@@ -497,6 +614,9 @@
       "int_past": "Mastery over emotions, compassion, or a balanced emotional guidance marked a past period.",
       "int_present": "Emotional balance, wisdom, and compassionate guidance are key themes in your current phase.",
       "int_future": "Upcoming experiences will call for emotional maturity, compassion, and balanced guidance.",
+      "int_past_rev": "In the past, there may have been encounters with emotional manipulation or dishonesty, potentially involving a person who misused their emotional intelligence or authority.",
+      "int_present_rev": "Currently, you might be experiencing a phase where emotional balance is off, possibly facing situations with injustice, double-dealing, or a lack of compassion in leadership.",
+      "int_future_rev": "The future may present challenges in maintaining emotional integrity, cautioning against potential encounters with individuals who might use their emotional insight or authority unethically.",
       "associated_words": "Emotional balance, Diplomacy, Temperance, Fairness"
     },
     {
@@ -510,6 +630,9 @@
       "int_past": "A new emotional beginning, profound intuition, or a budding relationship influenced your past.",
       "int_present": "A fresh wave of emotion, intuition, or a new relationship is blossoming in your life right now.",
       "int_future": "Expect a new emotional beginning, deep intuitive insight, or the start of a heartfelt relationship.",
+      "int_past_rev": "In the past, you may have experienced emotional instability or a false start in a relationship, leading to feelings of uncertainty or unfulfilled emotional needs.",
+      "int_present_rev": "Currently, there might be a feeling of emotional dissatisfaction or instability, possibly due to unmet emotional desires or challenges in starting new relationships.",
+      "int_future_rev": "The future may bring challenges in establishing new emotional beginnings or relationships, cautioning against potential emotional upheavals or instability.",
       "associated_words": "Emotional fulfillment, Love, Compassion, Contentment"
     },
     {
@@ -523,6 +646,9 @@
       "int_past": "A meaningful connection, partnership, or mutual understanding played a significant role in your history.",
       "int_present": "A significant bond, mutual understanding, or partnership is currently at the forefront of your life.",
       "int_future": "A meaningful connection, mutual understanding, or significant partnership awaits you.",
+      "int_past_rev": "In the past, you may have experienced disharmony in relationships or partnerships, leading to feelings of jealousy, unfulfilled desires, or a lack of mutual understanding.",
+      "int_present_rev": "Currently, there might be challenges in maintaining harmony in significant relationships, potentially causing misunderstandings, unmet desires, or emotional disconnection.",
+      "int_future_rev": "The future may present difficulties in forming or sustaining meaningful connections, cautioning against potential disharmony or unbalanced emotional exchanges in relationships.",
       "associated_words": "Partnership, Unity, Love, Attraction"
     },
     {
@@ -536,6 +662,9 @@
       "int_past": "You celebrated, collaborated, or shared joy and camaraderie with others in a past phase.",
       "int_present": "You're in a phase of celebration, camaraderie, or sharing joyous moments with others.",
       "int_future": "Celebrations, joyful gatherings, or a period of camaraderie and shared happiness is on the horizon.",
+      "int_past_rev": "In the past, there might have been experiences of overindulgence or excessive celebration, leading to situations where physical enjoyment overshadowed other important aspects of life.",
+      "int_present_rev": "Currently, you may be facing a phase where excessive pursuit of pleasure or neglecting deeper connections in favor of superficial enjoyment could be prevalent.",
+      "int_future_rev": "The future may bring challenges in maintaining balance in celebrations or social interactions, cautioning against potential overindulgence or neglecting meaningful connections.",
       "associated_words": "Celebration, Friendship, Creativity, Community"
     },
     {
@@ -549,6 +678,9 @@
       "int_past": "A period of reflection, contemplation, or feelings of discontent marked your previous experiences.",
       "int_present": "You may be feeling contemplative, disconnected, or discontent with present circumstances.",
       "int_future": "Prepare for a phase of introspection, potential discontent, or reevaluation of your current circumstances.",
+      "int_past_rev": "In the past, there might have been a phase of breaking out of stagnation or apathy, leading to new perspectives or opportunities.",
+      "int_present_rev": "Currently, you may be emerging from a phase of disinterest or discontent, opening yourself to new possibilities or changes in your perspective.",
+      "int_future_rev": "The future may bring opportunities for renewal and fresh relationships or experiences, encouraging you to move past any feelings of apathy or dissatisfaction.",
       "associated_words": "Apathy, Contemplation, Discontent, Reevaluation"
     },
     {
@@ -562,6 +694,9 @@
       "int_past": "You've experienced loss, grief, or regret, focusing on what was lost rather than what remains.",
       "int_present": "You're currently dealing with feelings of loss, regret, or focusing on past disappointments.",
       "int_future": "Upcoming events may bring feelings of loss, regret, or a focus on past disappointments.",
+      "int_past_rev": "In the past, you might have begun moving beyond regret or grief, starting to recognize the opportunities or positive aspects that remained after a loss.",
+      "int_present_rev": "Currently, there may be a shift in focus from what has been lost to what still can be appreciated or salvaged, signaling a period of healing or renewed perspective.",
+      "int_future_rev": "The future may present a phase of overcoming grief or regret, encouraging you to focus on new opportunities or the positive aspects of your life that remain.",
       "associated_words": "Loss, Regret, Disappointment, Grief"
     },
     {
@@ -575,6 +710,9 @@
       "int_past": "Nostalgia, past connections, or revisiting old memories played a part in your past.",
       "int_present": "Nostalgia and past connections are influencing your current emotions or decisions.",
       "int_future": "You'll soon be revisiting old memories, rekindling past connections, or experiencing a sense of nostalgia.",
+      "int_past_rev": "In the past, there may have been a focus on moving beyond nostalgia and past memories, leading to an anticipation of the future and new beginnings.",
+      "int_present_rev": "Currently, you might be transitioning from a focus on the past to an orientation towards the future, possibly involving new relationships or environments.",
+      "int_future_rev": "The future may bring a shift away from nostalgia and past connections, encouraging a renewal and embracing new experiences or relationships.",
       "associated_words": "Nostalgia, Happy memories, Old friends, Return"
     },
     {
@@ -588,6 +726,9 @@
       "int_past": "You were faced with choices, dreams, or possibly illusions and distractions in a prior phase.",
       "int_present": "You're faced with multiple choices, dreams, or perhaps being clouded by illusions.",
       "int_future": "Choices, dreams, or potential distractions lie ahead, urging you to differentiate reality from illusion.",
+      "int_past_rev": "In the past, there might have been a period of clarity after a time of confusion, leading to a stronger sense of purpose and direction, as you sifted through fantasies or illusions to determine your true desires.",
+      "int_present_rev": "Currently, you may be experiencing a phase where determination and focus are key, as you navigate through various desires or ambitions to find what truly aligns with your will and project goals.",
+      "int_future_rev": "The future may present an opportunity for you to hone your willpower and determination, as you'll be faced with a need to cut through distractions or illusions to focus on your true objectives.",
       "associated_words": "Choices, Illusions, Fantasy, Temptation"
     },
     {
@@ -601,6 +742,9 @@
       "int_past": "You left behind something emotionally unsatisfying, seeking deeper meaning or fulfillment.",
       "int_present": "You're currently seeking deeper meaning, possibly considering leaving behind unfulfilling situations.",
       "int_future": "You might soon find yourself seeking deeper emotional fulfillment, possibly leaving behind what no longer serves you.",
+      "int_past_rev": "In the past, there might have been a period where you experienced unexpected joy or happiness, marking a departure from a phase of emotional dissatisfaction or pursuit of deeper meaning.",
+      "int_present_rev": "Currently, you may be experiencing a surprising surge of joy or contentment, which contrasts with any previous feelings of emotional lack or the need to seek more fulfilling experiences.",
+      "int_future_rev": "The future may bring moments of great happiness and celebration, possibly signaling a shift away from a period of emotional withdrawal or disillusionment.",
       "associated_words": "Disillusionment, Abandonment, Withdrawal, Seeking deeper meaning"
     },
     {
@@ -614,6 +758,9 @@
       "int_past": "A moment of contentment, satisfaction, or having your wishes fulfilled marked a previous phase.",
       "int_present": "Contentment, satisfaction, and a sense of having your wishes fulfilled dominate your current state.",
       "int_future": "Anticipate a period where your wishes are fulfilled, bringing contentment and satisfaction.",
+      "int_past_rev": "In the past, you may have encountered situations where contentment was marred by imperfections or untruths, leading to a reassessment of what truly brings satisfaction.",
+      "int_present_rev": "Currently, there might be a feeling of dissatisfaction or a realization that what seemed fulfilling is not entirely so, prompting a reevaluation of your aspirations or contentment.",
+      "int_future_rev": "The future may present challenges in achieving complete satisfaction, urging you to distinguish between surface contentment and deeper emotional fulfillment.",
       "associated_words": "Satisfaction, Emotional stability, Luxury, Well-being"
     },
     {
@@ -627,6 +774,10 @@
       "int_past": "You experienced joy, familial or communal harmony, and emotional fulfillment in the past.",
       "int_present": "You're experiencing a period of emotional fulfillment, harmony, and joy in familial or communal relationships.",
       "int_future": "Joy, harmony, and emotional connection with family or community will play a significant role in your future.",
+      "int_past_rev": "In the past, there may have been instances where the appearance of emotional fulfillment was not as genuine as it seemed, potentially leading to underlying issues of dissatisfaction or unrest.",
+      "int_present_rev": "Currently, you might be facing situations where the surface harmony in relationships or communities masks deeper issues, possibly causing hidden discontent or emotional upheaval.",
+      "int_future_rev": "The future may bring challenges in maintaining genuine emotional harmony and fulfillment, urging you to address any underlying issues that disrupt the peace or happiness in your relationships or community.",
+
       "associated_words": "Harmony, Marriage, Happiness, Alignment"
     },
     {
@@ -640,6 +791,9 @@
       "int_past": "A youthful curiosity about material matters, new studies, or a tangible message influenced your past.",
       "int_present": "A curious exploration of material matters, new studies, or a tangible message is influencing your present situation.",
       "int_future": "Curiosity about tangible matters, new learning opportunities, or a significant message will influence upcoming events.",
+      "int_past_rev": "In the past, there may have been instances of impracticality or unfocused ambition, possibly leading to missed opportunities or misguided efforts in material or educational pursuits.",
+      "int_present_rev": "Currently, you might be experiencing a phase of distraction or lack of dedication, potentially leading to a lack of progress or wastefulness in material matters.",
+      "int_future_rev": "The future may present challenges with maintaining focus or managing resources effectively, potentially leading to prodigality or a lack of practical application in your endeavors.",
       "associated_words": "Ambition, Desire, Diligence, New interests"
     },
     {
@@ -653,6 +807,9 @@
       "int_past": "You approached situations methodically, reliably, and with unwavering focus in a past phase.",
       "int_present": "You're approaching tasks methodically, with steadfastness and a focus on the long term.",
       "int_future": "A methodical approach, steady progress, and reliability will characterize future endeavors.",
+      "int_past_rev": "In the past, there may have been periods of inactivity or a lack of motivation, potentially leading to stagnation or missed opportunities in practical matters.",
+      "int_present_rev": "Currently, you might be facing challenges with inertia or a lack of enthusiasm, which could be causing delays or a sense of discouragement in your tasks or goals.",
+      "int_future_rev": "The future may present challenges in maintaining momentum or focus, potentially leading to idleness, stagnation, or a lack of progress in practical endeavors.",
       "associated_words": "Efficiency, Hard work, Responsibility, Methodical"
     },
     {
@@ -666,6 +823,9 @@
       "int_past": "Nurturing in practical matters, taking care of physical needs, or a grounding presence played a role in your past.",
       "int_present": "Nurturing your practical needs, taking care of your physical environment, or a grounding presence defines your current phase.",
       "int_future": "Nurturing in practical areas, attentiveness to physical well-being, or a grounding influence will be prominent in the future.",
+      "int_past_rev": "In the past, there might have been a sense of mistrust or insecurity, particularly in practical or material matters, potentially leading to overprotectiveness or a lack of generosity.",
+      "int_present_rev": "Currently, you may be experiencing challenges with trust or security in the material realm, which could manifest as undue suspicion or difficulty in providing nurturing support.",
+      "int_future_rev": "The future may present situations where feelings of insecurity or mistrust could impact your ability to nurture or manage practical affairs effectively.",
       "associated_words": "Nurturing, Practicality, Security, Motherliness"
     },
     {
@@ -679,6 +839,9 @@
       "int_past": "Mastery in financial matters, a stable and prosperous leadership role, or a guiding presence in material endeavors marked a previous period.",
       "int_present": "Mastery in material matters, leadership in financial endeavors, or a guiding influence is prominent in your life right now.",
       "int_future": "Leadership in financial or material matters, prosperity, and guidance in tangible endeavors will shape upcoming experiences.",
+      "int_past_rev": "In the past, there may have been issues with mismanagement or corruption in material or financial matters, potentially leading to instability or unethical practices.",
+      "int_present_rev": "Currently, you might be experiencing challenges with financial leadership or practical decisions, potentially causing problems due to misuse of resources or lack of stability.",
+      "int_future_rev": "The future may present challenges in maintaining ethical and stable management of financial or material matters, cautioning against potential corruption or mismanagement.",
       "associated_words": "Wealth, Business, Leadership, Stability"
     },
     {
@@ -692,6 +855,9 @@
       "int_past": "A new financial beginning, job opportunity, or tangible gift played a role in your past.",
       "int_present": "A fresh financial or practical opportunity is presenting itself to you right now.",
       "int_future": "Look forward to a new financial or practical opportunity on the horizon.",
+      "int_past_rev": "In the past, there might have been a missed or mishandled opportunity in financial or material matters, potentially leading to a sense of lost prosperity or unfulfilled potential.",
+      "int_present_rev": "Currently, you may be facing challenges in realizing or capitalizing on financial opportunities, possibly leading to feelings of instability or misdirected efforts.",
+      "int_future_rev": "The future may present situations where financial or material opportunities are not fully leveraged, urging careful consideration of how best to utilize these prospects for your benefit.",
       "associated_words": "Opportunity, Prosperity, New venture, Stability"
     },
     {
@@ -705,6 +871,9 @@
       "int_past": "You juggled multiple responsibilities, balanced finances, or faced fluctuating circumstances previously.",
       "int_present": "You're currently juggling multiple tasks, balancing finances, or navigating fluctuating circumstances.",
       "int_future": "You'll soon be managing multiple tasks, perhaps balancing finances or navigating changing circumstances.",
+      "int_past_rev": "In the past, there may have been struggles with maintaining balance, leading to feelings of being overwhelmed or an inability to manage competing priorities effectively.",
+      "int_present_rev": "Currently, you might be experiencing difficulties in juggling various responsibilities or financial matters, potentially causing stress or a lack of adaptability.",
+      "int_future_rev": "The future may present challenges in balancing multiple aspects of your life, urging a need for better time management or prioritization to navigate these changing circumstances.",
       "associated_words": "Balance, Adaptability, Time management, Flexibility"
     },
     {
@@ -718,6 +887,9 @@
       "int_past": "Past collaborations, team efforts, or recognition for your skills and craftsmanship marked a significant phase.",
       "int_present": "Collaboration, teamwork, or gaining recognition for your skills is at the forefront of your current situation.",
       "int_future": "Future collaborations, teamwork, or recognition for your skills and craftsmanship await.",
+      "int_past_rev": "In the past, there may have been struggles with teamwork or a lack of acknowledgment for your skills, leading to feelings of mediocrity or underappreciation in your work.",
+      "int_present_rev": "Currently, you might be experiencing challenges in collaborative efforts or a lack of recognition for your abilities, potentially causing frustration or a sense of underachievement.",
+      "int_future_rev": "The future may present difficulties in finding effective collaboration or gaining proper recognition for your skills, urging a need to address issues of teamwork or skill development.",
       "associated_words": "Teamwork, Collaboration, Learning, Implementation"
     },
     {
@@ -731,6 +903,9 @@
       "int_past": "You held tightly to resources, possibly out of security concerns or fear of loss in a previous period.",
       "int_present": "You might be holding onto resources tightly, prioritizing security or guarding against potential loss.",
       "int_future": "You may find yourself prioritizing security, potentially guarding resources or being cautious with expenditures.",
+      "int_past_rev": "In the past, there may have been challenges related to holding onto possessions or resources too tightly, which could have led to feelings of insecurity or an overly conservative approach.",
+      "int_present_rev": "Currently, you might be experiencing issues with letting go or being overly protective of your resources, potentially causing a sense of stagnation or undue caution.",
+      "int_future_rev": "The future may bring situations that challenge your sense of security, urging you to reconsider your approach to managing resources, whether it's being too conservative or facing the need to open up to new financial opportunities.",
       "associated_words": "Security, Frugality, Saving, Conservatism"
     },
     {
@@ -744,6 +919,9 @@
       "int_past": "Financial hardship, feelings of being left out, or challenges in material matters affected your past.",
       "int_present": "You're currently facing challenges in material matters, possibly feeling isolated or left out in the cold.",
       "int_future": "Prepare for potential challenges in material matters or feelings of isolation from resources or support.",
+      "int_past_rev": "In the past, there might have been a phase of overcoming material hardships or disorder, which could have led to a renewed perspective on financial stability or security.",
+      "int_present_rev": "Currently, you may be in the process of recovering from financial challenges or instability, potentially leading to a gradual improvement in your circumstances or a shift in your approach to material matters.",
+      "int_future_rev": "The future may bring a period where you start to move away from financial hardship or insecurity, encouraging a reassessment of your relationship with material resources and the need for stability.",
       "associated_words": "Need, Poverty, Insecurity, Worry"
     },
     {
@@ -757,6 +935,9 @@
       "int_past": "Generosity, receiving or giving aid, or a balance in financial dealings played a part in your history.",
       "int_present": "A balance in give-and-take, either offering or receiving assistance, characterizes your current situation.",
       "int_future": "Generosity, either in giving or receiving, will play a role in upcoming financial or practical interactions.",
+      "int_past_rev": "In the past, there may have been issues with imbalance in generosity or financial dealings, potentially leading to feelings of envy, desire, or an unfair distribution of resources.",
+      "int_present_rev": "Currently, you might be facing challenges with the equitable distribution of resources, either feeling the strain of unreciprocated generosity or encountering disparities in financial dealings.",
+      "int_future_rev": "The future may present situations where the balance of giving and receiving is disrupted, cautioning against potential issues related to envy, jealousy, or unrealistic expectations in financial or material matters.",
       "associated_words": "Charity, Generosity, Sharing, Giving/receiving"
     },
     {
@@ -770,6 +951,9 @@
       "int_past": "You paused to reflect on your efforts, evaluate progress, or waited for results in a past situation.",
       "int_present": "You're in a phase of reflection, assessing your efforts and awaiting the results of your hard work.",
       "int_future": "Anticipate a period of assessment, patience, and reflection on your efforts and their outcomes.",
+      "int_past_rev": "In the past, there may have been concerns or anxiety related to investments or the fruits of your labor, possibly leading to a sense of uncertainty about lending or investing resources.",
+      "int_present_rev": "Currently, you might be experiencing anxiety or worry regarding your financial investments or efforts, potentially causing hesitation in making further commitments or doubts about the viability of your endeavors.",
+      "int_future_rev": "The future may present situations where you feel uneasy about the outcomes of your investments or efforts, urging careful consideration and possibly caution about where you allocate your resources or efforts.",
       "associated_words": "Growth, Patience, Investment, Assessment"
     },
     {
@@ -783,6 +967,9 @@
       "int_past": "A period of diligent work, honing skills, or apprenticeship shaped your previous experiences.",
       "int_present": "Diligence, skill-building, and dedication to your craft or work are defining your present endeavors.",
       "int_future": "A future phase of dedicated work, skill improvement, or meticulous focus on a project is in store.",
+      "int_past_rev": "In the past, there may have been a focus on work or skill development that was tainted by vanity, cupidity, or an overemphasis on financial gain, potentially leading to a lack of genuine fulfillment or ethical concerns.",
+      "int_present_rev": "Currently, you might be experiencing a phase where the dedication to your craft or work is overshadowed by ulterior motives such as profit-driven actions or a turn toward cunning rather than genuine skill development.",
+      "int_future_rev": "The future may present challenges in maintaining integrity in your work or craftsmanship, cautioning against a focus on financial gain over true skill development or ethical practices.",
       "associated_words": "Mastery, Skill development, Accomplishment, Diligence"
     },
     {
@@ -796,6 +983,9 @@
       "int_past": "You enjoyed the fruits of your labor, experienced financial independence, or embraced solitude in the past.",
       "int_present": "You're experiencing financial comfort, independence, or enjoying the rewards of your efforts.",
       "int_future": "Enjoyment of financial comfort, independence, or the rewards of past labors will be forthcoming.",
+      "int_past_rev": "In the past, you might have faced situations where financial independence or success was undermined by dishonesty or failed projects, leading to a sense of instability or a challenge to your self-sufficiency.",
+      "int_present_rev": "Currently, you may be experiencing challenges to your financial comfort or independence, possibly due to deception, unwise decisions, or unfulfilled projects.",
+      "int_future_rev": "The future may present scenarios where the security and abundance you seek could be compromised by deceitful actions or voided plans, urging caution in your financial or material pursuits.",
       "associated_words": "Abundance, Luxury, Self-sufficiency, Financial independence"
     },
     {
@@ -809,6 +999,9 @@
       "int_past": "A phase of familial wealth, inheritance, or long-term security marked a significant moment in your history.",
       "int_present": "Stability, familial wealth, or long-term security is a significant aspect of your current life.",
       "int_future": "Expect stability, possible wealth or inheritance matters, or long-term security to play a role in your future.",
+      "int_past_rev": "In the past, you may have experienced instability in familial wealth or long-term security, possibly due to unforeseen circumstances such as loss or games of chance.",
+      "int_present_rev": "Currently, there might be challenges concerning family wealth or security, potentially involving unpredictable factors, risks, or uncertainties in financial matters.",
+      "int_future_rev": "The future may bring complexities or challenges in areas of family wealth, inheritance, or long-term security, cautioning against potential risks or unforeseen losses.",
       "associated_words": "Wealth, Legacy, Family, Establishment"
     },
     {
@@ -822,6 +1015,9 @@
       "int_past": "Curiosity, a thirst for knowledge, or a challenging message influenced past events.",
       "int_present": "Your current environment is marked by curiosity, keen observation, or the challenge of a new message or insight.",
       "int_future": "Be ready for new information, curiosity-driven endeavors, or a challenging message in the future.",
+      "int_past_rev": "In the past, there might have been a situation marked by unpreparedness or a lack of foresight, potentially leading to misunderstandings or the spread of unverified information.",
+      "int_present_rev": "Currently, you may be facing challenges related to miscommunication or impulsive decisions, possibly caused by a lack of careful consideration or a hasty approach to information gathering.",
+      "int_future_rev": "The future may bring scenarios where unexpected challenges or health issues arise, emphasizing the need for preparedness and careful examination of information.",
       "associated_words": "Curiosity, Vigilance, Agility, Spying"
     },
     {
@@ -835,6 +1031,9 @@
       "int_past": "You acted hastily, pursued ideas with zeal, or faced confrontations head-on in the past.",
       "int_present": "Swift actions, pursuit of ideas, or confrontations define your present endeavors.",
       "int_future": "Swift actions, strong convictions, or potential confrontations will characterize upcoming endeavors.",
+      "int_past_rev": "In the past, there might have been a tendency towards rash actions or imprudent decisions, possibly leading to unnecessary conflicts or a lack of careful planning.",
+      "int_present_rev": "Currently, you may be experiencing challenges related to impulsive or reckless behavior, potentially causing conflicts or indicating a lack of strategic thinking.",
+      "int_future_rev": "The future may bring situations where impulsive or inconsiderate actions could lead to difficulties, emphasizing the need for caution and well-thought-out plans.",
       "associated_words": "Action, Ambition, Fearlessness, Conflict"
     },
     {
@@ -848,6 +1047,9 @@
       "int_past": "Clear thinking, honest communication, or the influence of a sharp-witted individual marked a previous period.",
       "int_present": "Clear communication, intellectual discernment, or the influence of a candid individual is significant in your current context.",
       "int_future": "The future calls for clear communication, intellectual discernment, or interactions with someone possessing sharp wit and candor.",
+      "int_past_rev": "In the past, there may have been experiences with deceitful or malicious communication, possibly involving a person who used intellect in a harmful or cunning way.",
+      "int_present_rev": "Currently, you might be facing challenges with communication, potentially encountering deceit, artifice, or overly critical interactions, suggesting a need for vigilance in discerning truth from manipulation.",
+      "int_future_rev": "The future may present situations where clear and honest communication is compromised, cautioning against potential deceit, manipulation, or overly harsh judgement.",
       "associated_words": "Independence, Unbiased judgement, Clear boundaries, Direct communication"
     },
     {
@@ -861,6 +1063,9 @@
       "int_past": "Logical decision-making, authoritative communication, or guidance from a clear-minded individual played a significant role in your past.",
       "int_present": "Decision-making based on logic, authoritative guidance, or seeking the truth is central to your current phase.",
       "int_future": "Logical decision-making, authoritative guidance, or seeking objective truth will play a significant role in forthcoming scenarios.",
+      "int_past_rev": "In the past, there might have been situations marked by cruelty, perversity, or manipulative behavior, possibly involving a person who misused their intellectual or authoritative power.",
+      "int_present_rev": "Currently, you may be facing challenges related to authority or decision-making, which could be tainted by cruelty, dishonesty, or unethical intentions, necessitating vigilance and ethical discernment.",
+      "int_future_rev": "The future may bring scenarios where authority or intellectual power is used unethically, cautioning against potential manipulation, cruelty, or dishonest decision-making.",
       "associated_words": "Intellectual power, Authority, Truth, Ethical leadership"
     },
     {
@@ -874,6 +1079,9 @@
       "int_past": "A breakthrough in clarity, a new idea, or a decisive moment played a significant role in your past.",
       "int_present": "You're experiencing a moment of clarity, breakthrough, or a fresh perspective right now.",
       "int_future": "Expect a forthcoming moment of clarity, insight, or a new understanding.",
+      "int_past_rev": "In the past, there may have been a significant breakthrough or decision that ultimately led to adverse outcomes, possibly due to misguided intentions or a lack of clarity.",
+      "int_present_rev": "Currently, you might be experiencing a phase where a new idea or clarity is emerging, but it could lead to unfavorable results if not carefully considered or properly executed.",
+      "int_future_rev": "The future may bring moments of insight or breakthroughs that have the potential for negative consequences, emphasizing the need for careful consideration and responsible handling of new ideas or decisions.",
       "associated_words": "Clarity, Breakthrough, Power, Sharp mind"
     },
     {
@@ -887,6 +1095,9 @@
       "int_past": "You faced a difficult decision, a stalemate, or a need to balance conflicting ideas in a previous phase.",
       "int_present": "You're currently facing a decision, a crossroads, or a need to balance opposing views.",
       "int_future": "A decision, balancing act, or challenging choice awaits you in the near future.",
+      "int_past_rev": "In the past, there may have been a situation characterized by deceit or duplicity, leading to challenges in making honest decisions or facing a truth obscured by falsehoods.",
+      "int_present_rev": "Currently, you might be experiencing difficulties in decision-making due to underlying falsehoods, duplicity, or a lack of clear understanding, leading to potential misjudgments or disloyalty.",
+      "int_future_rev": "The future may present situations where decisions are complicated by dishonesty or duplicity, urging you to seek clarity and truth to avoid making choices based on false information or deceptive perspectives.",
       "associated_words": "Indecision, Stalemate, Impasse, Balance"
     },
     {
@@ -900,6 +1111,9 @@
       "int_past": "Heartbreak, disappointment, or emotional pain marked a significant event or period in your history.",
       "int_present": "Heartache, disappointment, or emotional pain is at the forefront of your present circumstances.",
       "int_future": "Prepare for potential heartache, disappointment, or emotional challenges on the horizon.",
+      "int_past_rev": "In the past, there might have been a period of mental distress or confusion, leading to feelings of alienation, loss, or emotional disorder.",
+      "int_present_rev": "Currently, you may be experiencing a phase of emotional recovery, although there could still be lingering confusion or disorder impacting your mental well-being.",
+      "int_future_rev": "The future may bring challenges related to overcoming emotional pain or confusion, emphasizing the need for healing and clarity to move past distressing experiences.",
       "associated_words": "Heartbreak, Loss, Sorrow, Betrayal"
     },
     {
@@ -913,6 +1127,9 @@
       "int_past": "A time of rest, recuperation, or mental retreat was essential in your past journey.",
       "int_present": "A necessary period of rest, meditation, or retreat from external noise is defining your current state.",
       "int_future": "Anticipate a necessary period of rest, reflection, or recuperation in the upcoming phase.",
+      "int_past_rev": "In the past, there might have been a period where rest and recuperation were neglected, leading to issues related to over-exertion or a lack of mental peace.",
+      "int_present_rev": "Currently, you may be facing a situation where the need for rest or solitude is being overlooked, potentially causing stress or mental strain.",
+      "int_future_rev": "The future may present challenges related to finding time for rest or recovery, emphasizing the importance of taking a break and being cautious with your energy and resources.",
       "associated_words": "Rest, Recovery, Contemplation, Peace"
     },
     {
@@ -926,6 +1143,9 @@
       "int_past": "Conflicts, victories at a personal cost, or contentious situations characterized a previous phase.",
       "int_present": "Conflicts, challenges, or situations demanding strategic navigation characterize your present scenario.",
       "int_future": "Future situations might involve conflicts, strategic decisions, or navigating contentious scenarios.",
+      "int_past_rev": "In the past, there may have been situations of defeat or loss, possibly marked by a sense of dishonor or infamy, reflecting a period where victories came at a significant personal or ethical cost.",
+      "int_present_rev": "Currently, you might be dealing with the aftermath of conflicts or contentious situations, potentially facing issues related to degradation or the consequences of unwise actions.",
+      "int_future_rev": "The future may bring challenges related to the consequences of previous conflicts or contentious decisions, emphasizing the need for careful consideration of the repercussions of your actions.",
       "associated_words": "Conflict, Tension, Loss, Defeat"
     },
     {
@@ -939,6 +1159,9 @@
       "int_past": "You transitioned from troubled waters to calmer shores, seeking a better situation or understanding in the past.",
       "int_present": "You're in a phase of transitioning from difficulties to a clearer or more stable situation.",
       "int_future": "You'll be transitioning towards a more peaceful or clearer situation, moving away from challenges.",
+      "int_past_rev": "In the past, there might have been a period of stagnation or a delayed transition, possibly due to reluctance to move on or difficulty in finding a clear path forward.",
+      "int_present_rev": "Currently, you may be experiencing challenges in making a necessary transition, potentially facing obstacles in moving from a troubled situation to a more stable one.",
+      "int_future_rev": "The future may present scenarios where a transition or change is not as smooth or clear as hoped, urging caution and preparation to navigate potential uncertainties or delays.",
       "associated_words": "Transition, Change, Rite of passage, Release"
     },
     {
@@ -952,6 +1175,9 @@
       "int_past": "Strategy, cunning, or possibly deceitful actions played a part in prior events.",
       "int_present": "Strategy, subtlety, or possibly deceptive tactics are influencing your current situation.",
       "int_future": "Strategy, potential cunning actions, or navigating a tricky scenario will play a part in upcoming events.",
+      "int_past_rev": "In the past, there might have been instances where cunning or deceptive strategies backfired, leading to complications or a need for more straightforward approaches.",
+      "int_present_rev": "Currently, you may be facing situations where previous deceitful or cunning actions are being reconsidered, potentially leading to a shift towards seeking better advice or more honest communication.",
+      "int_future_rev": "The future may bring challenges related to the consequences of previous deceptive actions, emphasizing the need for clearer communication, seeking advice, or adopting a more transparent approach.",
       "associated_words": "Deception, Strategy, Stealth, Guile"
     },
     {
