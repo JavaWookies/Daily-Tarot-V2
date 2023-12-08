@@ -14,17 +14,51 @@
         tools:context=".activities.UserSettingsActivity">
 
         <TextView
+            android:id="@+id/UserSettingsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/user_settings_label"
+            android:textColor="#FFD700"
+            android:fontFamily="@font/cinzel_bold"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notificationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lora_regular"
+            android:text="@string/enable_notifications"
+            android:textColor="#FFD700"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UserSettingsLabel" />
+
+        <Switch
+            android:id="@+id/notification_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            app:layout_constraintStart_toEndOf="@+id/notificationLabel"
+            app:layout_constraintTop_toTopOf="@+id/notificationLabel" />
+
+        <TextView
             android:id="@+id/UserSettingsActivitySpinnerLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lora_regular"
             android:text="@string/select_card_style"
             android:textColor="#FFD700"
-            android:fontFamily="@font/lora_regular"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/notificationLabel" />
 
         <Spinner
             android:id="@+id/UserSettingsCardTypeSpinner"
@@ -110,6 +144,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

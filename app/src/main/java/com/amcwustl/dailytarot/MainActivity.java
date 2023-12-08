@@ -2,9 +2,12 @@ package com.amcwustl.dailytarot;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -66,19 +69,18 @@ public class MainActivity extends BaseActivity {
     setupCardTypes();
     storeFirstLaunchDate();
     showRatingDialogIfNeeded();
+    createNotificationChannel();
 
     CardDbHelper dbHelper = new CardDbHelper(this);
 
     if (dbHelper.isDatabaseEmpty()) {
       dbHelper.populateDatabaseWithJsonData(this);
-      Log.d("MainActivity", "Database populated with data.");
     }
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    storeLastActivityDate();
     scheduleNotificationsIfNeeded();
   }
 
@@ -180,24 +182,37 @@ public class MainActivity extends BaseActivity {
     }
   }
 
-  private void storeLastActivityDate() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    SharedPreferences.Editor editor = prefs.edit();
-    editor.putLong("last_activity_date", System.currentTimeMillis());
-    editor.apply();
-  }
 
   private void scheduleNotificationsIfNeeded() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    long lastActivityDate = prefs.getLong("last_activity_date", 0);
-    long currentTime = System.currentTimeMillis();
 
-    if (currentTime - lastActivityDate >= 3 * 24 * 60 * 60 * 1000L) { // 3 days
-      NotificationHelper.scheduleNotification(this, 0, 1); // Immediate notification
-    } else if (currentTime - lastActivityDate >= 7 * 24 * 60 * 60 * 1000L) { // 7 days
-      NotificationHelper.scheduleNotification(this, 0, 2); // Immediate notification
+    boolean areNotificationsEnabled = preferences.getBoolean("notifications_enabled", true);
+
+    NotificationHelper.cancelScheduledNotification(this, 1);
+    NotificationHelper.cancelScheduledNotification(this, 2);
+
+    if (areNotificationsEnabled) {
+      // Your existing logic to schedule notifications
+    } else {
+      // Schedule new notifications for 1 minute from now for debugging
+      NotificationHelper.scheduleNotification(this, 1 * 60 * 1000L, 1, "tarot_channel"); // 1 minute
+      NotificationHelper.scheduleNotification(this, 2 * 60 * 1000L, 2, "tarot_channel"); // 1 minute
     }
+  }
 
+
+  private void createNotificationChannel() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      CharSequence name = "TarotChannel"; // Your channel name
+      String description = "Tarot Notifications"; // Your channel description
+      int importance = NotificationManager.IMPORTANCE_DEFAULT; // Set the importance level
+
+      NotificationChannel channel = new NotificationChannel("tarot_channel", name, importance);
+      channel.setDescription(description);
+
+      // Register the channel with the system; you can customize additional settings here
+      NotificationManager notificationManager = getSystemService(NotificationManager.class);
+      notificationManager.createNotificationChannel(channel);
+    }
   }
 }
 

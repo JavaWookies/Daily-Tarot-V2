@@ -16,6 +16,9 @@ public class CardContract {
         public static final String COLUMN_INT_PAST = "int_past";
         public static final String COLUMN_INT_PRESENT = "int_present";
         public static final String COLUMN_INT_FUTURE = "int_future";
+        public static final String COLUMN_INT_PAST_REV = "int_past_rev";
+        public static final String COLUMN_INT_PRESENT_REV = "int_present_rev";
+        public static final String COLUMN_INT_FUTURE_REV = "int_future_rev";
         public static final String COLUMN_ASSOCIATED_WORDS = "associated_words";
     }
 
@@ -31,6 +34,9 @@ public class CardContract {
                     CardEntry.COLUMN_INT_PAST + " TEXT," +
                     CardEntry.COLUMN_INT_PRESENT + " TEXT," +
                     CardEntry.COLUMN_INT_FUTURE + " TEXT," +
+                    CardEntry.COLUMN_INT_PAST_REV + " TEXT," +
+                    CardEntry.COLUMN_INT_PRESENT_REV + " TEXT," +
+                    CardEntry.COLUMN_INT_FUTURE_REV + " TEXT," +
                     CardEntry.COLUMN_ASSOCIATED_WORDS + " TEXT)";
 
 

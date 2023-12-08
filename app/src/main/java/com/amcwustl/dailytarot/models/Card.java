@@ -12,13 +12,16 @@ public class Card {
     private String intPast;
     private String intPresent;
     private String intFuture;
+    private String intPastRev;
+    private String intPresentRev;
+    private String intFutureRev;
     private String associatedWords;
     private int orientation;
 
     public Card() {
     }
 
-    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, int orientation, String intPast, String intPresent, String intFuture, String associatedWords) {
+    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, int orientation, String intPast, String intPresent, String intFuture, String intPastRev, String intPresentRev, String intFutureRev, String associatedWords) {
         this.id = id;
         this.type = type;
         this.nameShort = nameShort;
@@ -30,10 +33,13 @@ public class Card {
         this.intPast = intPast;
         this.intPresent = intPresent;
         this.intFuture = intFuture;
+        this.intPastRev = intPastRev;
+        this.intPresentRev = intPresentRev;
+        this.intFutureRev = intFutureRev;
         this.associatedWords = associatedWords;
     }
 
-    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, String intPast, String intPresent, String intFuture, String associatedWords) {
+    public Card(Long id, String type, String nameShort, String name, String meaningUp, String meaningRev, String desc, String intPast, String intPresent, String intFuture, String intPastRev, String intPresentRev, String intFutureRev, String associatedWords) {
         this.id = id;
         this.type = type;
         this.nameShort = nameShort;
@@ -45,6 +51,9 @@ public class Card {
         this.intPast = intPast;
         this.intPresent = intPresent;
         this.intFuture = intFuture;
+        this.intPastRev = intPastRev;
+        this.intPresentRev = intPresentRev;
+        this.intFutureRev = intFutureRev;
         this.associatedWords = associatedWords;
     }
 
@@ -140,6 +149,30 @@ public class Card {
 
     public String getAssociatedWords() {
         return associatedWords;
+    }
+
+    public String getIntPastRev() {
+        return intPastRev;
+    }
+
+    public void setIntPastRev(String intPastRev) {
+        this.intPastRev = intPastRev;
+    }
+
+    public String getIntPresentRev() {
+        return intPresentRev;
+    }
+
+    public void setIntPresentRev(String intPresentRev) {
+        this.intPresentRev = intPresentRev;
+    }
+
+    public String getIntFutureRev() {
+        return intFutureRev;
+    }
+
+    public void setIntFutureRev(String intFutureRev) {
+        this.intFutureRev = intFutureRev;
     }
 
     public void setAssociatedWords(String associatedWords) {

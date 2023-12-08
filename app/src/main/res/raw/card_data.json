@@ -1191,6 +1191,9 @@
       "int_past": "You felt trapped, restricted, or blinded to possibilities in a past situation.",
       "int_present": "Feelings of limitation, being trapped, or mental restrictions are prevalent right now.",
       "int_future": "You might feel confined, restricted, or face a situation where you'll need to seek new perspectives.",
+      "int_past_rev": "In the past, there were likely moments when you felt temporarily restricted or bound but managed to break free from those limitations.",
+      "int_present_rev": "Currently, you may still experience some restrictions or confusion, but these are not as severe as they once were, and there's a sense of liberation.",
+      "int_future_rev": "The future holds the potential for overcoming limitations or avoiding unforeseen obstacles, leading to a more favorable outcome.",
       "associated_words": "Restriction, Confusion, Powerlessness, Victimhood"
     },
     {
@@ -1204,6 +1207,9 @@
       "int_past": "Worries, anxieties, or sleepless nights marked a significant period in your history.",
       "int_present": "Current worries, anxieties, or overwhelming thoughts occupy your mind.",
       "int_future": "Worries or anxieties may surface, urging you to address and manage them effectively.",
+      "int_past_rev": "In the past, you may have experienced worries, anxieties, or sleepless nights, but these have likely subsided over time.",
+      "int_present_rev": "Currently, while there may still be some concerns, they are not as overwhelming as they once were, and you're better equipped to handle them.",
+      "int_future_rev": "The future holds the potential for managing worries and anxieties effectively, allowing for a more peaceful state of mind.",
       "associated_words": "Anxiety, Worry, Fear, Despair"
     },
     {
@@ -1217,6 +1223,9 @@
       "int_past": "You underwent an ending, a profound setback, or felt betrayed in a previous phase.",
       "int_present": "You're experiencing an ending, a profound realization, or a situation demanding acceptance and release.",
       "int_future": "An ending, acceptance of a challenging situation, or realization of a profound truth is on the horizon.",
+      "int_past_rev": "In the past, you may have experienced an ending, a profound setback, or feelings of betrayal, but these have likely been resolved or healed over time.",
+      "int_present_rev": "Currently, you're not in a state of profound crisis or betrayal. The worst may be behind you, and you're on a path of recovery and acceptance.",
+      "int_future_rev": "The future holds the potential for continued recovery, acceptance of past challenges, and a sense of moving beyond betrayal or crisis.",
       "associated_words": "Betrayal, End, Crisis, Backstabbed"
     }
   ]
