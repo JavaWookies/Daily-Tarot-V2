@@ -96,5 +96,9 @@
         3. Tap each card to flip it face up. Touch and hold a face up card to view details about the card. \n
         4. Hit the reset button to create a new custom layout.
     </string>
+    <string name="enable_notifications">Enable Notifications:</string>
+    <string name="user_settings_label">Settings</string>
+    <string name="off">OFF</string>
+    <string name="on">ON</string>
 
 </resources>

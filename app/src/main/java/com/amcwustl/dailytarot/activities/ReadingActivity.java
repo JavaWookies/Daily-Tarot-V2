@@ -214,13 +214,25 @@ public class ReadingActivity extends BaseActivity {
     for (int i = 0; i < drawnCards.size(); i++) {
       switch (i) {
         case 0:
-          interpretation.append(drawnCards.get(i).getIntPast()).append(" ");
+          if(drawnCards.get(i).getOrientation() == 0){
+            interpretation.append(drawnCards.get(i).getIntPast()).append(" ");
+          } else{
+            interpretation.append(drawnCards.get(i).getIntPastRev()).append(" ");
+          }
           break;
         case 1:
-          interpretation.append(drawnCards.get(i).getIntPresent()).append(" ");
+          if(drawnCards.get(i).getOrientation() == 0){
+            interpretation.append(drawnCards.get(i).getIntPresent()).append(" ");
+          } else {
+            interpretation.append(drawnCards.get(i).getIntPresentRev()).append(" ");
+          }
           break;
         case 2:
-          interpretation.append(drawnCards.get(i).getIntFuture());
+          if(drawnCards.get(i).getOrientation() == 0){
+            interpretation.append(drawnCards.get(i).getIntFuture());
+          } else {
+            interpretation.append(drawnCards.get(i).getIntFutureRev());
+          }
           break;
       }
     }

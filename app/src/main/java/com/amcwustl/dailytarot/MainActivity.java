@@ -1,10 +1,11 @@
 package com.amcwustl.dailytarot;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -20,7 +21,11 @@ import com.amcwustl.dailytarot.activities.ReadingActivity;
 import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
-
+import com.amcwustl.dailytarot.utilities.NotificationHelper;
+import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
 
 
 @SuppressWarnings("resource")
@@ -62,19 +67,41 @@ public class MainActivity extends BaseActivity {
     cardFive = findViewById(R.id.imageView_card_5);
 
 
-
-
     setupCardNavigation();
     setupCardTypes();
-    storeFirstLaunchDate();
-    showRatingDialogIfNeeded();
+    createNotificationChannel();
 
     CardDbHelper dbHelper = new CardDbHelper(this);
 
     if (dbHelper.isDatabaseEmpty()) {
       dbHelper.populateDatabaseWithJsonData(this);
-      Log.d("MainActivity", "Database populated with data.");
     }
+
+    int launchCount = preferences.getInt("launch_count", 0);
+
+    launchCount++;
+
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putInt("launch_count", launchCount);
+    editor.apply();
+
+    Log.d(TAG, "Current launch count: " + launchCount);
+
+    if (launchCount == 3) {
+      promptForRating();
+    }
+
+    if (!preferences.contains("notifications_enabled")) {
+      // Set default value for 'notifications_enabled' on first app launch
+      editor.putBoolean("notifications_enabled", true);
+      editor.apply();
+    }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    scheduleNotificationsIfNeeded();
   }
 
   private void setupCardNavigation() {
@@ -123,57 +150,55 @@ public class MainActivity extends BaseActivity {
 
   }
 
-  private void storeFirstLaunchDate() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    if (!prefs.contains("first_launch_date")) {
-      SharedPreferences.Editor editor = prefs.edit();
-      editor.putLong("first_launch_date", System.currentTimeMillis());
-      editor.apply();
+
+  private void scheduleNotificationsIfNeeded() {
+
+    boolean areNotificationsEnabled = preferences.getBoolean("notifications_enabled", true);
+
+    NotificationHelper.cancelScheduledNotification(this, 1);
+    NotificationHelper.cancelScheduledNotification(this, 2);
+
+    if (areNotificationsEnabled) {
+      NotificationHelper.scheduleNotification(this, 3 * 24 * 60 * 60 * 1000L, 1, "tarot_channel");
+      NotificationHelper.scheduleNotification(this, 7 * 24 * 60 * 60 * 1000L, 2, "tarot_channel");
     }
   }
 
-  private boolean shouldShowRatingDialog() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    long firstLaunchDate = prefs.getLong("first_launch_date", 0);
-    long fourteenDaysInMillis = 14 * 24 * 60 * 60 * 1000L;
-    return System.currentTimeMillis() - firstLaunchDate >= fourteenDaysInMillis;
-  }
 
-  private void showRatingDialogIfNeeded() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    boolean hasAskedForRating = prefs.getBoolean("has_asked_for_rating", false);
+  private void createNotificationChannel() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      CharSequence name = "TarotChannel"; // Your channel name
+      String description = "Tarot Notifications"; // Your channel description
+      int importance = NotificationManager.IMPORTANCE_DEFAULT; // Set the importance level
 
-    if (shouldShowRatingDialog() && !hasAskedForRating) {
-      new AlertDialog.Builder(this)
-              .setTitle("Enjoying the app?")
-              .setMessage("Please help us out by providing a rating and review!")
-              .setPositiveButton("Rate us", (dialog, which) -> {
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("has_asked_for_rating", true);
-                editor.apply();
-                redirectToStoreForRating();
-              })
-              .setNegativeButton("Not now", (dialog, which) -> {
-                dialog.dismiss();
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("has_asked_for_rating", true);
-                editor.apply();
-              })
-              .create()
-              .show();
+      NotificationChannel channel = new NotificationChannel("tarot_channel", name, importance);
+      channel.setDescription(description);
+
+      // Register the channel with the system; you can customize additional settings here
+      NotificationManager notificationManager = getSystemService(NotificationManager.class);
+      notificationManager.createNotificationChannel(channel);
     }
   }
 
-  private void redirectToStoreForRating() {
-    final String appPackageName = getPackageName();
-    try {
-      startActivity(new Intent(Intent.ACTION_VIEW,
-              Uri.parse("market://details?id=" + appPackageName)));
-    } catch (android.content.ActivityNotFoundException anfe) {
-      startActivity(new Intent(Intent.ACTION_VIEW,
-              Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-    }
-  }
+  private void promptForRating() {
+    ReviewManager manager = ReviewManagerFactory.create(this);
+    Task<ReviewInfo> request = manager.requestReviewFlow();
+    request.addOnCompleteListener(task -> {
+      if (task.isSuccessful()) {
+        ReviewInfo reviewInfo = task.getResult();
+        Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
+        flow.addOnCompleteListener(task2 -> {
+          if (task2.isSuccessful()) {
+          } else {
+            Log.e(TAG, "In-app review flow failed: " + task2.getException());
+          }
+        });
+      } else {
+        Log.e(TAG, "Requesting review flow failed: " + task.getException());
+      }
+    });
+
+}
 
 }
 

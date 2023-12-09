@@ -8,9 +8,11 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
+import com.amcwustl.dailytarot.utilities.NotificationHelper;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -20,6 +22,7 @@ public class UserSettingsActivity extends BaseActivity {
     SharedPreferences preferences;
     Spinner cardDisplaySpinner;
     Button saveSettingsButton;
+    SwitchCompat notificationToggle;
 
 
     @Override
@@ -31,18 +34,18 @@ public class UserSettingsActivity extends BaseActivity {
 
         cardDisplaySpinner = findViewById(R.id.UserSettingsCardTypeSpinner);
         saveSettingsButton = findViewById(R.id.UserSettingsActivitySaveButton);
-
+        notificationToggle = findViewById(R.id.notification_toggle);
 
         setupCardDisplaySpinner();
         setupSaveSettingsButton();
+        initializeNotificationToggle();
+        setupNotificationToggleListener();
 
         AdView mAdViewBanner = findViewById(R.id.adView);
         AdRequest adRequestBanner = new AdRequest.Builder().build();
         mAdViewBanner.loadAd(adRequestBanner);
 
     }
-
-
 
     void setupCardDisplaySpinner(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -56,6 +59,25 @@ public class UserSettingsActivity extends BaseActivity {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
 
         cardDisplaySpinner.setAdapter(adapter);
+    }
+
+    private void initializeNotificationToggle() {
+        boolean areNotificationsEnabled = preferences.getBoolean("notifications_enabled", true);
+        notificationToggle.setChecked(areNotificationsEnabled);
+    }
+
+    private void setupNotificationToggleListener() {
+        notificationToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("notifications_enabled", isChecked);
+            editor.apply();
+
+            if (!isChecked) {
+                // Cancel notifications if the user has disabled them
+                NotificationHelper.cancelScheduledNotification(this, 1);
+                NotificationHelper.cancelScheduledNotification(this, 2);
+            }
+        });
     }
 
     void setupSaveSettingsButton() {

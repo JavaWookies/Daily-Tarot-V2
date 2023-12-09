@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/notosans_display"
+                android:fontFamily="@font/libre_caslon"
                 android:text="@string/instructions"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
@@ -92,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/lock_layout"
+                android:fontFamily="@font/libre_caslon"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -122,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/reset_spread"
+                android:fontFamily="@font/libre_caslon"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -143,10 +145,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/notosans_display"
+            android:fontFamily="@font/libre_caslon_header"
             android:text="@string/custom_tap_hold"
             android:textColor="#FFFFFF"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/droppableArea" />

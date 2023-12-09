@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardDbHelper extends SQLiteOpenHelper {
-  private static final int DATABASE_VERSION = 2;
+  private static final int DATABASE_VERSION = 3;
   private static final String DATABASE_NAME = "TarotCardDatabase.db";
 
 
@@ -88,13 +88,11 @@ public class CardDbHelper extends SQLiteOpenHelper {
           card.setIntPast(jsonCard.getString("int_past"));
           card.setIntPresent(jsonCard.getString("int_present"));
           card.setIntFuture(jsonCard.getString("int_future"));
+          card.setIntPastRev(jsonCard.getString("int_past_rev"));
+          card.setIntPresentRev(jsonCard.getString("int_present_rev"));
+          card.setIntFutureRev(jsonCard.getString("int_future_rev"));
           card.setAssociatedWords(jsonCard.getString("associated_words"));
 
-
-
-
-
-          // Insert the tarotCard into the database
           this.insertCard(card);
         }
       } catch (JSONException e) {
@@ -122,6 +120,9 @@ public class CardDbHelper extends SQLiteOpenHelper {
         card.setIntPast(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_PAST)));
         card.setIntPresent(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_PRESENT)));
         card.setIntFuture(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_FUTURE)));
+        card.setIntPastRev(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_PAST_REV)));
+        card.setIntPresentRev(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_PRESENT_REV)));
+        card.setIntFutureRev(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_INT_FUTURE_REV)));
         card.setAssociatedWords(cursor.getString(cursor.getColumnIndex(CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS)));
 
 
@@ -145,6 +146,9 @@ public class CardDbHelper extends SQLiteOpenHelper {
     values.put(CardContract.CardEntry.COLUMN_INT_PAST, card.getIntPast());
     values.put(CardContract.CardEntry.COLUMN_INT_PRESENT, card.getIntPresent());
     values.put(CardContract.CardEntry.COLUMN_INT_FUTURE, card.getIntFuture());
+    values.put(CardContract.CardEntry.COLUMN_INT_PAST_REV, card.getIntPastRev());
+    values.put(CardContract.CardEntry.COLUMN_INT_PRESENT_REV, card.getIntPresentRev());
+    values.put(CardContract.CardEntry.COLUMN_INT_FUTURE_REV, card.getIntFutureRev());
     values.put(CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS, card.getAssociatedWords());
 
 
@@ -188,6 +192,9 @@ public class CardDbHelper extends SQLiteOpenHelper {
             CardContract.CardEntry.COLUMN_INT_PAST,
             CardContract.CardEntry.COLUMN_INT_PRESENT,
             CardContract.CardEntry.COLUMN_INT_FUTURE,
+            CardContract.CardEntry.COLUMN_INT_PAST_REV,
+            CardContract.CardEntry.COLUMN_INT_PRESENT_REV,
+            CardContract.CardEntry.COLUMN_INT_FUTURE_REV,
             CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS
     };
 
@@ -217,6 +224,9 @@ public class CardDbHelper extends SQLiteOpenHelper {
         card.setIntPast(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_PAST)));
         card.setIntPresent(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_PRESENT)));
         card.setIntFuture(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_FUTURE)));
+        card.setIntPastRev(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_PAST_REV)));
+        card.setIntPresentRev(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_PRESENT_REV)));
+        card.setIntFutureRev(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_INT_FUTURE_REV)));
         card.setAssociatedWords(cursor.getString(cursor.getColumnIndexOrThrow(CardContract.CardEntry.COLUMN_ASSOCIATED_WORDS)));
 
 
