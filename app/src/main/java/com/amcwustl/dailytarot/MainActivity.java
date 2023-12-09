@@ -159,8 +159,8 @@ public class MainActivity extends BaseActivity {
     NotificationHelper.cancelScheduledNotification(this, 2);
 
     if (areNotificationsEnabled) {
-      NotificationHelper.scheduleNotification(this, 60 * 1000L, 1, "tarot_channel"); // 1 minute
-      NotificationHelper.scheduleNotification(this, 60 * 60 * 1000L, 2, "tarot_channel");
+      NotificationHelper.scheduleNotification(this, 3 * 24 * 60 * 60 * 1000L, 1, "tarot_channel");
+      NotificationHelper.scheduleNotification(this, 7 * 24 * 60 * 60 * 1000L, 2, "tarot_channel");
     }
   }
 
