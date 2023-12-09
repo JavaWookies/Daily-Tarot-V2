@@ -18,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/playfair_display_bold"
             android:text="@string/user_settings_label"
             android:textColor="#FFD700"
-            android:fontFamily="@font/cinzel_bold"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,20 +32,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/lora_regular"
+            android:fontFamily="@font/libre_caslon"
             android:text="@string/enable_notifications"
             android:textColor="#FFD700"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/UserSettingsLabel" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/notification_toggle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="48dp"
+            android:checked="true"
+            android:longClickable="false"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            app:layout_constraintBottom_toBottomOf="@+id/notificationLabel"
             app:layout_constraintStart_toEndOf="@+id/notificationLabel"
-            app:layout_constraintTop_toTopOf="@+id/notificationLabel" />
+            app:layout_constraintTop_toTopOf="@+id/notificationLabel"
+            app:showText="true"
+            app:switchTextAppearance="@style/BrandedSwitch.text"
+            app:theme="@style/BrandedSwitch.control" />
 
         <TextView
             android:id="@+id/UserSettingsActivitySpinnerLabel"
@@ -53,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/lora_regular"
+            android:fontFamily="@font/libre_caslon"
             android:text="@string/select_card_style"
             android:textColor="#FFD700"
             android:textSize="20sp"
@@ -72,8 +80,8 @@
 
         <ImageView
             android:id="@+id/UserSettingsActivityGoldCardImage"
-            android:layout_width="140dp"
-            android:layout_height="240dp"
+            android:layout_width="100dp"
+            android:layout_height="171dp"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/gold_themed_tarot_card"
             android:src="@drawable/cover"
@@ -90,15 +98,16 @@
             android:layout_marginTop="8dp"
             android:text="@string/gold"
             android:textColor="#FFFFFF"
-            android:fontFamily="@font/notosans_display"
+            android:fontFamily="@font/libre_caslon_header"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityGoldCardImage"
             app:layout_constraintStart_toStartOf="@id/UserSettingsActivityGoldCardImage"
             app:layout_constraintTop_toBottomOf="@id/UserSettingsActivityGoldCardImage" />
 
         <ImageView
             android:id="@+id/UserSettingsActivityLightCardImage"
-            android:layout_width="140dp"
-            android:layout_height="240dp"
+            android:layout_width="100dp"
+            android:layout_height="171dp"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/light_themed_tarot_card"
             android:src="@drawable/cover_light"
@@ -113,7 +122,8 @@
             android:layout_marginTop="8dp"
             android:text="@string/light"
             android:textColor="#FFFFFF"
-            android:fontFamily="@font/notosans_display"
+            android:fontFamily="@font/libre_caslon_header"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/UserSettingsActivityLightCardImage"
             app:layout_constraintStart_toStartOf="@id/UserSettingsActivityLightCardImage"
             app:layout_constraintTop_toBottomOf="@id/UserSettingsActivityLightCardImage" />
@@ -126,6 +136,7 @@
             android:layout_marginTop="32dp"
             android:minHeight="48dp"
             android:text="@string/save_settings"
+            android:fontFamily="@font/libre_caslon"
             android:background="@drawable/rounded_button"
             android:textColor="#FFD700"
             android:paddingLeft="16dp"

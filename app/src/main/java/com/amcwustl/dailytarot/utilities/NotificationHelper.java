@@ -15,7 +15,6 @@ import com.amcwustl.dailytarot.R;
 import java.util.Random;
 
 public class NotificationHelper {
-    private static final String TAG = "NotificationReceiver";
     private static final String[] notificationMessages = {
             "Don't forget to check your daily tarot reading!",
             "Your daily tarot reading is waiting for you!",

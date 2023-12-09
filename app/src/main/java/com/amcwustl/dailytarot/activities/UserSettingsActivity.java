@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
@@ -22,7 +22,7 @@ public class UserSettingsActivity extends BaseActivity {
     SharedPreferences preferences;
     Spinner cardDisplaySpinner;
     Button saveSettingsButton;
-    Switch notificationToggle;
+    SwitchCompat notificationToggle;
 
 
     @Override

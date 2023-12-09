@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.ReadingActivity"
-        android:background="@drawable/night_sky_gradient">
+        android:background="@drawable/night_sky_gradient"
+        tools:ignore="ExtraText">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/horizontal_guideline_30"
@@ -120,7 +121,7 @@
             android:id="@+id/CustomSpreadTapHold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_display"
+            android:fontFamily="@font/libre_caslon_header"
             android:text="@string/tap_hold"
             android:textColor="#FFFFFF"
             android:textSize="14sp"

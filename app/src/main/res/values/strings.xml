@@ -98,5 +98,7 @@
     </string>
     <string name="enable_notifications">Enable Notifications:</string>
     <string name="user_settings_label">Settings</string>
+    <string name="off">OFF</string>
+    <string name="on">ON</string>
 
 </resources>

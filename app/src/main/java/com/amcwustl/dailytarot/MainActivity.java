@@ -1,12 +1,10 @@
 package com.amcwustl.dailytarot;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +22,10 @@ import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.utilities.NotificationHelper;
+import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
 
 
 @SuppressWarnings("resource")
@@ -67,14 +69,32 @@ public class MainActivity extends BaseActivity {
 
     setupCardNavigation();
     setupCardTypes();
-    storeFirstLaunchDate();
-    showRatingDialogIfNeeded();
     createNotificationChannel();
 
     CardDbHelper dbHelper = new CardDbHelper(this);
 
     if (dbHelper.isDatabaseEmpty()) {
       dbHelper.populateDatabaseWithJsonData(this);
+    }
+
+    int launchCount = preferences.getInt("launch_count", 0);
+
+    launchCount++;
+
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putInt("launch_count", launchCount);
+    editor.apply();
+
+    Log.d(TAG, "Current launch count: " + launchCount);
+
+    if (launchCount == 3) {
+      promptForRating();
+    }
+
+    if (!preferences.contains("notifications_enabled")) {
+      // Set default value for 'notifications_enabled' on first app launch
+      editor.putBoolean("notifications_enabled", true);
+      editor.apply();
     }
   }
 
@@ -130,58 +150,6 @@ public class MainActivity extends BaseActivity {
 
   }
 
-  private void storeFirstLaunchDate() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    if (!prefs.contains("first_launch_date")) {
-      SharedPreferences.Editor editor = prefs.edit();
-      editor.putLong("first_launch_date", System.currentTimeMillis());
-      editor.apply();
-    }
-  }
-
-  private boolean shouldShowRatingDialog() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    long firstLaunchDate = prefs.getLong("first_launch_date", 0);
-    long fourteenDaysInMillis = 14 * 24 * 60 * 60 * 1000L;
-    return System.currentTimeMillis() - firstLaunchDate >= fourteenDaysInMillis;
-  }
-
-  private void showRatingDialogIfNeeded() {
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    boolean hasAskedForRating = prefs.getBoolean("has_asked_for_rating", false);
-
-    if (shouldShowRatingDialog() && !hasAskedForRating) {
-      new AlertDialog.Builder(this)
-              .setTitle("Enjoying the app?")
-              .setMessage("Please help us out by providing a rating and review!")
-              .setPositiveButton("Rate us", (dialog, which) -> {
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("has_asked_for_rating", true);
-                editor.apply();
-                redirectToStoreForRating();
-              })
-              .setNegativeButton("Not now", (dialog, which) -> {
-                dialog.dismiss();
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("has_asked_for_rating", true);
-                editor.apply();
-              })
-              .create()
-              .show();
-    }
-  }
-
-  private void redirectToStoreForRating() {
-    final String appPackageName = getPackageName();
-    try {
-      startActivity(new Intent(Intent.ACTION_VIEW,
-              Uri.parse("market://details?id=" + appPackageName)));
-    } catch (android.content.ActivityNotFoundException anfe) {
-      startActivity(new Intent(Intent.ACTION_VIEW,
-              Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-    }
-  }
-
 
   private void scheduleNotificationsIfNeeded() {
 
@@ -191,11 +159,8 @@ public class MainActivity extends BaseActivity {
     NotificationHelper.cancelScheduledNotification(this, 2);
 
     if (areNotificationsEnabled) {
-      // Your existing logic to schedule notifications
-    } else {
-      // Schedule new notifications for 1 minute from now for debugging
-      NotificationHelper.scheduleNotification(this, 1 * 60 * 1000L, 1, "tarot_channel"); // 1 minute
-      NotificationHelper.scheduleNotification(this, 2 * 60 * 1000L, 2, "tarot_channel"); // 1 minute
+      NotificationHelper.scheduleNotification(this, 60 * 1000L, 1, "tarot_channel"); // 1 minute
+      NotificationHelper.scheduleNotification(this, 60 * 60 * 1000L, 2, "tarot_channel");
     }
   }
 
@@ -214,6 +179,27 @@ public class MainActivity extends BaseActivity {
       notificationManager.createNotificationChannel(channel);
     }
   }
+
+  private void promptForRating() {
+    ReviewManager manager = ReviewManagerFactory.create(this);
+    Task<ReviewInfo> request = manager.requestReviewFlow();
+    request.addOnCompleteListener(task -> {
+      if (task.isSuccessful()) {
+        ReviewInfo reviewInfo = task.getResult();
+        Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
+        flow.addOnCompleteListener(task2 -> {
+          if (task2.isSuccessful()) {
+          } else {
+            Log.e(TAG, "In-app review flow failed: " + task2.getException());
+          }
+        });
+      } else {
+        Log.e(TAG, "Requesting review flow failed: " + task.getException());
+      }
+    });
+
+}
+
 }
 
 
