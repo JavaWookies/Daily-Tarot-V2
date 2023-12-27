@@ -2,6 +2,7 @@ package com.amcwustl.dailytarot.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,11 +13,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
@@ -33,6 +36,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -61,6 +65,7 @@ public class ReadingActivity extends BaseActivity {
   private boolean isAdLoadFailureRepeated = false;
   private int adLoadFailureCount = 0;
   private static final int AD_LOAD_FAILURE_THRESHOLD = 8;
+  private int cardWidth = 0;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +79,10 @@ public class ReadingActivity extends BaseActivity {
     cardThree = findViewById(R.id.ReadingActivityDrawnCardThree);
     deck = findViewById(R.id.ReadingActivityDeckImage);
 
+    calculateCardDimensions();
+
     btnGetInterpretation = findViewById(R.id.DailyCardActivityViewCardDetailsButton);
-    btnGetInterpretation.setVisibility(View.GONE);
+    btnGetInterpretation.setVisibility(View.INVISIBLE);
     btnGetInterpretation.setOnClickListener(view -> showInterpretationModal());
     drawCardsButton = findViewById(R.id.ReadingActivityDrawCardsButton);
     rewardAdButton = findViewById(R.id.ReadingActivityRewardAdButton);
@@ -88,9 +95,13 @@ public class ReadingActivity extends BaseActivity {
 
     List<Card> restoredCards = CardStateUtil.restoreReadingState(preferences, dbHelper, "ReadingActivity");
     if (!restoredCards.isEmpty()) {
-      setupCardImages(restoredCards);
+      positionCardsFaceUp(restoredCards);
       currentInterpretation = generateInterpretation(restoredCards);
       btnGetInterpretation.setVisibility(View.VISIBLE);
+      drawCardsButton.setVisibility(View.GONE);
+      rewardAdButton.setVisibility(View.VISIBLE);
+    } else {
+      positionCardsOnDeck();
     }
 
     mAdView = findViewById(R.id.adView);
@@ -172,7 +183,6 @@ public class ReadingActivity extends BaseActivity {
   }
 
   private void drawThreeRandomCards() {
-
     List<Card> drawnCards = new ArrayList<>();
     cardOne.setRotation(0);
     cardTwo.setRotation(0);
@@ -181,6 +191,7 @@ public class ReadingActivity extends BaseActivity {
     Random random = new Random();
     int maxCardId = 78;
     HashSet<Integer> seenCards = new HashSet<>();
+
     while (drawnCards.size() < 3) {
       Integer randomCardId = random.nextInt(maxCardId) + 1;
       Card card = dbHelper.getCardById(Long.valueOf(randomCardId));
@@ -191,23 +202,20 @@ public class ReadingActivity extends BaseActivity {
     }
 
     for (Card card : drawnCards) {
-
-      int randomOrientation = random.nextInt(2);
+      int randomOrientation = random.nextInt(2); // 0 or 1
       card.setOrientation(randomOrientation);
     }
 
     setupCardImages(drawnCards);
     btnGetInterpretation.setVisibility(View.VISIBLE);
-
-
     CardStateUtil.saveReadingState(preferences, drawnCards, "ReadingActivity");
-
     currentInterpretation = generateInterpretation(drawnCards);
-    userCoinCount -= 10;
+    userCoinCount -= 10; // Assuming each draw costs 10 coins
     setupRewardAd();
     markReadingForToday();
     runOnUiThread(this::updateUIBasedOnCoinCount);
   }
+
 
   private String generateInterpretation(List<Card> drawnCards) {
     StringBuilder interpretation = new StringBuilder();
@@ -251,51 +259,147 @@ public class ReadingActivity extends BaseActivity {
   }
 
   private void setupCardImages(List<Card> drawnCards) {
-    List<ImageView> imageViewList = new ArrayList<>();
-    imageViewList.add(cardOne);
-    imageViewList.add(cardTwo);
-    imageViewList.add(cardThree);
+    int screenHeight = getResources().getDisplayMetrics().heightPixels;
+    float finalY = getResources().getDimension(R.dimen.margin_32dp);
 
-    for (int i = 0; i < 3; i++) {
+    List<ImageView> cardViews = Arrays.asList(cardOne, cardTwo, cardThree);
+    for (int i = 0; i < drawnCards.size(); i++) {
       Card card = drawnCards.get(i);
-      String cardName = card.getNameShort();
+      ImageView cardView = cardViews.get(i);
+
       String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
-      String resourceName = cardName + cardType;
-      @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+      String resourceName = "cover" + cardType;
+
+      int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
 
       if (resourceId != 0) {
-        ImageView imageView = imageViewList.get(i);
-        float cameraDistance = 20 * getResources().getDisplayMetrics().density * imageView.getWidth();
-        imageView.setCameraDistance(cameraDistance);
+        cardView.setImageResource(resourceId);
+        cardView.setVisibility(View.VISIBLE);
 
-        ObjectAnimator firstHalfFlip = ObjectAnimator.ofFloat(imageView, "rotationY", 0f, 90f);
-        firstHalfFlip.setDuration(250);
+        float finalX = calculateCardFinalXPosition(i, getResources().getDisplayMetrics().widthPixels, cardWidth);
 
-        ObjectAnimator secondHalfFlip = ObjectAnimator.ofFloat(imageView, "rotationY", -90f, 0f);
-        secondHalfFlip.setDuration(250);
+        ObjectAnimator moveX = ObjectAnimator.ofFloat(cardView, "x", finalX);
+        ObjectAnimator moveY = ObjectAnimator.ofFloat(cardView, "y", finalY);
+        moveX.setDuration(1000);
+        moveY.setDuration(1000);
 
-        firstHalfFlip.addListener(new AnimatorListenerAdapter() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(moveX, moveY);
+        animatorSet.addListener(new AnimatorListenerAdapter() {
           @Override
           public void onAnimationEnd(Animator animation) {
-            imageView.setImageResource(resourceId);
-            if (card.getOrientation() == 1) {
-              imageView.setRotation(180f);
-            }
-            secondHalfFlip.start();
+            flipCard(cardView, card);
           }
         });
+        animatorSet.start();
+      } else {
+        Log.e(TAG, "Resource not found for card: " + resourceName);
+      }
+    }
+  }
 
-        firstHalfFlip.start();
-        imageView.setOnLongClickListener(view -> {
+  private void positionCardsFaceUp(List<Card> cards) {
+    List<ImageView> cardViews = Arrays.asList(cardOne, cardTwo, cardThree);
+    float topMargin = getResources().getDimension(R.dimen.margin_32dp);
+
+    for (int i = 0; i < cards.size(); i++) {
+      Card card = cards.get(i);
+      ImageView cardView = cardViews.get(i);
+
+      String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
+      String resourceName = card.getNameShort() + cardType;
+      int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+      cardView.setImageResource(resourceId);
+      cardView.setVisibility(View.VISIBLE);
+      cardView.setRotation(card.getOrientation() == 1 ? 180 : 0);
+      cardView.setOnLongClickListener(v -> {
+        navigateToCardDetail(card.getId());
+        return true;
+      });
+    }
+  }
+
+
+
+
+  private void positionCardsOnDeck() {
+    List<ImageView> cardViews = Arrays.asList(cardOne, cardTwo, cardThree);
+    for (ImageView cardView : cardViews) {
+      cardView.setX(deck.getX());
+      cardView.setY(deck.getY());
+      cardView.setVisibility(View.INVISIBLE); // Make them invisible initially
+    }
+  }
+
+  private float calculateCardFinalXPosition(int cardIndex, int screenWidth, int cardWidth) {
+    float spacing = (screenWidth - (3 * cardWidth)) / 4; // 4 spacings for 3 cards
+    Log.d(TAG, "calculateCardFinalXPosition: screenWidth" + screenWidth);
+    Log.d(TAG, "calculateCardFinalXPosition: cardWidth" + cardWidth);
+    float firstCardX = spacing;
+    Log.d(TAG, "calculateCardFinalXPosition: first card positon" + firstCardX);
+    float secondCardX = firstCardX + cardWidth + spacing;
+    float thirdCardX = secondCardX + cardWidth + spacing;
+
+    if (cardIndex == 0) return firstCardX;
+    if (cardIndex == 1) return secondCardX;
+    if (cardIndex == 2) return thirdCardX;
+
+    throw new IllegalArgumentException("Invalid card index");
+  }
+
+
+
+  private void flipCard(ImageView cardView, Card card) {
+    // Determine the correct resource for the card based on its orientation and theme
+    String cardName = card.getNameShort();
+    String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
+    String resourceName = cardName + cardType;
+    int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+
+    // First half of the flip to 90 degrees
+    ObjectAnimator flip1 = ObjectAnimator.ofFloat(cardView, "rotationY", 0f, 90f);
+    flip1.setDuration(500);
+
+    // Prepare the second half of the flip from -90 degrees back to 0
+    ObjectAnimator flip2 = ObjectAnimator.ofFloat(cardView, "rotationY", -90f, 0f);
+    flip2.setDuration(500);
+
+    flip1.addListener(new AnimatorListenerAdapter() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        cardView.setImageResource(resourceId);
+        flip2.start();
+
+        // Set the long click listener after the card is flipped
+        cardView.setOnLongClickListener(v -> {
           navigateToCardDetail(card.getId());
           return true;
         });
-      } else {
-        Log.e(TAG, "Resource not found for card: " + cardName);
+        if (card.getOrientation() == 1) {
+          cardView.setRotation(180);
+        }
       }
+    });
 
-    }
+    // Start the first half of the flip
+    flip1.start();
   }
+
+
+  private void calculateCardDimensions() {
+    ConstraintLayout constraintLayout = findViewById(R.id.DailyReadingConstraintLayout); // Replace with your ConstraintLayout's ID
+    ViewTreeObserver viewTreeObserver = constraintLayout.getViewTreeObserver();
+    viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+      @Override
+      public void onGlobalLayout() {
+        constraintLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+        cardWidth = deck.getWidth();
+
+      }
+    });
+  }
+
 
   private void showInterpretationModal() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -356,13 +460,19 @@ public class ReadingActivity extends BaseActivity {
 
   private void handlePotentialAdBlocker() {
     runOnUiThread(() -> {
-      AlertDialog.Builder builder = new AlertDialog.Builder(ReadingActivity.this);
-      builder.setTitle("Ad Loading Issue");
-      builder.setMessage("We're unable to load the reward ad required to get a new reading, which may be due to a network issue or an ad blocker. If you have global ad blocking enabled, please consider disabling in order to support this application remaining free. The next reading is enabled but features may not work as intended. ");
-      builder.setPositiveButton("OK", (dialog, id) -> {
-      });
-      AlertDialog dialog = builder.create();
-      dialog.show();
+      // Check if the activity is still active and not finishing
+      if (!isFinishing()) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ReadingActivity.this);
+        builder.setTitle("Ad Loading Issue");
+        builder.setMessage("We're unable to load the reward ad required to get a new reading, which may be due to a network issue or an ad blocker. If you have global ad blocking enabled, please consider disabling it in order to support this application remaining free. The next reading is enabled but features may not work as intended.");
+        builder.setPositiveButton("OK", (dialog, id) -> {
+          // You can place any desired action here when the user clicks OK
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+      }
+
       userCoinCount += 10;
       updateUIBasedOnCoinCount();
       adLoadFailureCount = 0;
@@ -370,8 +480,10 @@ public class ReadingActivity extends BaseActivity {
     });
   }
 
+
   public void setupRewardAdButton() {
     rewardAdButton.setOnClickListener(view -> {
+      positionCardsOnDeck();
       if (rewardedAd != null) {
         Activity activityContext = ReadingActivity.this;
         rewardedAd.show(activityContext, rewardItem -> {
