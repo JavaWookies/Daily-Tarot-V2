@@ -262,6 +262,7 @@ public class QuizActivity extends BaseActivity {
         if (selectedCardIndex == correctCardIndex) {
             currentStreak++;
             updateStreak();
+            updateStreakDisplay();
             selectedCard.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.green_border, null));
             showResultBanner(true);
         } else {
@@ -291,7 +292,7 @@ public class QuizActivity extends BaseActivity {
     }
 
     private void showResultBanner(boolean isCorrect) {
-        String message = isCorrect ? "✨ Correct! Well done." : "❌ Sorry wrong answer! The correct answer was " + correctCardName +".";
+        String message = isCorrect ? "✨ Correct! Well done." : "❌ Incorrect! The correct answer was " + correctCardName +".";
         Snackbar snackbar = Snackbar.make(findViewById(R.id.my_drawer_layout), message, Snackbar.LENGTH_INDEFINITE);
 
         if (isCorrect) {

@@ -35,7 +35,6 @@
             android:id="@+id/card_daily_reading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/welcome_text"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
@@ -91,7 +90,7 @@
                         android:fontFamily="@font/libre_caslon"
                         android:text="@string/reading_description"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -100,7 +99,6 @@
             android:id="@+id/card_of_the_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_daily_reading"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
@@ -155,7 +153,7 @@
                         android:gravity="center"
                         android:text="@string/card_of_day_description"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -164,7 +162,6 @@
                 android:id="@+id/custom_spread"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/card_of_the_day"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="24dp"
@@ -219,7 +216,7 @@
                             android:gravity="center"
                             android:text="@string/custom_spread_desc"
                             android:textColor="#FFFFFF"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
@@ -228,7 +225,6 @@
             android:id="@+id/view_all_cards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/card_of_the_day"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
@@ -283,7 +279,7 @@
                         android:fontFamily="@font/libre_caslon"
                         android:text="@string/view_all_cards_desc"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -292,7 +288,6 @@
                 android:id="@+id/tarot_quiz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/view_all_cards"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="24dp"
@@ -347,7 +342,7 @@
                             android:fontFamily="@font/libre_caslon"
                             android:text="@string/quiz_text"
                             android:textColor="#FFFFFF"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>

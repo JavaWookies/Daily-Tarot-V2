@@ -8,10 +8,11 @@
     tools:context=".activities.ReadingActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/DailyReadingConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.ReadingActivity"
         android:background="@drawable/night_sky_gradient"
+        tools:context=".activities.ReadingActivity"
         tools:ignore="ExtraText">
 
         <androidx.constraintlayout.widget.Guideline
@@ -44,10 +45,10 @@
 
         <Button
             android:id="@+id/ReadingActivityDrawCardsButton"
+            style="@style/MyButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            style="@style/MyButtonStyle"
             android:text="@string/draw_cards"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,10 +57,10 @@
 
         <Button
             android:id="@+id/ReadingActivityRewardAdButton"
+            style="@style/MyButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            style="@style/MyButtonStyle"
             android:text="@string/watch_ad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,11 +68,12 @@
 
         <ImageView
             android:id="@+id/ReadingActivityDeckImage"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:layout_marginVertical="16dp"
             android:contentDescription="@string/deck"
             android:src="@drawable/cover"
-            android:layout_marginVertical="16dp"
             app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline_70"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,35 +81,36 @@
 
         <ImageView
             android:id="@+id/ReadingActivityDrawnCardOne"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/drawn_card_one"
             android:src="@drawable/cover"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ReadingActivityDrawnCardTwo"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30"
-            tools:ignore="VisualLintBounds"
-            tools:layout_editor_absoluteX="411dp" />
+            app:layout_constraintEnd_toStartOf="@id/ReadingActivityDrawnCardTwo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintBounds" />
 
         <ImageView
             android:id="@+id/ReadingActivityDrawnCardTwo"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/second_drawn_card"
             android:src="@drawable/cover"
-            app:layout_constraintStart_toEndOf="@id/ReadingActivityDrawnCardOne"
+            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30"
             app:layout_constraintEnd_toStartOf="@id/ReadingActivityDrawnCardThree"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30" />
-        />
+            app:layout_constraintStart_toEndOf="@id/ReadingActivityDrawnCardOne"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ReadingActivityDrawnCardThree"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:adjustViewBounds="true"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/third_drawn_card"
             android:src="@drawable/cover"
@@ -115,7 +118,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30" />
-        />
 
         <TextView
             android:id="@+id/CustomSpreadTapHold"
@@ -132,9 +134,9 @@
 
         <Button
             android:id="@+id/DailyCardActivityViewCardDetailsButton"
+            style="@style/MyButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyButtonStyle"
             android:layout_marginBottom="8dp"
             android:text="@string/view_interpretation"
             app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline_40"
@@ -150,7 +152,7 @@
             app:adUnitId="ca-app-pub-9366728814901706/1393734497"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
