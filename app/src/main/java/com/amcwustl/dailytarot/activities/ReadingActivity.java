@@ -92,16 +92,17 @@ public class ReadingActivity extends BaseActivity {
     setupRewardAd();
     setupRewardAdButton();
     checkReadingForToday();
+    deck.post(this::positionCardsOnDeck);
+
+
 
     List<Card> restoredCards = CardStateUtil.restoreReadingState(preferences, dbHelper, "ReadingActivity");
-    if (!restoredCards.isEmpty()) {
+    if (!restoredCards.isEmpty() ) {
       positionCardsFaceUp(restoredCards);
       currentInterpretation = generateInterpretation(restoredCards);
       btnGetInterpretation.setVisibility(View.VISIBLE);
       drawCardsButton.setVisibility(View.GONE);
       rewardAdButton.setVisibility(View.VISIBLE);
-    } else {
-      positionCardsOnDeck();
     }
 
     mAdView = findViewById(R.id.adView);
@@ -259,7 +260,6 @@ public class ReadingActivity extends BaseActivity {
   }
 
   private void setupCardImages(List<Card> drawnCards) {
-    int screenHeight = getResources().getDisplayMetrics().heightPixels;
     float finalY = getResources().getDimension(R.dimen.margin_32dp);
 
     List<ImageView> cardViews = Arrays.asList(cardOne, cardTwo, cardThree);
@@ -270,7 +270,7 @@ public class ReadingActivity extends BaseActivity {
       String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
       String resourceName = "cover" + cardType;
 
-      int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+      @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
 
       if (resourceId != 0) {
         cardView.setImageResource(resourceId);
@@ -298,9 +298,17 @@ public class ReadingActivity extends BaseActivity {
     }
   }
 
+  private void forceLayout(View view) {
+    view.requestLayout();
+    view.measure(
+            View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.EXACTLY)
+    );
+    view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+  }
+
   private void positionCardsFaceUp(List<Card> cards) {
     List<ImageView> cardViews = Arrays.asList(cardOne, cardTwo, cardThree);
-    float topMargin = getResources().getDimension(R.dimen.margin_32dp);
 
     for (int i = 0; i < cards.size(); i++) {
       Card card = cards.get(i);
@@ -308,7 +316,7 @@ public class ReadingActivity extends BaseActivity {
 
       String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
       String resourceName = card.getNameShort() + cardType;
-      int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+      @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
       cardView.setImageResource(resourceId);
       cardView.setVisibility(View.VISIBLE);
       cardView.setRotation(card.getOrientation() == 1 ? 180 : 0);
@@ -333,12 +341,11 @@ public class ReadingActivity extends BaseActivity {
   }
 
   private float calculateCardFinalXPosition(int cardIndex, int screenWidth, int cardWidth) {
-    float spacing = (screenWidth - (3 * cardWidth)) / 4; // 4 spacings for 3 cards
-    float firstCardX = spacing;
-    float secondCardX = firstCardX + cardWidth + spacing;
+    float spacing = (screenWidth - (3 * cardWidth)) / 4f;
+    float secondCardX = spacing + cardWidth + spacing;
     float thirdCardX = secondCardX + cardWidth + spacing;
 
-    if (cardIndex == 0) return firstCardX;
+    if (cardIndex == 0) return spacing;
     if (cardIndex == 1) return secondCardX;
     if (cardIndex == 2) return thirdCardX;
 
@@ -351,7 +358,7 @@ public class ReadingActivity extends BaseActivity {
     String cardName = card.getNameShort();
     String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
     String resourceName = cardName + cardType;
-    int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
+    @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
 
     ObjectAnimator flip1 = ObjectAnimator.ofFloat(cardView, "rotationY", 0f, 90f);
     flip1.setDuration(500);
@@ -483,7 +490,6 @@ public class ReadingActivity extends BaseActivity {
           // Handle the reward.
           Log.d(TAG, "The user earned the reward.");
           int rewardAmount = rewardItem.getAmount();
-          String rewardType = rewardItem.getType();
           userCoinCount += rewardAmount;
           runOnUiThread(this::updateUIBasedOnCoinCount);
 
