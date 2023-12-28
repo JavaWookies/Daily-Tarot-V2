@@ -210,7 +210,7 @@ public class ReadingActivity extends BaseActivity {
     btnGetInterpretation.setVisibility(View.VISIBLE);
     CardStateUtil.saveReadingState(preferences, drawnCards, "ReadingActivity");
     currentInterpretation = generateInterpretation(drawnCards);
-    userCoinCount -= 10; // Assuming each draw costs 10 coins
+    userCoinCount -= 10;
     setupRewardAd();
     markReadingForToday();
     runOnUiThread(this::updateUIBasedOnCoinCount);
@@ -328,15 +328,13 @@ public class ReadingActivity extends BaseActivity {
       cardView.setX(deck.getX());
       cardView.setY(deck.getY());
       cardView.setVisibility(View.INVISIBLE); // Make them invisible initially
+      btnGetInterpretation.setVisibility(View.INVISIBLE);
     }
   }
 
   private float calculateCardFinalXPosition(int cardIndex, int screenWidth, int cardWidth) {
     float spacing = (screenWidth - (3 * cardWidth)) / 4; // 4 spacings for 3 cards
-    Log.d(TAG, "calculateCardFinalXPosition: screenWidth" + screenWidth);
-    Log.d(TAG, "calculateCardFinalXPosition: cardWidth" + cardWidth);
     float firstCardX = spacing;
-    Log.d(TAG, "calculateCardFinalXPosition: first card positon" + firstCardX);
     float secondCardX = firstCardX + cardWidth + spacing;
     float thirdCardX = secondCardX + cardWidth + spacing;
 
@@ -350,17 +348,14 @@ public class ReadingActivity extends BaseActivity {
 
 
   private void flipCard(ImageView cardView, Card card) {
-    // Determine the correct resource for the card based on its orientation and theme
     String cardName = card.getNameShort();
     String cardType = preferences.getString(UserSettingsActivity.CARD_TYPE_TAG, "");
     String resourceName = cardName + cardType;
     int resourceId = getResources().getIdentifier(resourceName, "drawable", getPackageName());
 
-    // First half of the flip to 90 degrees
     ObjectAnimator flip1 = ObjectAnimator.ofFloat(cardView, "rotationY", 0f, 90f);
     flip1.setDuration(500);
 
-    // Prepare the second half of the flip from -90 degrees back to 0
     ObjectAnimator flip2 = ObjectAnimator.ofFloat(cardView, "rotationY", -90f, 0f);
     flip2.setDuration(500);
 
@@ -370,7 +365,6 @@ public class ReadingActivity extends BaseActivity {
         cardView.setImageResource(resourceId);
         flip2.start();
 
-        // Set the long click listener after the card is flipped
         cardView.setOnLongClickListener(v -> {
           navigateToCardDetail(card.getId());
           return true;
@@ -381,13 +375,12 @@ public class ReadingActivity extends BaseActivity {
       }
     });
 
-    // Start the first half of the flip
     flip1.start();
   }
 
 
   private void calculateCardDimensions() {
-    ConstraintLayout constraintLayout = findViewById(R.id.DailyReadingConstraintLayout); // Replace with your ConstraintLayout's ID
+    ConstraintLayout constraintLayout = findViewById(R.id.DailyReadingConstraintLayout);
     ViewTreeObserver viewTreeObserver = constraintLayout.getViewTreeObserver();
     viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
       @Override
@@ -460,18 +453,18 @@ public class ReadingActivity extends BaseActivity {
 
   private void handlePotentialAdBlocker() {
     runOnUiThread(() -> {
-      // Check if the activity is still active and not finishing
       if (!isFinishing()) {
         AlertDialog.Builder builder = new AlertDialog.Builder(ReadingActivity.this);
         builder.setTitle("Ad Loading Issue");
         builder.setMessage("We're unable to load the reward ad required to get a new reading, which may be due to a network issue or an ad blocker. If you have global ad blocking enabled, please consider disabling it in order to support this application remaining free. The next reading is enabled but features may not work as intended.");
         builder.setPositiveButton("OK", (dialog, id) -> {
-          // You can place any desired action here when the user clicks OK
         });
 
         AlertDialog dialog = builder.create();
         dialog.show();
       }
+
+      positionCardsOnDeck();
 
       userCoinCount += 10;
       updateUIBasedOnCoinCount();
@@ -483,15 +476,14 @@ public class ReadingActivity extends BaseActivity {
 
   public void setupRewardAdButton() {
     rewardAdButton.setOnClickListener(view -> {
-      positionCardsOnDeck();
       if (rewardedAd != null) {
+        positionCardsOnDeck();
         Activity activityContext = ReadingActivity.this;
         rewardedAd.show(activityContext, rewardItem -> {
           // Handle the reward.
           Log.d(TAG, "The user earned the reward.");
           int rewardAmount = rewardItem.getAmount();
           String rewardType = rewardItem.getType();
-          Log.d(TAG, "Earned " + rewardAmount + " " + rewardType);
           userCoinCount += rewardAmount;
           runOnUiThread(this::updateUIBasedOnCoinCount);
 

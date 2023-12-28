@@ -1,6 +1,7 @@
 package com.amcwustl.dailytarot.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -89,9 +90,25 @@ public class BaseActivity extends AppCompatActivity {
                 Intent customSpreadIntent = new Intent(this, CustomSpreadActivity.class);
                 startActivity(customSpreadIntent);
                 return true;
+            } else if (itemId == R.id.nav_rate_app){
+                openAppInPlayStore();
+                return true;
             }
             return false;
         });
     }
+
+    private void openAppInPlayStore() {
+        String appPackageName = getPackageName(); // Get the current package name
+
+        try {
+            // Try to open in the Play Store app
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException e) {
+            // If Play Store app is not installed, open in a web browser
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
+    }
+
 }
 
