@@ -92,9 +92,6 @@ public class ReadingActivity extends BaseActivity {
     setupRewardAd();
     setupRewardAdButton();
     checkReadingForToday();
-    deck.post(this::positionCardsOnDeck);
-
-
 
     List<Card> restoredCards = CardStateUtil.restoreReadingState(preferences, dbHelper, "ReadingActivity");
     if (!restoredCards.isEmpty() ) {
@@ -103,6 +100,8 @@ public class ReadingActivity extends BaseActivity {
       btnGetInterpretation.setVisibility(View.VISIBLE);
       drawCardsButton.setVisibility(View.GONE);
       rewardAdButton.setVisibility(View.VISIBLE);
+    } else {
+      deck.post(this::positionCardsOnDeck);
     }
 
     mAdView = findViewById(R.id.adView);
@@ -203,7 +202,7 @@ public class ReadingActivity extends BaseActivity {
     }
 
     for (Card card : drawnCards) {
-      int randomOrientation = random.nextInt(2); // 0 or 1
+      int randomOrientation = random.nextInt(2);
       card.setOrientation(randomOrientation);
     }
 
@@ -298,17 +297,10 @@ public class ReadingActivity extends BaseActivity {
     }
   }
 
-  private void forceLayout(View view) {
-    view.requestLayout();
-    view.measure(
-            View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
-            View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.EXACTLY)
-    );
-    view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-  }
-
   private void positionCardsFaceUp(List<Card> cards) {
     List<ImageView> cardViews = Arrays.asList(cardOne, cardTwo, cardThree);
+    btnGetInterpretation.setVisibility(View.VISIBLE);
+    currentInterpretation = generateInterpretation(cards);
 
     for (int i = 0; i < cards.size(); i++) {
       Card card = cards.get(i);
@@ -326,8 +318,6 @@ public class ReadingActivity extends BaseActivity {
       });
     }
   }
-
-
 
 
   private void positionCardsOnDeck() {
@@ -351,8 +341,6 @@ public class ReadingActivity extends BaseActivity {
 
     throw new IllegalArgumentException("Invalid card index");
   }
-
-
 
   private void flipCard(ImageView cardView, Card card) {
     String cardName = card.getNameShort();
