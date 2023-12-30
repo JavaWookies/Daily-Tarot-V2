@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -64,7 +63,7 @@ public class ReadingActivity extends BaseActivity {
   SharedPreferences preferences;
   private boolean isAdLoadFailureRepeated = false;
   private int adLoadFailureCount = 0;
-  private static final int AD_LOAD_FAILURE_THRESHOLD = 8;
+  private static final int AD_LOAD_FAILURE_THRESHOLD = 2;
   private int cardWidth = 0;
 
   @Override
@@ -89,7 +88,7 @@ public class ReadingActivity extends BaseActivity {
     dbHelper = new CardDbHelper(this);
     setupCardTypes();
     setupDrawCardsButton();
-    setupRewardAd();
+//    setupRewardAd();
     setupRewardAdButton();
     checkReadingForToday();
 
@@ -426,13 +425,14 @@ public class ReadingActivity extends BaseActivity {
                 if (adLoadFailureCount >= AD_LOAD_FAILURE_THRESHOLD) {
                   isAdLoadFailureRepeated = true;
                   handlePotentialAdBlocker();
-                } else {
-                  new Handler().postDelayed(() -> {
-                    setupRewardAd();
-                    // Double the delay for the next possible retry
-                    retryDelaySeconds = Math.min(retryDelaySeconds * 2, MAX_RETRY_DELAY_SECONDS);
-                  }, retryDelaySeconds * 1000L);
                 }
+//                else {
+//                  new Handler().postDelayed(() -> {
+//                    setupRewardAd();
+//                    // Double the delay for the next possible retry
+//                    retryDelaySeconds = Math.min(retryDelaySeconds * 2, MAX_RETRY_DELAY_SECONDS);
+//                  }, retryDelaySeconds * 1000L);
+//                }
               }
 
               @Override
@@ -448,16 +448,16 @@ public class ReadingActivity extends BaseActivity {
 
   private void handlePotentialAdBlocker() {
     runOnUiThread(() -> {
-      if (!isFinishing()) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ReadingActivity.this);
-        builder.setTitle("Ad Loading Issue");
-        builder.setMessage("We're unable to load the reward ad required to get a new reading, which may be due to a network issue or an ad blocker. If you have global ad blocking enabled, please consider disabling it in order to support this application remaining free. The next reading is enabled but features may not work as intended.");
-        builder.setPositiveButton("OK", (dialog, id) -> {
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-      }
+//      if (!isFinishing()) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(ReadingActivity.this);
+//        builder.setTitle("Ad Loading Issue");
+//        builder.setMessage("We're unable to load the reward ad required to get a new reading, which may be due to a network issue or an ad blocker. If you have global ad blocking enabled, please consider disabling it in order to support this application remaining free. The next reading is enabled but features may not work as intended.");
+//        builder.setPositiveButton("OK", (dialog, id) -> {
+//        });
+//
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+//      }
 
       positionCardsOnDeck();
 
