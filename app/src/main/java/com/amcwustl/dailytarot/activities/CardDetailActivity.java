@@ -10,8 +10,10 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
@@ -19,8 +21,11 @@ import androidx.preference.PreferenceManager;
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.facebook.ads.AdSize;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -32,6 +37,7 @@ public class CardDetailActivity extends BaseActivity {
   private int contentColor;
   private int titleColor;
   private ChipGroup chipGroup;
+  private com.facebook.ads.AdView adView;
   SharedPreferences preferences;
 
   @Override
@@ -45,6 +51,16 @@ public class CardDetailActivity extends BaseActivity {
     mAdView = findViewById(R.id.adView);
     AdRequest adRequest = new AdRequest.Builder().build();
     mAdView.loadAd(adRequest);
+
+    adView = new com.facebook.ads.AdView(this, "351150507666328_357018053746240", AdSize.BANNER_HEIGHT_50);
+
+    mAdView.setAdListener(new AdListener() {
+      @Override
+      public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+        super.onAdFailedToLoad(loadAdError);
+        loadMetaBannerAd();
+      }
+    });
 
     preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -158,6 +174,13 @@ public class CardDetailActivity extends BaseActivity {
     spannableContent.setSpan(new ForegroundColorSpan(contentColor), 0, content.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
     return spannableContent;
+  }
+
+  private void loadMetaBannerAd() {
+    LinearLayout adContainer = (LinearLayout) findViewById(R.id.meta_banner_container);
+    adContainer.addView(adView);
+
+    adView.loadAd();
   }
 
 }
