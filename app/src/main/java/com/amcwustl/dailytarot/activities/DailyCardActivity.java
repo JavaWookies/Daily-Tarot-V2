@@ -8,14 +8,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
+import com.facebook.ads.AdSize;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -28,6 +33,8 @@ public class DailyCardActivity extends BaseActivity {
     private ImageView card;
     private AdView mAdView;
     private long todaysCardId;
+
+    private com.facebook.ads.AdView adView;
 
     SharedPreferences sharedPreferences;
 
@@ -46,6 +53,16 @@ public class DailyCardActivity extends BaseActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        adView = new com.facebook.ads.AdView(this, "351150507666328_357016823746363", AdSize.BANNER_HEIGHT_50);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                loadMetaBannerAd();
+            }
+        });
 
         checkAndGenerateCardForToday();
         setupCardForDisplay();
@@ -158,5 +175,12 @@ public class DailyCardActivity extends BaseActivity {
         Intent intent = new Intent(DailyCardActivity.this, CardDetailActivity.class);
         intent.putExtra("card_id", cardId);
         startActivity(intent);
+    }
+
+    private void loadMetaBannerAd() {
+        LinearLayout adContainer = (LinearLayout) findViewById(R.id.meta_banner_container);
+        adContainer.addView(adView);
+
+        adView.loadAd();
     }
 }

@@ -25,6 +25,9 @@ import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
 import com.amcwustl.dailytarot.utilities.CardStateUtil;
+import com.facebook.ads.Ad;
+import com.facebook.ads.RewardedInterstitialAd;
+import com.facebook.ads.RewardedInterstitialAdListener;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -58,12 +61,8 @@ public class ReadingActivity extends BaseActivity {
   private Button btnGetInterpretation;
   private String currentInterpretation;
   private AdView mAdView;
-  private int retryDelaySeconds = 5;
-  private static final int MAX_RETRY_DELAY_SECONDS = 120;
+  private RewardedInterstitialAd metaRewardedInterstitialAd;
   SharedPreferences preferences;
-  private boolean isAdLoadFailureRepeated = false;
-  private int adLoadFailureCount = 0;
-  private static final int AD_LOAD_FAILURE_THRESHOLD = 2;
   private int cardWidth = 0;
 
   @Override
@@ -88,7 +87,6 @@ public class ReadingActivity extends BaseActivity {
     dbHelper = new CardDbHelper(this);
     setupCardTypes();
     setupDrawCardsButton();
-//    setupRewardAd();
     setupRewardAdButton();
     checkReadingForToday();
 
@@ -131,6 +129,9 @@ public class ReadingActivity extends BaseActivity {
     if (mAdView != null) {
       mAdView.destroy();
     }
+    if (metaRewardedInterstitialAd != null) {
+      metaRewardedInterstitialAd.destroy();
+    }
     super.onDestroy();
   }
 
@@ -155,14 +156,10 @@ public class ReadingActivity extends BaseActivity {
 
     @SuppressLint("SimpleDateFormat") String todayKey = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-
-
     if(!sharedPreferences.getBoolean(todayKey + HAS_READING_FOR_TODAY, false)) {
       userCoinCount = 10;
     }
-
     runOnUiThread(this::updateUIBasedOnCoinCount);
-
   }
 
   private void updateUIBasedOnCoinCount() {
@@ -387,7 +384,6 @@ public class ReadingActivity extends BaseActivity {
     });
   }
 
-
   private void showInterpretationModal() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     View view = getLayoutInflater().inflate(R.layout.interpretation_modal, null);
@@ -418,53 +414,24 @@ public class ReadingActivity extends BaseActivity {
               @Override
               public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 // Handle the error.
-                Log.d(TAG, loadAdError.toString());
+                Log.d(TAG, "Admob ad failed to load");
                 rewardedAd = null;
-                adLoadFailureCount++;
-
-                if (adLoadFailureCount >= AD_LOAD_FAILURE_THRESHOLD) {
-                  isAdLoadFailureRepeated = true;
-                  handlePotentialAdBlocker();
-                }
-//                else {
-//                  new Handler().postDelayed(() -> {
-//                    setupRewardAd();
-//                    // Double the delay for the next possible retry
-//                    retryDelaySeconds = Math.min(retryDelaySeconds * 2, MAX_RETRY_DELAY_SECONDS);
-//                  }, retryDelaySeconds * 1000L);
-//                }
+                loadMetaRewardAd();
               }
 
               @Override
               public void onAdLoaded(@NonNull RewardedAd ad) {
-                retryDelaySeconds = 5;
                 rewardedAd = ad;
                 Log.d(TAG, "Ad was loaded.");
-                adLoadFailureCount = 0;
-                isAdLoadFailureRepeated = false;
               }
             });
   }
 
   private void handlePotentialAdBlocker() {
     runOnUiThread(() -> {
-//      if (!isFinishing()) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(ReadingActivity.this);
-//        builder.setTitle("Ad Loading Issue");
-//        builder.setMessage("We're unable to load the reward ad required to get a new reading, which may be due to a network issue or an ad blocker. If you have global ad blocking enabled, please consider disabling it in order to support this application remaining free. The next reading is enabled but features may not work as intended.");
-//        builder.setPositiveButton("OK", (dialog, id) -> {
-//        });
-//
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//      }
-
       positionCardsOnDeck();
-
       userCoinCount += 10;
       updateUIBasedOnCoinCount();
-      adLoadFailureCount = 0;
-      isAdLoadFailureRepeated = false;
     });
   }
 
@@ -472,60 +439,113 @@ public class ReadingActivity extends BaseActivity {
   public void setupRewardAdButton() {
     rewardAdButton.setOnClickListener(view -> {
       if (rewardedAd != null) {
-        positionCardsOnDeck();
-        Activity activityContext = ReadingActivity.this;
-        rewardedAd.show(activityContext, rewardItem -> {
-          // Handle the reward.
-          Log.d(TAG, "The user earned the reward.");
-          int rewardAmount = rewardItem.getAmount();
-          userCoinCount += rewardAmount;
-          runOnUiThread(this::updateUIBasedOnCoinCount);
-
-          setupRewardAd();
-        });
-
-        rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-          @Override
-          public void onAdClicked() {
-            // Called when a click is recorded for an ad.
-            Log.d(TAG, "Ad was clicked.");
-
-          }
-
-          @Override
-          public void onAdDismissedFullScreenContent() {
-            // Called when ad is dismissed.
-            // Set the ad reference to null so you don't show the ad a second time.
-            Log.d(TAG, "Ad dismissed fullscreen content.");
-            rewardedAd = null;
-
-          }
-
-          @Override
-          public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-            // Called when ad fails to show.
-            Log.e(TAG, "Ad failed to show fullscreen content.");
-            rewardedAd = null;
-
-          }
-
-          @Override
-          public void onAdImpression() {
-            // Called when an impression is recorded for an ad.
-            Log.d(TAG, "Ad recorded an impression.");
-          }
-
-          @Override
-          public void onAdShowedFullScreenContent() {
-            // Called when ad is shown.
-            Log.d(TAG, "Ad showed fullscreen content.");
-          }
-        });
+        showAdMobAd();
+      } else if (metaRewardedInterstitialAd != null && metaRewardedInterstitialAd.isAdLoaded()) {
+        metaRewardedInterstitialAd.show();
       } else {
-        Log.d(TAG, "The rewarded ad wasn't ready yet.");
-        setupRewardAd();
+        handlePotentialAdBlocker();
       }
     });
   }
+
+  private void showAdMobAd() {
+    positionCardsOnDeck();
+    Activity activityContext = ReadingActivity.this;
+    rewardedAd.show(activityContext, rewardItem -> {
+      // Handle the reward
+      Log.d(TAG, "The user earned the reward.");
+      int rewardAmount = rewardItem.getAmount();
+      userCoinCount += rewardAmount;
+      runOnUiThread(this::updateUIBasedOnCoinCount);
+
+      setupRewardAd();
+    });
+
+    rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+      @Override
+      public void onAdClicked() {
+        // Called when a click is recorded for an ad.
+        Log.d(TAG, "Ad was clicked.");
+
+      }
+
+      @Override
+      public void onAdDismissedFullScreenContent() {
+        // Called when ad is dismissed.
+        // Set the ad reference to null so you don't show the ad a second time.
+        Log.d(TAG, "Ad dismissed fullscreen content.");
+        rewardedAd = null;
+
+      }
+
+      @Override
+      public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+        // Called when ad fails to show.
+        Log.e(TAG, "Ad failed to show fullscreen content.");
+        rewardedAd = null;
+
+      }
+
+      @Override
+      public void onAdImpression() {
+        // Called when an impression is recorded for an ad.
+        Log.d(TAG, "Ad recorded an impression.");
+      }
+
+      @Override
+      public void onAdShowedFullScreenContent() {
+        // Called when ad is shown.
+        Log.d(TAG, "Ad showed fullscreen content.");
+      }
+    });
+  }
+
+  private void loadMetaRewardAd() {
+    metaRewardedInterstitialAd = new RewardedInterstitialAd(this, "351150507666328_355393503908695");
+    Log.d(TAG, "loadMetaRewardAd: MetaRewardAdCalled");
+    RewardedInterstitialAdListener rewardedInterstitialAdListener = new RewardedInterstitialAdListener() {
+      @Override
+      public void onRewardedInterstitialCompleted() {
+        Log.d(TAG, "Rewarded video completed!");
+        int rewardAmount = 10;
+        userCoinCount += rewardAmount;
+        updateUIBasedOnCoinCount();
+        setupRewardAd();
+      }
+
+      @Override
+      public void onRewardedInterstitialClosed() {
+        Log.d(TAG, "Rewarded video ad closed!");
+        updateUIBasedOnCoinCount();
+      }
+
+      @Override
+      public void onError(Ad ad, com.facebook.ads.AdError adError) {
+        Log.e(TAG, "Rewarded interstitial ad failed to load with error code: " + adError.getErrorCode() + " and message: " + adError.getErrorMessage());
+        metaRewardedInterstitialAd = null;
+      }
+
+      @Override
+      public void onAdLoaded(Ad ad) {
+        Log.d(TAG, "Meta ad was loaded.");
+      }
+
+      @Override
+      public void onAdClicked(Ad ad) {
+        Log.d(TAG, "Rewarded video ad clicked!");
+      }
+
+      @Override
+      public void onLoggingImpression(Ad ad) {
+        Log.d(TAG, "Rewarded video ad impression logged!");
+      }
+    };
+
+    metaRewardedInterstitialAd.loadAd(
+            metaRewardedInterstitialAd.buildLoadAdConfig()
+                    .withAdListener(rewardedInterstitialAdListener)
+                    .build());
+  }
+
 
 }

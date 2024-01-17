@@ -22,6 +22,7 @@ import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.utilities.NotificationHelper;
+import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
@@ -96,6 +97,8 @@ public class MainActivity extends BaseActivity {
       editor.putBoolean("notifications_enabled", true);
       editor.apply();
     }
+
+    AudienceNetworkAds.initialize(this);
   }
 
   @Override
