@@ -107,6 +107,7 @@ public class CardDetailActivity extends BaseActivity {
     }
   }
 
+
   private void displayAssociatedWords(String associatedWords) {
     ChipGroup chipGroup = findViewById(R.id.CardDetailActivityChipGroup);
 
@@ -157,6 +158,9 @@ public class CardDetailActivity extends BaseActivity {
   public void onDestroy() {
     if (mAdView != null) {
       mAdView.destroy();
+    }
+    if (adView != null) {
+      adView.destroy();
     }
     super.onDestroy();
   }

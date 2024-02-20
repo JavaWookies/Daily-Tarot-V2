@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -13,8 +14,7 @@ import androidx.preference.PreferenceManager;
 
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.utilities.NotificationHelper;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSize;
 
 public class UserSettingsActivity extends BaseActivity {
     public static final String CARD_TYPE_TAG = "cardType";
@@ -23,6 +23,7 @@ public class UserSettingsActivity extends BaseActivity {
     Spinner cardDisplaySpinner;
     Button saveSettingsButton;
     SwitchCompat notificationToggle;
+    private com.facebook.ads.AdView adView;
 
 
     @Override
@@ -41,10 +42,17 @@ public class UserSettingsActivity extends BaseActivity {
         initializeNotificationToggle();
         setupNotificationToggleListener();
 
-        AdView mAdViewBanner = findViewById(R.id.adView);
-        AdRequest adRequestBanner = new AdRequest.Builder().build();
-        mAdViewBanner.loadAd(adRequestBanner);
+        adView = new com.facebook.ads.AdView(this, "351150507666328_378619258252786", AdSize.BANNER_HEIGHT_50);
+        loadMetaBannerAd();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 
     void setupCardDisplaySpinner(){
@@ -97,6 +105,13 @@ public class UserSettingsActivity extends BaseActivity {
 
             Toast.makeText(UserSettingsActivity.this, "Settings saved!", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    private void loadMetaBannerAd() {
+        LinearLayout adContainer = (LinearLayout) findViewById(R.id.meta_banner_container);
+        adContainer.addView(adView);
+
+        adView.loadAd();
     }
 
 }

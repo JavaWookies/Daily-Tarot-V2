@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,9 +22,7 @@ import androidx.preference.PreferenceManager;
 import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.facebook.ads.AdSize;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -52,6 +51,7 @@ public class QuizActivity extends BaseActivity {
     private CardDbHelper dbHelper;
     private Button startQuizButton;
     private Button submitButton;
+    private com.facebook.ads.AdView adView;
     SharedPreferences preferences;
 
     @Override
@@ -83,17 +83,22 @@ public class QuizActivity extends BaseActivity {
         tapAndHold = findViewById(R.id.QuizActivityTapHold);
         tapAndHold.setVisibility(View.INVISIBLE);
 
-        MobileAds.initialize(this, initializationStatus -> {
-        });
-
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         setupCardTypes();
         setupStartQuizButton();
         updateStreakDisplay();
 
+        adView = new com.facebook.ads.AdView(this, "351150507666328_378621464919232", AdSize.BANNER_HEIGHT_50);
+        loadMetaBannerAd();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 
     @Override
@@ -308,6 +313,13 @@ public class QuizActivity extends BaseActivity {
         });
 
         snackbar.show();
+    }
+
+    private void loadMetaBannerAd() {
+        LinearLayout adContainer = (LinearLayout) findViewById(R.id.meta_banner_container);
+        adContainer.addView(adView);
+
+        adView.loadAd();
     }
 
 }
