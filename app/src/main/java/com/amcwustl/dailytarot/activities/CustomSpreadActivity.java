@@ -36,6 +36,7 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.ironsource.mediationsdk.IronSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,6 +91,15 @@ public class CustomSpreadActivity extends BaseActivity {
         setupInstructionsLayoutButton();
         setupInterstitial();
 
+    }
+
+    protected void onResume() {
+        super.onResume();
+        IronSource.onResume(this);
+    }
+    protected void onPause() {
+        super.onPause();
+        IronSource.onPause(this);
     }
 
     private void setupCardType() {
