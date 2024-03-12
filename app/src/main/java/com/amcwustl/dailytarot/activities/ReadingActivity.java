@@ -25,9 +25,6 @@ import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
 import com.amcwustl.dailytarot.utilities.CardStateUtil;
-import com.facebook.ads.Ad;
-import com.facebook.ads.RewardedInterstitialAd;
-import com.facebook.ads.RewardedInterstitialAdListener;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -61,7 +58,6 @@ public class ReadingActivity extends BaseActivity {
   private Button btnGetInterpretation;
   private String currentInterpretation;
   private AdView mAdView;
-  private RewardedInterstitialAd metaRewardedInterstitialAd;
   SharedPreferences preferences;
   private int cardWidth = 0;
 
@@ -128,9 +124,6 @@ public class ReadingActivity extends BaseActivity {
   public void onDestroy() {
     if (mAdView != null) {
       mAdView.destroy();
-    }
-    if (metaRewardedInterstitialAd != null) {
-      metaRewardedInterstitialAd.destroy();
     }
     super.onDestroy();
   }
@@ -409,14 +402,13 @@ public class ReadingActivity extends BaseActivity {
 
   private void setupRewardAd() {
     AdRequest adRequest = new AdRequest.Builder().build();
-    RewardedAd.load(this, "ca-app-pub-9366728814901706/9031755209",
+    RewardedAd.load(this, "ca-app-pub-9366728814901706/7587949971",
             adRequest, new RewardedAdLoadCallback() {
               @Override
               public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 // Handle the error.
                 Log.d(TAG, "Admob ad failed to load");
                 rewardedAd = null;
-                loadMetaRewardAd();
               }
 
               @Override
@@ -440,8 +432,6 @@ public class ReadingActivity extends BaseActivity {
     rewardAdButton.setOnClickListener(view -> {
       if (rewardedAd != null) {
         showAdMobAd();
-      } else if (metaRewardedInterstitialAd != null && metaRewardedInterstitialAd.isAdLoaded()) {
-        metaRewardedInterstitialAd.show();
       } else {
         handlePotentialAdBlocker();
       }
@@ -500,52 +490,7 @@ public class ReadingActivity extends BaseActivity {
     });
   }
 
-  private void loadMetaRewardAd() {
-    metaRewardedInterstitialAd = new RewardedInterstitialAd(this, "351150507666328_355393503908695");
-    Log.d(TAG, "loadMetaRewardAd: MetaRewardAdCalled");
-    RewardedInterstitialAdListener rewardedInterstitialAdListener = new RewardedInterstitialAdListener() {
-      @Override
-      public void onRewardedInterstitialCompleted() {
-        Log.d(TAG, "Rewarded video completed!");
-        int rewardAmount = 10;
-        userCoinCount += rewardAmount;
-        updateUIBasedOnCoinCount();
-        setupRewardAd();
-      }
 
-      @Override
-      public void onRewardedInterstitialClosed() {
-        Log.d(TAG, "Rewarded video ad closed!");
-        updateUIBasedOnCoinCount();
-      }
-
-      @Override
-      public void onError(Ad ad, com.facebook.ads.AdError adError) {
-        Log.e(TAG, "Rewarded interstitial ad failed to load with error code: " + adError.getErrorCode() + " and message: " + adError.getErrorMessage());
-        metaRewardedInterstitialAd = null;
-      }
-
-      @Override
-      public void onAdLoaded(Ad ad) {
-        Log.d(TAG, "Meta ad was loaded.");
-      }
-
-      @Override
-      public void onAdClicked(Ad ad) {
-        Log.d(TAG, "Rewarded video ad clicked!");
-      }
-
-      @Override
-      public void onLoggingImpression(Ad ad) {
-        Log.d(TAG, "Rewarded video ad impression logged!");
-      }
-    };
-
-    metaRewardedInterstitialAd.loadAd(
-            metaRewardedInterstitialAd.buildLoadAdConfig()
-                    .withAdListener(rewardedInterstitialAdListener)
-                    .build());
-  }
 
 
 }
