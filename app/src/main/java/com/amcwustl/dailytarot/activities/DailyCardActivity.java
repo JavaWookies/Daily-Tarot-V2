@@ -21,6 +21,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
+import com.ironsource.mediationsdk.IronSource;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -71,11 +72,15 @@ public class DailyCardActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-
+        IronSource.onResume(this);
         if (mAdView != null) {
             mAdView.resume();
         }
+    }
+
+    protected void onPause() {
+        super.onPause();
+        IronSource.onPause(this);
     }
 
     private void setupCardForDisplay() {

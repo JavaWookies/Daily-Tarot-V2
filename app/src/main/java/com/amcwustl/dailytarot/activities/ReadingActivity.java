@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +14,9 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.preference.PreferenceManager;
 
@@ -33,6 +32,7 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class ReadingActivity extends BaseActivity {
+public class ReadingActivity extends BaseActivity implements DemoActivityListener {
   private static final String TAG = "Reading Activity";
   private static final String HAS_READING_FOR_TODAY = "HAS_READING_FOR_TODAY";
   private Button drawCardsButton;
@@ -52,12 +52,13 @@ public class ReadingActivity extends BaseActivity {
   private ImageView cardTwo;
   private ImageView cardThree;
   private CardDbHelper dbHelper;
-  private RewardedAd rewardedAd;
   private int userCoinCount = 0;
   private AlertDialog interpretationDialog;
   private Button btnGetInterpretation;
   private String currentInterpretation;
+
   private AdView mAdView;
+
   SharedPreferences preferences;
   private int cardWidth = 0;
 
@@ -74,6 +75,8 @@ public class ReadingActivity extends BaseActivity {
     deck = findViewById(R.id.ReadingActivityDeckImage);
 
     calculateCardDimensions();
+
+    IronSource.loadRewardedVideo();
 
     btnGetInterpretation = findViewById(R.id.DailyCardActivityViewCardDetailsButton);
     btnGetInterpretation.setVisibility(View.INVISIBLE);
@@ -97,31 +100,26 @@ public class ReadingActivity extends BaseActivity {
       deck.post(this::positionCardsOnDeck);
     }
 
-    mAdView = findViewById(R.id.adView);
-    AdRequest adRequest = new AdRequest.Builder().build();
-    mAdView.loadAd(adRequest);
+    adView = new com.facebook.ads.AdView(this, "351150507666328_378616521586393", AdSize.BANNER_HEIGHT_50);
+    loadMetaBannerAd();
 
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    setupRewardAd();
-    if (mAdView != null) {
-      mAdView.resume();
-    }
+    IronSource.onResume(this);
   }
 
   @Override
   public void onPause() {
-    if (mAdView != null) {
-      mAdView.pause();
-    }
     super.onPause();
+    IronSource.onPause(this);
   }
 
   @Override
   public void onDestroy() {
+
     if (mAdView != null) {
       mAdView.destroy();
     }
@@ -157,11 +155,10 @@ public class ReadingActivity extends BaseActivity {
 
   private void updateUIBasedOnCoinCount() {
     if (userCoinCount > 0) {
-
+      positionCardsOnDeck();
       drawCardsButton.setVisibility(View.VISIBLE);
       rewardAdButton.setVisibility(View.GONE);
     } else {
-
       drawCardsButton.setVisibility(View.GONE);
       rewardAdButton.setVisibility(View.VISIBLE);
     }
@@ -200,7 +197,6 @@ public class ReadingActivity extends BaseActivity {
     CardStateUtil.saveReadingState(preferences, drawnCards, "ReadingActivity");
     currentInterpretation = generateInterpretation(drawnCards);
     userCoinCount -= 10;
-    setupRewardAd();
     markReadingForToday();
     runOnUiThread(this::updateUIBasedOnCoinCount);
   }
@@ -399,7 +395,6 @@ public class ReadingActivity extends BaseActivity {
     startActivity(intent);
   }
 
-
   private void setupRewardAd() {
     AdRequest adRequest = new AdRequest.Builder().build();
     RewardedAd.load(this, "ca-app-pub-9366728814901706/7587949971",
@@ -419,6 +414,7 @@ public class ReadingActivity extends BaseActivity {
             });
   }
 
+
   private void handlePotentialAdBlocker() {
     runOnUiThread(() -> {
       positionCardsOnDeck();
@@ -432,65 +428,16 @@ public class ReadingActivity extends BaseActivity {
     rewardAdButton.setOnClickListener(view -> {
       if (rewardedAd != null) {
         showAdMobAd();
+
       } else {
         handlePotentialAdBlocker();
       }
     });
   }
 
-  private void showAdMobAd() {
-    positionCardsOnDeck();
-    Activity activityContext = ReadingActivity.this;
-    rewardedAd.show(activityContext, rewardItem -> {
-      // Handle the reward
-      Log.d(TAG, "The user earned the reward.");
-      int rewardAmount = rewardItem.getAmount();
-      userCoinCount += rewardAmount;
-      runOnUiThread(this::updateUIBasedOnCoinCount);
+  @Override
+  public void setPlacementInfo(Placement placementInfo) {
 
-      setupRewardAd();
-    });
-
-    rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-      @Override
-      public void onAdClicked() {
-        // Called when a click is recorded for an ad.
-        Log.d(TAG, "Ad was clicked.");
-
-      }
-
-      @Override
-      public void onAdDismissedFullScreenContent() {
-        // Called when ad is dismissed.
-        // Set the ad reference to null so you don't show the ad a second time.
-        Log.d(TAG, "Ad dismissed fullscreen content.");
-        rewardedAd = null;
-
-      }
-
-      @Override
-      public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-        // Called when ad fails to show.
-        Log.e(TAG, "Ad failed to show fullscreen content.");
-        rewardedAd = null;
-
-      }
-
-      @Override
-      public void onAdImpression() {
-        // Called when an impression is recorded for an ad.
-        Log.d(TAG, "Ad recorded an impression.");
-      }
-
-      @Override
-      public void onAdShowedFullScreenContent() {
-        // Called when ad is shown.
-        Log.d(TAG, "Ad showed fullscreen content.");
-      }
-    });
   }
-
-
-
 
 }

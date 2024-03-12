@@ -86,14 +86,6 @@
             app:adSize="BANNER"
             app:adUnitId="ca-app-pub-9366728814901706/2015469458"/>
 
-        <LinearLayout
-            android:id="@+id/meta_banner_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

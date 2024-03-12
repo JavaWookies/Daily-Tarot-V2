@@ -45,6 +45,13 @@ public class ViewAllCardsActivity extends BaseActivity {
     setupRecyclerView();
   }
 
+  protected void onResume() {
+    super.onResume();
+  }
+  protected void onPause() {
+    super.onPause();
+  }
+
   @Override
   public void onTrimMemory(int level) {
     super.onTrimMemory(level);

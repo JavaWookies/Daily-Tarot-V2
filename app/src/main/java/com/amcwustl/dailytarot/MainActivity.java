@@ -21,16 +21,23 @@ import com.amcwustl.dailytarot.activities.ReadingActivity;
 import com.amcwustl.dailytarot.activities.UserSettingsActivity;
 import com.amcwustl.dailytarot.activities.ViewAllCardsActivity;
 import com.amcwustl.dailytarot.data.CardDbHelper;
+import com.amcwustl.dailytarot.utilities.DemoActivityListener;
+import com.amcwustl.dailytarot.utilities.IronSourceRewardedVideoAdListener;
 import com.amcwustl.dailytarot.utilities.NotificationHelper;
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
+import com.ironsource.mediationsdk.IronSource;
+import com.ironsource.mediationsdk.integration.IntegrationHelper;
+import com.ironsource.mediationsdk.model.Placement;
+
+import java.util.Arrays;
 
 
 @SuppressWarnings("resource")
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements DemoActivityListener {
   private static final String TAG = "Home Activity";
 
   private FrameLayout cardDailyReading;
@@ -88,6 +95,8 @@ public class MainActivity extends BaseActivity {
 
     Log.d(TAG, "Current launch count: " + launchCount);
 
+    setupIronSourceSdk();
+
     if (launchCount == 3) {
       promptForRating();
     }
@@ -99,6 +108,8 @@ public class MainActivity extends BaseActivity {
     }
 
     AudienceNetworkAds.initialize(this);
+
+    IntegrationHelper.validateIntegration(this);
   }
 
   @Override
@@ -177,7 +188,6 @@ public class MainActivity extends BaseActivity {
       NotificationChannel channel = new NotificationChannel("tarot_channel", name, importance);
       channel.setDescription(description);
 
-      // Register the channel with the system; you can customize additional settings here
       NotificationManager notificationManager = getSystemService(NotificationManager.class);
       notificationManager.createNotificationChannel(channel);
     }
@@ -191,6 +201,7 @@ public class MainActivity extends BaseActivity {
         ReviewInfo reviewInfo = task.getResult();
         Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
         flow.addOnCompleteListener(task2 -> {
+          //noinspection StatementWithEmptyBody
           if (task2.isSuccessful()) {
           } else {
             Log.e(TAG, "In-app review flow failed: " + task2.getException());
@@ -200,8 +211,34 @@ public class MainActivity extends BaseActivity {
         Log.e(TAG, "Requesting review flow failed: " + task.getException());
       }
     });
-
 }
+
+  private void setupIronSourceSdk() {
+    IronSource.setMetaData("is_test_suite", "enable");
+
+    IronSource.setLevelPlayRewardedVideoListener(new IronSourceRewardedVideoAdListener(this));
+
+    String APP_KEY = "1d4fb675d";
+    Log.d(TAG,"init ironSource SDK with appKey: " + APP_KEY);
+    IronSource.init(this, APP_KEY, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
+
+  }
+
+  public static void logCallbackName(String tag, String fmt, Object... args) {
+    Log.d(tag, String.format("%s " + fmt, getMethodName(), Arrays.toString(args)));
+  }
+
+  private static String getMethodName() {
+    StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+    if (stackTraceElements.length >= 5) {
+      return stackTraceElements[4].getMethodName();
+    }
+    return "";
+  }
+
+  @Override
+  public void setPlacementInfo(Placement placementInfo) {
+  }
 
 }
 

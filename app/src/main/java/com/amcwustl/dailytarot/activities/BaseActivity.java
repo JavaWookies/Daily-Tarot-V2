@@ -34,6 +34,13 @@ public class BaseActivity extends AppCompatActivity {
         initializeMobileAds();
     }
 
+    protected void onResume() {
+        super.onResume();
+    }
+    protected void onPause() {
+        super.onPause();
+    }
+
     private void initializeMobileAds() {
         MobileAds.initialize(this, initializationStatus -> {
         });
