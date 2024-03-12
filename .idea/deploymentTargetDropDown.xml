@@ -6,6 +6,7 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
+
             <type value="SERIAL_NUMBER" />
             <value value="adb-R3CR60H3ARJ-tFoVrR._adb-tls-connect._tcp." />
           </Key>

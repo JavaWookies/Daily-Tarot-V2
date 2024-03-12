@@ -24,10 +24,14 @@ import com.amcwustl.dailytarot.R;
 import com.amcwustl.dailytarot.data.CardDbHelper;
 import com.amcwustl.dailytarot.models.Card;
 import com.amcwustl.dailytarot.utilities.CardStateUtil;
-import com.amcwustl.dailytarot.utilities.DemoActivityListener;
-import com.facebook.ads.AdSize;
-import com.ironsource.mediationsdk.IronSource;
-import com.ironsource.mediationsdk.model.Placement;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,7 +57,7 @@ public class ReadingActivity extends BaseActivity implements DemoActivityListene
   private Button btnGetInterpretation;
   private String currentInterpretation;
 
-  private com.facebook.ads.AdView adView;
+  private AdView mAdView;
 
   SharedPreferences preferences;
   private int cardWidth = 0;
@@ -115,8 +119,9 @@ public class ReadingActivity extends BaseActivity implements DemoActivityListene
 
   @Override
   public void onDestroy() {
-    if (adView != null) {
-      adView.destroy();
+
+    if (mAdView != null) {
+      mAdView.destroy();
     }
     super.onDestroy();
   }
@@ -390,6 +395,26 @@ public class ReadingActivity extends BaseActivity implements DemoActivityListene
     startActivity(intent);
   }
 
+  private void setupRewardAd() {
+    AdRequest adRequest = new AdRequest.Builder().build();
+    RewardedAd.load(this, "ca-app-pub-9366728814901706/7587949971",
+            adRequest, new RewardedAdLoadCallback() {
+              @Override
+              public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error.
+                Log.d(TAG, "Admob ad failed to load");
+                rewardedAd = null;
+              }
+
+              @Override
+              public void onAdLoaded(@NonNull RewardedAd ad) {
+                rewardedAd = ad;
+                Log.d(TAG, "Ad was loaded.");
+              }
+            });
+  }
+
+
   private void handlePotentialAdBlocker() {
     runOnUiThread(() -> {
       positionCardsOnDeck();
@@ -401,14 +426,9 @@ public class ReadingActivity extends BaseActivity implements DemoActivityListene
 
   public void setupRewardAdButton() {
     rewardAdButton.setOnClickListener(view -> {
-      if (IronSource.isRewardedVideoAvailable()){
-        Log.d(TAG, "IronSource Ad Shown");
-        IronSource.showRewardedVideo();
-        Log.d(TAG, "The user earned the reward.");
-        int rewardAmount = 10;
-        positionCardsOnDeck();
-        userCoinCount += rewardAmount;
-        runOnUiThread(this::updateUIBasedOnCoinCount);
+      if (rewardedAd != null) {
+        showAdMobAd();
+
       } else {
         handlePotentialAdBlocker();
       }
@@ -420,10 +440,4 @@ public class ReadingActivity extends BaseActivity implements DemoActivityListene
 
   }
 
-  private void loadMetaBannerAd() {
-    LinearLayout adContainer = (LinearLayout) findViewById(R.id.meta_banner_container);
-    adContainer.addView(adView);
-
-    adView.loadAd();
-  }
 }
